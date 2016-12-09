@@ -1,0 +1,95 @@
+# Copyright:: Copyright (c) 2015 Ricoh Company, Ltd. All Rights Reserved.
+
+Style/AccessorMethodName:
+  Enabled: false
+
+Style/AndOr:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/DotPosition:
+  EnforcedStyle: trailing
+
+Style/FormatString:
+  EnforcedStyle: percent
+
+Style/GuardClause:
+  Enabled: false
+
+Style/NumericLiterals:
+  MinDigits: 4
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/RescueModifier:
+  Enabled: false
+
+Style/Semicolon:
+  Enabled: false
+
+Style/SignalException:
+  EnforcedStyle: only_raise
+
+Style/SingleLineMethods:
+  Enabled: false
+
+Style/SpaceInsideBlockBraces:
+  SpaceBeforeBlockParameters: false
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: false
+
+Style/TernaryParentheses:
+    EnforcedStyle: require_parentheses
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/BlockDelimiters:
+  Enabled: false
+
+Style/ClassCheck:
+  Enabled: false
+
+FormatString:
+  EnforcedStyle: percent
+
+Metrics/AbcSize:
+  Max: 100
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Max: 300
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 100
+
+# additional
+Metrics/CyclomaticComplexity:
+  Max: 20
+
+Metrics/PerceivedComplexity:
+  Max: 21
+
+Metrics/ParameterLists:
+  Max: 13
+
+Style/MultilineBlockLayout:
+  Enabled: false
+
+Style/SpaceAroundBlockParameters:
+  Enabled: false
