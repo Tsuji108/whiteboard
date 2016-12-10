@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
   
   def new
-    @user.remember_me = true  # 「入力項目に保存」チェックボックスにチェック
   end
 
   def create
