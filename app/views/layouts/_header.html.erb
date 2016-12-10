@@ -3,23 +3,11 @@
     <%= link_to "Whtie Board", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Menu1", '#' %></li>
-        <li><%= link_to "Menu2", '#' %></li>
         <% if logged_in? %>
           <li><%= link_to "サークルメンバー", users_path %></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
               <li><%= link_to "プロフィール確認", current_user %></li>
               <li><%= link_to "プロフィール編集", edit_user_path(current_user) %></li>
-              <li class="divider"></li>
-              <li>
-                <%= link_to "ログアウト", logout_path, method: "delete" %>
-              </li>
-            </ul>
-          </li>
+              <li><%= link_to "ログアウト", logout_path, method: "delete" %></li>
         <% else %>
           <li><%= link_to "ログイン", login_path %></li>
         <% end %>

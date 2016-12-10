@@ -3,8 +3,8 @@ class User < ApplicationRecord
     # 記憶トークン用のクラス変数
     attr_accessor :remember_token
     
-    # ページネーションの表示数
-    paginates_per  15
+    # ページネーションでの１ページの表示数
+    paginates_per  20
     
     # DB保存前にメールアドレスを小文字に
     before_save { email.downcase! }
