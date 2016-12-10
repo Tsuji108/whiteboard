@@ -17,7 +17,7 @@ class User < ApplicationRecord
     
     # passwordのバリデーション
     has_secure_password
-    validates :password, presence: true, length: { minimum: 6 }
+    validates :password, presence: true, length: { minimum: 6 }, allow_nil: true  # プロフ更新時のみnilを許可(パスはそのまま)
     
     
     # 渡された文字列のハッシュ値を返す(フィクスチャ用)
