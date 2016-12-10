@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   # TODO:仮のルート
-  root   'users#new'
+  root   'sessions#new'
   
   get    '/signup',  to: 'users#new'
   post   '/signup',  to: 'users#create'
