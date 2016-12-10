@@ -5,7 +5,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Menu1", '#' %></li>
         <li><%= link_to "Menu2", '#' %></li>
-        <% if logged_in? %>
+        <%# if logged_in? %>
           <li><%= link_to "サークルメンバー", '#' %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -20,9 +20,9 @@
               </li>
             </ul>
           </li>
-        <% else %>
+        <%# else %>
           <li><%= link_to "Log in", login_path %></li>
-        <% end %>
+        <%# end %>
       </ul>
     </nav>
   </div>

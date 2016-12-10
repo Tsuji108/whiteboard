@@ -18,7 +18,7 @@ module SessionsHelper
       @current_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id])      # 一度ログイン済みでクッキーに情報が保存されている場合
       user = User.find_by(id: user_id)
-      if user && user.authenticated(cookies[:remember_token])   # ユーザが存在し、クッキーの記憶トークンをハッシュ化したものと記憶ダイジェストが一致した場合
+      if user && user.authenticated?(cookies[:remember_token])   # ユーザが存在し、クッキーの記憶トークンをハッシュ化したものと記憶ダイジェストが一致した場合
         log_in user
         @current_user = user
       end
