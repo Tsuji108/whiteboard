@@ -22,8 +22,7 @@ class UsersController < ApplicationController
       @user.send_activation_email
       flash[:info] = "アカウント有効化のためのメールを送信しました"
       
-      # redirect_to root_url
-      render 'new'
+      redirect_to root_url
     else
       render 'new'
     end
