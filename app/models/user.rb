@@ -1,13 +1,16 @@
 class User < ApplicationRecord
     
-    # 記憶トークン用のクラス変数
-    attr_accessor :remember_token
+    # 記憶トークンと有効化トークン用のクラス変数
+    attr_accessor :remember_token, :activation_token
     
     # ページネーションでの１ページの表示数
     paginates_per  20
     
     # DB保存前にメールアドレスを小文字に
-    before_save { email.downcase! }
+    before_save   :downcase_email
+    
+    # ユーザ作成前に有効化トークンとダイジェストを作成
+    before_create :create_activation_digest
     
     # nameのバリデーション
     validates :name,  presence: true, length: { maximum: 50 }
@@ -51,5 +54,18 @@ class User < ApplicationRecord
     def forget
       update_attribute(:remember_digest, nil)
     end
+    
+    private
+
+      # メールアドレスをすべて小文字にする
+      def downcase_email
+        self.email = email.downcase
+      end
   
+      # 有効化トークンとダイジェストを作成および代入する
+      def create_activation_digest
+        self.activation_token  = User.new_token
+        self.activation_digest = User.digest(activation_token)
+      end
+    
 end
