@@ -1,0 +1,10 @@
+<h1>WhiteBoard</h1>
+
+<p><%= @user.name %> さん</p>
+
+<p>
+九工大軽音楽部へようこそ！ <br>
+下のリンクをクリックして、あなたのWhiteBoardアカウントを有効化してください。
+</p>
+
+<%= link_to "アカウント有効化", edit_account_activation_url(@user.activation_token, email: @user.email) %>
