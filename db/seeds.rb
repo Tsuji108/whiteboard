@@ -1,7 +1,7 @@
 # 100人のテスト用ユーザを作成
 
 # 管理者
-User.create!(name:  "Ito Masa",
+User.create!(name:  "Ito Masafumi",
              email: "mito@example.com",
              password:              "foobar",
              password_confirmation: "foobar",
