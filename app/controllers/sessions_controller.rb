@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
   
+  # アカウント有効化メール再送信用にユーザ情報を渡すためのグローバル変数(sessions#create・users#resendで使用)
+  $resend_email = nil
+  
   def new
     redirect_to current_user if logged_in?
   end
@@ -12,7 +15,9 @@ class SessionsController < ApplicationController
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)   # クッキーにユーザIDと記憶トークンを保存（「入力項目を保存」にチェックが有る場合）
         redirect_back_or user
       else
-        message  = "アカウントが有効化されていません"
+        $resend_email = user.email # users#resendにユーザのメールアドレスを渡す
+        message  = "アカウントが有効化されていません<br>
+                      #{view_context.link_to "アカウント有効化メールを再送信", resend_users_path}"
         flash[:warning] = message
         redirect_to root_url
       end

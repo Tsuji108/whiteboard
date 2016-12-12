@@ -16,12 +16,12 @@ class UsersController < ApplicationController
     @user = User.new
   end
   
+  # ユーザ作成前にbefore_create :create_activation_digestで有効化トークンとダイジェストを作成
   def create
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
       flash[:info] = "アカウント有効化のためのメールを送信しました"
-      
       redirect_to root_url
     else
       render 'new'
@@ -46,6 +46,16 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "メンバーから削除しました"
     redirect_to users_url
+  end
+  
+  # アカウント有効化メールを再送信
+  def resend
+    @user = User.find_by(email: $resend_email)
+    @user.create_activation_digest
+    @user.save
+    @user.send_activation_email
+    flash[:info] = "アカウント有効化のためのメールを再送信しました"
+    redirect_to :back
   end
   
   private
