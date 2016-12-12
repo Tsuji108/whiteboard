@@ -1,24 +1,33 @@
-# README
+# Whiteboard
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+WhiteboardはバンドサークルのためのプライベートSNSです。
+主な機能は以下です。
 
-Things you may want to cover:
+ * アカウント登録機能
+ * 学校の時間割に合わせたタイムスケジュールでのスタジオの予約
+ * メール一斉送信機能
 
-* Ruby version
+## セットアップ
 
-* System dependencies
+```
+bundle insatll
+bundle exec rake db:create
+bundle exec rake db:migrate
+```
 
-* Configuration
+## 使い方
 
-* Database creation
+```
+bundle exec rails s -b 0.0.0.0 RAILS_ENV={ENVIRONMENT}
+```
 
-* Database initialization
+ENVIRONMENTは下記のいずれかが入ります
+ * test
+ * develop
+ * production
 
-* How to run the test suite
+## テスト
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+bundle exec rake test
+```
