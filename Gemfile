@@ -18,7 +18,7 @@ gem 'rubocop'
 group :development, :test do
   gem 'sqlite3', '1.3.11'
   gem 'byebug',  '9.0.0', platform: :mri
-  gem "rails-controller-testing"
+  gem 'rails-controller-testing'
 end
 
 group :development do
