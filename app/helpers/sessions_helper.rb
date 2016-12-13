@@ -1,54 +1,54 @@
+# frozen_string_literal: true
 module SessionsHelper
-
   # 渡されたユーザーでログインする
   def log_in(user)
     session[:user_id] = user.id
   end
-  
+
   # ユーザーを永続的セッションに記憶する
   def remember(user)
-    user.remember   # 永続セッションのために記憶トークンをハッシュ化してDBに記憶する
+    user.remember # 永続セッションのために記憶トークンをハッシュ化してDBに記憶する
     cookies.permanent.signed[:user_id] = user.id
     cookies.permanent[:remember_token] = user.remember_token
   end
-  
+
   # 渡されたユーザーがログイン済みユーザーであればtrueを返す
   def current_user?(user)
     user == current_user
   end
-  
+
   # 記憶トークンcookieに対応するユーザーを返す
   def current_user
     if (user_id = session[:user_id])                # 新たにログインした場合
       @current_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id])      # 一度ログイン済みでクッキーに情報が保存されている場合
       user = User.find_by(id: user_id)
-      if user && user.authenticated?(:remember, cookies[:remember_token])   # ユーザが存在し、クッキーの記憶トークンをハッシュ化したものと記憶ダイジェストが一致した場合
+      if user && user.authenticated?(:remember, cookies[:remember_token]) # ユーザが存在し、クッキーの記憶トークンをハッシュ化したものと記憶ダイジェストが一致した場合
         log_in user
         @current_user = user
       end
     end
   end
-  
+
   # ユーザーがログインしていればtrue、その他ならfalseを返す
   def logged_in?
     !current_user.nil?
   end
-  
+
   # 永続的セッションを破棄する（log_outメソッドで使用）
   def forget(user)
     user.forget
     cookies.delete(:user_id)
     cookies.delete(:remember_token)
   end
-  
+
   # 現在のユーザーをログアウトする
   def log_out
     forget(current_user)
     session.delete(:user_id)
     @current_user = nil
   end
-  
+
   # 記憶したURL (もしくはデフォルト値) にリダイレクト
   def redirect_back_or(default)
     redirect_to(session[:forwarding_url] || default)
@@ -59,5 +59,4 @@ module SessionsHelper
   def store_location
     session[:forwarding_url] = request.original_url if request.get?
   end
-  
 end

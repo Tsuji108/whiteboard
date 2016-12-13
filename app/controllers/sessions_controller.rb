@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 class SessionsController < ApplicationController
-  
   def new
     redirect_to current_user if logged_in?
   end
@@ -8,11 +8,11 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       if user.activated?
-        log_in user     # 一時セッションにユーザIDを保存
-        params[:session][:remember_me] == '1' ? remember(user) : forget(user)   # クッキーにユーザIDと記憶トークンを保存（「入力項目を保存」にチェックが有る場合）
+        log_in user # 一時セッションにユーザIDを保存
+        params[:session][:remember_me] == '1' ? remember(user) : forget(user) # クッキーにユーザIDと記憶トークンを保存（「入力項目を保存」にチェックが有る場合）
         redirect_back_or user
       else
-        message  = "アカウントが有効化されていません<br>
+        message = "アカウントが有効化されていません<br>
                       #{view_context.link_to "アカウント有効化メールを再送信", resend_user_path(user)}"
         flash[:warning] = message
         redirect_to root_url
@@ -27,5 +27,4 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     redirect_to root_url
   end
-  
 end
