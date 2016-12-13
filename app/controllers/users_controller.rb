@@ -50,8 +50,7 @@ class UsersController < ApplicationController
   
   # アカウント有効化メールを再送信
   def resend
-    @user = User.find_by(email: $resend_email)
-    @user.create_activation_digest
+    @user = User.find(params[:id])
     if @user.save
       @user.send_activation_email
       flash[:info] = "アカウント有効化のためのメールを再送信しました"
