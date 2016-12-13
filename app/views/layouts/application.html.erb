@@ -16,7 +16,7 @@
       
       <!-- フラッシュを表示-->
       <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <div class="alert alert-<%= message_type %>"><%= message.html_safe %></div> <!-- html形式で出力 -->
       <% end %>
       
       <%= yield %>
