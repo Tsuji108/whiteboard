@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get   'resend'
-      resources :mailing_lists,   only: [:new, :create]
+    end
+    resources :mailing_lists, only: [:new, :create, :edit, :update] do
+      member do
+        get 'confirm'
+      end
     end
   end
   resources :account_activations, only: [:edit]

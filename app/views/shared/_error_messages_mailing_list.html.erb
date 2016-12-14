@@ -1,0 +1,12 @@
+<% if @mailing_list.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      <%= @mailing_list.errors.count %>個のエラーがあります
+    </div>
+    <ul>
+    <% @mailing_list.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

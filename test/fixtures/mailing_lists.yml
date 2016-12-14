@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  title: MyString
+  email: MyString
+  non_graduated: false
+  graduated: false
+  content: MyText
+
+two:
+  name: MyString
+  title: MyString
+  email: MyString
+  non_graduated: false
+  graduated: false
+  content: MyText

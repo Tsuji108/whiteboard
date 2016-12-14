@@ -7,6 +7,10 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード(確認用)
+      mailing_list:
+        name: 名前
+        title: メールタイトル
+        content: メール本文
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"

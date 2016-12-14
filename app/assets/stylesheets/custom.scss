@@ -193,8 +193,24 @@ input {
 
 #session_remember_me, #mailing_list_send_to,
 #mailing_list_non_graduated, #mailing_list_graduated {
-  width: auto;
+  width: 100%;
   margin-left: 0;
+}
+
+.confirm-text {
+  width: 100%;
+  word-wrap:break-word;
+  margin-top: -15px;
+  margin-bottom: 10px;
+}
+
+.fix-btn {
+  margin-top: 20px;
+  color: black;
+  background-color: #ccc;
+  &:hover {
+    background-color: #aaa;
+  }
 }
 
 /* Users index */
