@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   # アカウント有効化メールを再送信
   def resend
     @user = User.find(params[:id])
-    if @user.save & !request.referer.nil?  # ユーザの保存に成功かつURL直打ちでない
+    if @user.save && request.referer == root_url  # ユーザの保存に成功かつURL直打ちでない
       @user.send_activation_email
       flash[:info] = 'アカウント有効化のためのメールを再送信しました'
       redirect_to :back
