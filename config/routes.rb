@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
-  get 'mailing_list/new'
-
   # TODO: 仮のルート
   root   'sessions#new'
 
@@ -12,7 +10,8 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   resources :users do
     member do
-      get 'resend'
+      get   'resend'
+      resources :mailing_lists,   only: [:new, :create]
     end
   end
   resources :account_activations, only: [:edit]

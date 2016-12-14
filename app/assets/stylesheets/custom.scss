@@ -180,15 +180,19 @@ input {
 }
 
 .checkbox {
-  margin-top: -10px;
+  margin-top: -5px;
   margin-bottom: 10px;
   span {
     margin-left: 20px;
     font-weight: normal;
   }
+  .non-graduated {
+    margin-right: 15px;
+  }
 }
 
-#session_remember_me {
+#session_remember_me, #mailing_list_send_to,
+#mailing_list_non_graduated, #mailing_list_graduated {
   width: auto;
   margin-left: 0;
 }

@@ -1,0 +1,28 @@
+<% provide(:title, 'Mailing list') %>
+<h1>Mailing list</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:mailing_list, url: mailing_lists_path) do |f| %>
+
+      <%= f.label :name, "名前" %>
+      <%= f.text_field :name, value: current_user.name, class: 'form-control' %>
+
+      <%= f.label :title, "メールタイトル" %>
+      <%= f.email_field :title, class: 'form-control' %>
+      
+      <%= f.label :send_to, "メール送信先" %>
+      <%= f.label :send_to, class: "checkbox inline" do %>
+        <%= f.check_box :non_graduated, checked: true %>
+        <span class="non-graduated">現役生</span>
+        <%= f.check_box :graduated %>
+        <span class="graduated">卒業生</span>
+      <% end %>
+      
+      <%= f.label :text, "メール本文" %>
+      <%= f.text_area :text, rows: 10, class: 'form-control' %>
+
+      <%= f.submit "確認", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

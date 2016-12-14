@@ -5,9 +5,10 @@
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
           <li><%= link_to "サークルメンバー", users_path %></li>
-              <li><%= link_to "プロフィール確認", current_user %></li>
-              <li><%= link_to "プロフィール編集", edit_user_path(current_user) %></li>
-              <li><%= link_to "ログアウト", logout_path, method: "delete" %></li>
+          <li><%= link_to "サークルメール", new_mailing_list_path(current_user) %></li>
+          <li><%= link_to "プロフィール確認", current_user %></li>
+          <li><%= link_to "プロフィール編集", edit_user_path(current_user) %></li>
+          <li><%= link_to "ログアウト", logout_path, method: "delete" %></li>
         <% else %>
           <li><%= link_to "ログイン", login_path %></li>
         <% end %>
