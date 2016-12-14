@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
   before_action :non_activated_user,  only: :resend
+  before_action :prohibit_direct_access, only: :resend
 
   def index
     @users = User.where(activated: true).order(:created_at).reverse_order.page(params[:page])
@@ -51,7 +52,7 @@ class UsersController < ApplicationController
   # アカウント有効化メールを再送信
   def resend
     @user = User.find(params[:id])
-    if @user.save && request.referer == root_url  # ユーザの保存に成功かつログインページから遷移
+    if @user.save
       @user.send_activation_email
       flash[:info] = 'アカウント有効化のためのメールを再送信しました'
       redirect_to :back

@@ -1,6 +1,7 @@
 class MailingListsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :confirm]
   before_action :correct_user,   only: [:new, :create, :confirm]
+  before_action :prohibit_direct_access, only: [:edit, :confirm]
   
   def new
     @mailing_list = current_user.mailing_lists.build()
@@ -8,8 +9,11 @@ class MailingListsController < ApplicationController
   
   def create
     @mailing_list = current_user.mailing_lists.build(mailing_list_params)
-    @mailing_list.save
-    redirect_to confirm_user_mailing_list_path(current_user, @mailing_list)
+    if @mailing_list.save
+      redirect_to confirm_user_mailing_list_path(current_user, @mailing_list)
+    else
+      render 'new'
+    end
   end
   
   def edit
