@@ -1,6 +1,6 @@
+# frozen_string_literal: true
 # Preview all emails at https://whiteboard-mfito.c9users.io/rails/mailers/user_mailer
 class UserMailerPreview < ActionMailer::Preview
-
   # Preview this email at
   # https://whiteboard-mfito.c9users.io/rails/mailers/user_mailer/account_activation
   def account_activation

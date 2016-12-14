@@ -1,9 +1,11 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
 
 gem 'rails',          '5.0.0.1'
 gem 'bootstrap-sass', '3.3.6'
 gem 'faker',          '1.6.6'
-gem 'kaminari',       '~> 0.17.0'
+gem 'kaminari',       '0.17.0'
+gem 'i18n_generators', '2.1.1'
 gem 'bcrypt',         '3.1.11'
 gem 'puma',           '3.4.0'
 gem 'sass-rails',     '5.0.6'
@@ -17,7 +19,7 @@ gem 'rubocop'
 group :development, :test do
   gem 'sqlite3', '1.3.11'
   gem 'byebug',  '9.0.0', platform: :mri
-  gem "rails-controller-testing"
+  gem 'rails-controller-testing'
 end
 
 group :development do
