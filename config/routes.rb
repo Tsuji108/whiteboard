@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
+  get 'mailing_list/new'
+
   # TODO: 仮のルート
   root   'sessions#new'
 
