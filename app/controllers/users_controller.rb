@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  before_action :non_activated_correct_user,  only: :resend
+  before_action :non_activated_user,  only: :resend
 
   def index
     @users = User.where(activated: true).order(:created_at).reverse_order.page(params[:page])
@@ -90,7 +90,7 @@ class UsersController < ApplicationController
   end
   
   # アカウント有効化メールを送信可能なユーザかどうか確認
-  def non_activated_correct_user
+  def non_activated_user
     @user = User.find(params[:id])
     redirect_to(root_url) unless @user && !@user.activated?
   end
