@@ -179,18 +179,34 @@ input {
   }
 }
 
-.checkbox {
-  margin-top: -10px;
-  margin-bottom: 10px;
-  span {
-    margin-left: 20px;
-    font-weight: normal;
-  }
+#session_remember_me {
+  width: 100%;
+  margin-left: 0;
 }
 
-#session_remember_me {
-  width: auto;
-  margin-left: 0;
+#remember_me {
+  margin-left: 25px;
+}
+
+#sendto_checkbox {
+  margin-top: -3px;
+  margin-bottom: 13px;
+}
+
+.confirm-text {
+  width: 100%;
+  word-wrap:break-word;
+  margin-top: -15px;
+  margin-bottom: 10px;
+}
+
+.fix-btn {
+  margin-top: 20px;
+  color: black;
+  background-color: #ccc;
+  &:hover {
+    background-color: #aaa;
+  }
 }
 
 /* Users index */

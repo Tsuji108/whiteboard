@@ -7,6 +7,11 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード(確認用)
+      mailing_list:
+        name: 名前
+        title: メールタイトル
+        graduated: メール送信先
+        content: メール本文
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
@@ -112,7 +117,7 @@ ja:
   errors:
     format: "%{attribute}%{message}"
     messages:
-      accepted: を受諾してください
+      accepted: を選択してください
       blank: を入力してください
       present: は入力しないでください
       confirmation: と%{attribute}の入力が一致しません
