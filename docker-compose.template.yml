@@ -1,7 +1,7 @@
 version: '2'
 services:
   app:
-    image: account_id.dkr.ecr.region.amazonaws.com/whiteboard
+    image: sonedazaurus/whiteboard
     environment:
       RAILS_ENV: production 
       DATABASE_URL: mysql2://root:pass@mysql:3306
