@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   
   # URL直打ちでのアクセスを禁止
   def prohibit_direct_access
-    redirect_to root_oath if request.referer.nil?
+    redirect_to root_path if request.referer.nil?
   end
 end

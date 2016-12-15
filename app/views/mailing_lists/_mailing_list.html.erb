@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@mailing_list, url: path) do |f| %>
-      <%= render 'shared/error_messages_mailing_list' %>
+      <%= render 'shared/error_messages' %>
               
       <%= f.label :name, "名前" %>
       <%= f.text_field :name, class: 'form-control' %>

@@ -1,0 +1,15 @@
+<% obj = @user if @user %>
+<% obj = @mailing_list if @mailing_list %>
+
+<% if obj.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      <%= obj.errors.count %>個のエラーがあります
+    </div>
+    <ul>
+    <% obj.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

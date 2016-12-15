@@ -3,7 +3,6 @@
 one:
   name: MyString
   title: MyString
-  email: MyString
   non_graduated: false
   graduated: false
   content: MyText
@@ -11,7 +10,6 @@ one:
 two:
   name: MyString
   title: MyString
-  email: MyString
   non_graduated: false
   graduated: false
   content: MyText
