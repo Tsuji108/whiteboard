@@ -204,8 +204,11 @@ input {
   margin-bottom: 10px;
 }
 
-.fix-btn {
-  margin-top: 20px;
+#submit-btn {
+  margin-bottom: 10px;
+}
+
+#fix-btn {
   color: black;
   background-color: #ccc;
   &:hover {

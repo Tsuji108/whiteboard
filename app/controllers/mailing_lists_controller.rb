@@ -38,7 +38,10 @@ class MailingListsController < ApplicationController
   end
   
   def send_ml
-  
+    @mailing_list = MailingList.find(params[:id])
+    @mailing_list.send_circle_mail
+    flash[:info] = "サークルメールを送信しました#{@mailing_list.user.email}"
+    redirect_to new_user_mailing_list_path(current_user)
   end
   
   private
