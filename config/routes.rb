@@ -10,11 +10,12 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   resources :users do
     member do
-      get   'resend'
+      get    'resend'
     end
     resources :mailing_lists, only: [:new, :create, :edit, :update] do
       member do
-        get 'confirm'
+        get  'confirm'
+        post 'send_ml'
       end
     end
   end

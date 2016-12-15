@@ -1,7 +1,7 @@
 class MailingListsController < ApplicationController
-  before_action :logged_in_user, only: [:new, :create, :edit, :update, :confirm]
-  before_action :correct_user,   only: [:new, :create, :edit, :update, :confirm]
-  before_action :prohibit_direct_access, only: [:edit, :confirm]
+  before_action :logged_in_user
+  before_action :correct_user
+  before_action :prohibit_direct_access, only: [:edit, :confirm, :send_ml]
   
   def new
     @mailing_list = current_user.mailing_lists.build()
@@ -35,6 +35,10 @@ class MailingListsController < ApplicationController
 
   def confirm
     @mailing_list = MailingList.find(params[:id])
+  end
+  
+  def send_ml
+  
   end
   
   private
