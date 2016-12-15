@@ -13,15 +13,21 @@
       <%= f.text_field :title, class: 'form-control' %>
         
       <%= f.label :send_to, "メール送信先" %>
-      <%= f.label :send_to, class: "checkbox inline" do %>
-      <%= f.check_box :non_graduated, checked: true %>
-      <span class="non-graduated">在校生</span>
-      <%= f.check_box :graduated %>
-      <span class="graduated">卒業生</span>
-      <% end %>
-        
-      <%= f.label :content, "メール本文" %>
-      <%= f.text_area :content, rows: 10, class: 'form-control' %>
+      <div id="sendto_checkbox">
+        <div class="checkbox-inline">
+          <%= f.check_box :non_graduated %>
+          <span class="non-graduated">在校生</span>
+        </div>
+        <div class="checkbox-inline">
+          <%= f.check_box :graduated %>
+          <span class="graduated">卒業生</span>
+        </div>
+      </div>
+      
+      <div class="content">
+        <%= f.label :content, "メール本文" %>
+        <%= f.text_area :content, rows: 10, class: 'form-control' %>
+      </div>
         
       <%= f.submit "確認", class: "btn btn-primary" %>
     <% end %>

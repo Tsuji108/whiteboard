@@ -5,6 +5,9 @@ class MailingListsController < ApplicationController
   
   def new
     @mailing_list = current_user.mailing_lists.build()
+    @mailing_list.name = current_user.name
+    @mailing_list.title = current_user.name + "さんからのメール"
+    @mailing_list.non_graduated = true
   end
   
   def create

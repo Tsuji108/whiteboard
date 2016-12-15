@@ -179,22 +179,18 @@ input {
   }
 }
 
-.checkbox {
-  margin-top: -5px;
-  margin-bottom: 10px;
-  span {
-    margin-left: 20px;
-    font-weight: normal;
-  }
-  .non-graduated {
-    margin-right: 15px;
-  }
-}
-
-#session_remember_me, #mailing_list_send_to,
-#mailing_list_non_graduated, #mailing_list_graduated {
+#session_remember_me {
   width: 100%;
   margin-left: 0;
+}
+
+#remember_me {
+  margin-left: 25px;
+}
+
+#sendto_checkbox {
+  margin-top: -3px;
+  margin-bottom: 13px;
 }
 
 .confirm-text {
