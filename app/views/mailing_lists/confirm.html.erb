@@ -29,7 +29,7 @@
     
     <p>
       <%= label :text, "メール本文" %>
-      <div class="confirm-text"><%= @mailing_list.content %></div>
+      <div class="confirm-text"><%= simple_format(h @mailing_list.content) %></div>
     </p>
     
     <div id="submit-btn">

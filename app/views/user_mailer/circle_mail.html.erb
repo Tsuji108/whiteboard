@@ -1,4 +1,4 @@
-<p><%= @mailing_list.content %></p>
+<p><%= simple_format(h @mailing_list.content) %></p>
 --<br>
 <p>
 送信者：<%= @mailing_list.name %><br>
