@@ -58,8 +58,7 @@ class UsersController < ApplicationController
       redirect_to :back
     else
       flash[:danger] = "アカウント有効化のためのメールを送信できませんでした<br>
-                        しばらく待ってから再度実行してください<br>
-                        または不正なアクセスの可能性があります"
+                        しばらく待ってから再度実行してください"
       redirect_to root_url
     end
   end
