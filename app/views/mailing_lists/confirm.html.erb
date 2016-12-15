@@ -18,9 +18,9 @@
       <p>
         <%= f.label :send_to, "メール送信先" %>
         <div class="confirm-text">
-          <% if @mailing_list.non_graduated && @mailing_list.graduated %>
+          <% if @mailing_list.enrolled && @mailing_list.graduated %>
             在校生・卒業生
-          <% elsif @mailing_list.non_graduated %>
+          <% elsif @mailing_list.enrolled %>
             在校生
           <% elsif @mailing_list.graduated  %>
             卒業生

@@ -9,7 +9,7 @@ class MailingList < ApplicationRecord
   validates :title,  presence: true, length: { maximum: 255 }
   
   # メール送信先のバリデーション
-  validates :graduated, acceptance: true, unless: proc {|a| a.non_graduated? }
+  validates :graduated, acceptance: true, unless: proc {|a| a.enrolled? }
   
   # contentのバリデーション
   validates :content,  presence: true, length: { maximum: 5000 }

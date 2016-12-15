@@ -1,19 +1,20 @@
 class MailingListsController < ApplicationController
-  before_action :logged_in_user, only: [:new, :create, :confirm]
-  before_action :correct_user,   only: [:new, :create, :confirm]
+  before_action :logged_in_user, only: [:new, :create, :edit, :update, :confirm]
+  before_action :correct_user,   only: [:new, :create, :edit, :update, :confirm]
   before_action :prohibit_direct_access, only: [:edit, :confirm]
   
   def new
     @mailing_list = current_user.mailing_lists.build()
     @mailing_list.name = current_user.name
     @mailing_list.title = current_user.name + "さんからのメール"
-    @mailing_list.non_graduated = true
+    @mailing_list.enrolled = true
   end
   
   def create
     @mailing_list = current_user.mailing_lists.build(mailing_list_params)
     if @mailing_list.save
-      MailingList.where("created_at < ?", 1.month.ago)  # １ヶ月以上前のメールを削除
+      old_mails = MailingList.where("created_at < ?", 1.month.ago)  # １ヶ月以上前のメールを選択
+      old_mails.destroy unless old_mails.count == 0                 # １ヶ月以上前のメールが存在する場合は削除
       redirect_to confirm_user_mailing_list_path(current_user, @mailing_list)
     else
       render 'new'
@@ -41,6 +42,6 @@ class MailingListsController < ApplicationController
 
   # ストロングパラメータの設定
   def mailing_list_params
-    params.require(:mailing_list).permit(:name, :title, :non_graduated, :graduated, :content)
+    params.require(:mailing_list).permit(:name, :title, :enrolled, :graduated, :content)
   end
 end
