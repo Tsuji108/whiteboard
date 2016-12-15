@@ -1,0 +1,31 @@
+version: '2'
+services:
+  app:
+    image: sonedazaurus/whiteboard
+    environment:
+      RAILS_ENV: production 
+      DATABASE_URL: mysql2://root:pass@mysql:3306
+      MYSQL_ROOT_PASSWORD: 'pass'
+      AMAZONSES_USERNAME: 'username'
+      AMAZONSES_PASSWORD: 'password'
+      FROM_ADDRESS: 'xxx@example.com'
+      HOST: 'host'
+      SECRET_KEY_BASE: 'secret'
+    ports:
+      - '80:3000'
+    links:
+      - mysql
+    mem_limit: 268435456
+    command: bash -c "bundle exec rake assets:precompile assets:clean db:create db:migrate && bundle exec rails server -b 0.0.0.0"
+  mysql:
+    image: mysql:5.7.16
+    environment:
+      MYSQL_ROOT_PASSWORD: 'pass'
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+    mem_limit: 268435456
+volumes:
+  mysql-data:
+    driver: local
