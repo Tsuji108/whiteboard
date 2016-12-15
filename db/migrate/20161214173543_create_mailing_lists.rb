@@ -3,8 +3,7 @@ class CreateMailingLists < ActiveRecord::Migration[5.0]
     create_table :mailing_lists do |t|
       t.string :name
       t.string :title
-      t.string :email
-      t.boolean :non_graduated
+      t.boolean :enrolled
       t.boolean :graduated
       t.text :content
 
