@@ -13,6 +13,7 @@ class MailingListsController < ApplicationController
   def create
     @mailing_list = current_user.mailing_lists.build(mailing_list_params)
     if @mailing_list.save
+      MailingList.where("created_at < ?", 1.month.ago)  # １ヶ月以上前のメールを削除
       redirect_to confirm_user_mailing_list_path(current_user, @mailing_list)
     else
       render 'new'
