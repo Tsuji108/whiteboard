@@ -1,0 +1,30 @@
+machine:
+  pre:
+    - sudo curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest
+    - sudo chmod +x /usr/local/bin/ecs-cli
+  services:
+    - docker
+
+dependencies:
+  cache_directories:
+    - vendor/bundle
+  override:
+    - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+    - docker info
+    - docker build --rm=false -t sonedazaurus/whiteboard .
+
+test:
+  override:
+    - bundle
+    - bundle exec rake test
+
+deployment:
+  deploy:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push sonedazaurus/whiteboard
+      - cp docker-compose.template.yml docker-compose.yml
+      - ecs-cli configure --region $REGION --access-key $ACCESS_KEY --secret-key $SECRET_KEY --cluster whiteboard
+      - ecs-cli compose service stop
+      - ecs-cli compose service start
