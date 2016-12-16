@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 class UserMailer < ApplicationMailer
+  # メーラーのviewでMailingListsHelperを使用
+  add_template_helper(MailingListsHelper)
+  
   # アカウント有効化
   def account_activation(user)
     @user = user
