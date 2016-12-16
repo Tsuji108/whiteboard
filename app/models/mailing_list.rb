@@ -26,7 +26,7 @@ class MailingList < ApplicationRecord
       return false
     end
     users.each do |user|  # user一人ずつに送信(本番環境では50人以上同時送信できないため)
-      UserMailer.circle_mail(self, user).deliver_later
+      UserMailer.circle_mail(self, user).deliver_now
     end
   end
 end
