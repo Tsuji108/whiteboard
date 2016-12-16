@@ -51,6 +51,6 @@ class MailingListsController < ApplicationController
 
   # ストロングパラメータの設定
   def mailing_list_params
-    params.require(:mailing_list).permit(:from_name, :title, :enrolled, :graduated, :content)
+    params.require(:mailing_list).permit(:from_name, :title, :to_enrolled, :to_graduated, :content)
   end
 end

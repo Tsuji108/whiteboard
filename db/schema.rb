@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216054558) do
+ActiveRecord::Schema.define(version: 20161216195342) do
 
   create_table "mailing_lists", force: :cascade do |t|
     t.string   "from_name"
     t.string   "title"
-    t.boolean  "enrolled",   default: true
-    t.boolean  "graduated"
+    t.boolean  "to_enrolled",  default: true
+    t.boolean  "to_graduated"
     t.text     "content"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "user_id"
     t.index ["user_id"], name: "index_mailing_lists_on_user_id"
   end
