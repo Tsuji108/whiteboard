@@ -15,6 +15,6 @@ class UserMailer < ApplicationMailer
   # サークルメール
   def circle_mail(mailing_list, user)
     @mailing_list = mailing_list
-    mail to: user.email, subject: "[WhiteBoard] #{mailing_list.title} from:#{mailing_list.name}"
+    mail to: user.email, subject: "[WhiteBoard] #{mailing_list.title} from:#{mailing_list.from_name}"
   end
 end

@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161215162035) do
+ActiveRecord::Schema.define(version: 20161216054558) do
 
   create_table "mailing_lists", force: :cascade do |t|
-    t.string   "name"
+    t.string   "from_name"
     t.string   "title"
     t.boolean  "enrolled",   default: true
     t.boolean  "graduated"

@@ -5,8 +5,8 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <p>
-      <%= label :name, "名前" %>
-      <div class="confirm-text"><%= @mailing_list.name %></div>
+      <%= label :from_name, "名前" %>
+      <div class="confirm-text"><%= @mailing_list.from_name %></div>
     </p>
     
     <p>
@@ -23,6 +23,8 @@
           在校生
         <% elsif @mailing_list.graduated  %>
           卒業生
+        <% else %> <!-- この分岐条件はありえないはずだけど一応書いてます --></%>
+          送信先を選択してください
         <% end %>
       </div>
     </p>

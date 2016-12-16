@@ -2,8 +2,8 @@ class MailingList < ApplicationRecord
   # Userモデルとの関連付け
   belongs_to :user
   
-  # nameのバリデーション
-  validates :name,  presence: true, length: { maximum: 50 }
+  # from_nameのバリデーション
+  validates :from_name,  presence: true, length: { maximum: 50 }
   
   # titleのバリデーション
   validates :title,  presence: true, length: { maximum: 255 }
@@ -20,11 +20,13 @@ class MailingList < ApplicationRecord
       users = User.where(activated: true)
     elsif self.enrolled                 # 在校生のみに送信する場合
       users = User.where(activated: true).where(graduated: false)
-    else                                # 卒業生のみに送信する場合
+    elsif                               # 卒業生のみに送信する場合
       users = User.where(activated: true).where(graduated: true)
+    else                                # 送信できない場合
+      return false
     end
     users.each do |user|                # user一人ずつに送信(本番環境では50人以上同時送信できないため)
-      UserMailer.circle_mail(self, user).deliver_now
+      UserMailer.circle_mail(self, user).deliver_later
     end
   end
 end

@@ -5,7 +5,7 @@ class MailingListsController < ApplicationController
   
   def new
     @mailing_list = current_user.mailing_lists.build()
-    @mailing_list.name = current_user.name
+    @mailing_list.from_name = current_user.name
     @mailing_list.title = "#{current_user.name}さんからのメール"
   end
   
@@ -39,15 +39,18 @@ class MailingListsController < ApplicationController
   
   def send_ml
     @mailing_list = MailingList.find(params[:id])
-    @mailing_list.send_circle_mail
-    flash[:info] = "サークルメールを送信しました"
-    redirect_to new_user_mailing_list_path(current_user)
+    unless @mailing_list.send_circle_mail
+      flash[:danger] = "サークルメールを送信できませんでした"
+    else
+      flash[:info] = "サークルメールを送信しました"
+    end
+      redirect_to root_path
   end
   
   private
 
   # ストロングパラメータの設定
   def mailing_list_params
-    params.require(:mailing_list).permit(:name, :title, :enrolled, :graduated, :content)
+    params.require(:mailing_list).permit(:from_name, :title, :enrolled, :graduated, :content)
   end
 end
