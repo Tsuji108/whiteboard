@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216195342) do
+ActiveRecord::Schema.define(version: 20161214193538) do
 
   create_table "mailing_lists", force: :cascade do |t|
     t.string   "from_name"
     t.string   "title"
     t.boolean  "to_enrolled",  default: true
-    t.boolean  "to_graduated"
+    t.boolean  "to_graduated", default: false
     t.text     "content"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "user_id"
     t.index ["user_id"], name: "index_mailing_lists_on_user_id"
   end
@@ -27,8 +27,6 @@ ActiveRecord::Schema.define(version: 20161216195342) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
     t.string   "password_digest"
     t.string   "remember_digest"
     t.boolean  "admin",             default: false
@@ -38,6 +36,8 @@ ActiveRecord::Schema.define(version: 20161216195342) do
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
     t.boolean  "graduated",         default: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
