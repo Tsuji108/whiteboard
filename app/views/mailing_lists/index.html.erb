@@ -1,0 +1,11 @@
+<% provide(:title, 'ML archive') %>
+<h1>ML archive</h1>
+<h2>過去3ヶ月分のメールが確認できます</h2>
+
+<%= paginate @mailing_lists %>
+
+<ul class="index">
+  <%= render @mailing_lists %>
+</ul>
+
+<%= paginate @mailing_lists %>

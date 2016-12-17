@@ -216,14 +216,27 @@ input {
   }
 }
 
-/* Users index */
+#past-ml {
+  padding-top: 3px;
+}
 
-.users {
+/* index */
+
+.index {
   list-style: none;
   margin: 0;
   li {
     overflow: auto;
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
+  }
+}
+
+/* mailing_list */
+
+#ml-btn {
+  margin-top: 5px;
+  .btn {
+    padding: 2px 25px;
   }
 }

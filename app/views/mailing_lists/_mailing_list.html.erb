@@ -1,33 +1,9 @@
-<% provide(:title, 'Mailing list') %>
-<h1>Mailing list</h1>
+<li>
+  <%= "送信日時：#{(l mailing_list.created_at+32400, format: :long) }<br>
+       送信者　：#{mailing_list.from_name}<br>
+       タイトル：#{mailing_list.title}".html_safe %>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@mailing_list, url: path) do |f| %>
-      <%= render 'shared/error_messages' %>
-              
-      <%= f.label :from_name, "名前" %>
-      <%= f.text_field :from_name, class: 'form-control' %>
-        
-      <%= f.label :title, "メールタイトル" %>
-      <%= f.text_field :title, class: 'form-control' %>
-
-      <%= f.label :send_to, "メール送信先" %>
-      <div id="sendto_checkbox">
-        <div class="checkbox-inline">
-          <%= f.check_box :to_enrolled %> <%= f.label :to_enrolled, "在校生", class: 'font-normal' %>
-        </div>
-        <div class="checkbox-inline">
-          <%= f.check_box :to_graduated %> <%= f.label :to_graduated, "卒業生", class: 'font-normal' %>
-        </div>
-      </div>
-
-      <div class="content">
-        <%= f.label :content, "メール本文" %>
-        <%= f.text_area :content, rows: 10, class: 'form-control' %>
-      </div>
-        
-      <%= f.submit "確認", class: "btn btn-primary" %>
-    <% end %>
+  <div id="ml-btn">
+    <%= link_to "確認", user_mailing_list_path(current_user, mailing_list), class: "btn btn-primary" %>
   </div>
-</div>
+</li>

@@ -1,7 +1,15 @@
 class MailingListsController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user
-  before_action :prohibit_direct_access, only: [:edit, :confirm, :send_ml]
+  before_action :prohibit_direct_access, only: [:show, :edit, :confirm, :send_ml]
+  
+  def index
+    @mailing_lists = MailingList.order(:created_at).reverse_order.page(params[:page])
+  end
+  
+  def show
+    @mailing_list = MailingList.find(params[:id])
+  end
   
   def new
     @mailing_list = current_user.mailing_lists.build()
@@ -12,8 +20,8 @@ class MailingListsController < ApplicationController
   def create
     @mailing_list = current_user.mailing_lists.build(mailing_list_params)
     if @mailing_list.save
-      old_mails = MailingList.where("created_at < ?", 1.month.ago)  # １ヶ月以上前のメールを選択
-      old_mails.destroy unless old_mails.count == 0                 # １ヶ月以上前のメールが存在する場合は削除
+      old_mails = MailingList.where("created_at < ?", 3.month.ago)  # 3ヶ月以上前のメールを選択
+      old_mails.destroy unless old_mails.count == 0                 # 3ヶ月以上前のメールが存在する場合は削除
       redirect_to confirm_user_mailing_list_path(current_user, @mailing_list)
     else
       render 'new'
