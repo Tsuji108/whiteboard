@@ -1,0 +1,7 @@
+<p><%=  apply_multiple_br(@mailing_list.content).html_safe %></p>
+--<br>
+<p>
+送信者：<%= @mailing_list.from_name %><br>
+返信先：<%= @mailing_list.user.email %>
+</p>
+<p>※このメールには直接返信しないでください</p>

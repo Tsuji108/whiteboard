@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       if user.activated?
         log_in user # 一時セッションにユーザIDを保存
-        params[:session][:remember_me] == '1' ? remember(user) : forget(user) # クッキーにユーザIDと記憶トークンを保存（「入力項目を保存」にチェックが有る場合）
+        remember(user)
         redirect_back_or user
       else
         message = "アカウントが有効化されていません<br>

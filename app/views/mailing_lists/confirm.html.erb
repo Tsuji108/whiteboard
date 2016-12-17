@@ -4,37 +4,39 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@mailing_list, url: root_path) do |f| %>
-      <p>
-        <%= f.label :name, "名前" %>
-        <div class="confirm-text"><%= @mailing_list.name %></div>
-      </p>
-      
-      <p>
-        <%= f.label :title, "メールタイトル" %>
-        <div class="confirm-text"><%= @mailing_list.title %></div>
-      </p>
-      
-      <p>
-        <%= f.label :send_to, "メール送信先" %>
-        <div class="confirm-text">
-          <% if @mailing_list.enrolled && @mailing_list.graduated %>
-            在校生・卒業生
-          <% elsif @mailing_list.enrolled %>
-            在校生
-          <% elsif @mailing_list.graduated  %>
-            卒業生
-          <% end %>
-        </div>
-      </p>
-      
-      <p>
-        <%= f.label :text, "メール本文" %>
-        <div class="confirm-text"><%= @mailing_list.content %></div>
-      </p>
-      
-      <%= f.submit "送信", class: "btn btn-primary" %>
-      <%= link_to "修正", edit_user_mailing_list_path(current_user), class: "btn btn-block fix-btn" %>
-    <% end %>
+    <p>
+      <%= label :from_name, "名前" %>
+      <div class="confirm-text"><%= @mailing_list.from_name %></div>
+    </p>
+    
+    <p>
+      <%= label :title, "メールタイトル" %>
+      <div class="confirm-text"><%= @mailing_list.title %></div>
+    </p>
+    
+    <p>
+      <%= label :send_to, "メール送信先" %>
+      <div class="confirm-text">
+        <% if @mailing_list.to_enrolled && @mailing_list.to_graduated %>
+          在校生・卒業生
+        <% elsif @mailing_list.to_enrolled %>
+          在校生
+        <% elsif @mailing_list.to_graduated  %>
+          卒業生
+        <% else %> <!-- この分岐条件はありえないはずだけど一応書いてます --></%>
+          送信先を選択してください
+        <% end %>
+      </div>
+    </p>
+    
+    <p>
+      <%= label :text, "メール本文" %>
+      <div class="confirm-text"><%= apply_multiple_br(@mailing_list.content).html_safe %></div>
+    </p>
+    
+    <div id="submit-btn">
+      <%= link_to "送信", send_ml_user_mailing_list_path(current_user, @mailing_list), class: "btn btn-block btn-primary" %>
+    </div>
+    <%= link_to "修正", edit_user_mailing_list_path(current_user), class: "btn btn-block", id: "fix-btn" %>
   </div>
 </div>

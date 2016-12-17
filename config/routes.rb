@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :mailing_lists, only: [:new, :create, :edit, :update] do
       member do
         get 'confirm'
+        get 'send_ml'
       end
     end
   end
