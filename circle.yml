@@ -20,7 +20,7 @@ test:
 
 deployment:
   deploy:
-    branch: master
+    branch: mailing-list-index
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push sonedazaurus/whiteboard
