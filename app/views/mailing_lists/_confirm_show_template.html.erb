@@ -1,29 +1,29 @@
-    <p>
-      <%= label :from_name, "名前" %>
-      <div class="confirm-text"><%= @mailing_list.from_name %></div>
-    </p>
-    
-    <p>
-      <%= label :title, "メールタイトル" %>
-      <div class="confirm-text"><%= @mailing_list.title %></div>
-    </p>
-    
-    <p>
-      <%= label :send_to, "メール送信先" %>
-      <div class="confirm-text">
-        <% if @mailing_list.to_enrolled && @mailing_list.to_graduated %>
-          在校生・卒業生
-        <% elsif @mailing_list.to_enrolled %>
-          在校生
-        <% elsif @mailing_list.to_graduated  %>
-          卒業生
-        <% else %> <!-- この分岐条件はありえないはずだけど一応書いてます --></%>
-          送信先を選択してください
-        <% end %>
-      </div>
-    </p>
-    
-    <p>
-      <%= label :text, "メール本文" %>
-      <div class="confirm-text"><%= apply_multiple_br(@mailing_list.content).html_safe %></div>
-    </p>
+<p>
+  <%= label :from_name, "名前" %>
+  <div class="confirm-text"><%= @mailing_list.from_name %></div>
+</p>
+
+<p>
+  <%= label :title, "メールタイトル" %>
+  <div class="confirm-text"><%= @mailing_list.title %></div>
+</p>
+
+<p>
+  <%= label :send_to, "メール送信先" %>
+  <div class="confirm-text">
+    <% if @mailing_list.to_enrolled && @mailing_list.to_graduated %>
+      在校生・卒業生
+    <% elsif @mailing_list.to_enrolled %>
+      在校生
+    <% elsif @mailing_list.to_graduated  %>
+      卒業生
+    <% else %> <!-- この分岐条件はありえないはずだけど一応書いてます -->
+      送信先を選択してください
+    <% end %>
+  </div>
+</p>
+
+<p>
+  <%= label :text, "メール本文" %>
+  <div class="confirm-text"><%= apply_multiple_br(@mailing_list.content).html_safe %></div>
+</p>

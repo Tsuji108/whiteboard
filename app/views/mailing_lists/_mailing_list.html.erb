@@ -1,5 +1,5 @@
 <li>
-  <%= "送信日時：#{(l mailing_list.created_at+32400, format: :long) }<br>
+  <%= "送信日時：#{(l mailing_list.created_at, format: :long)}<br>
        送信者　：#{mailing_list.from_name}<br>
        タイトル：#{mailing_list.title}".html_safe %>
 

@@ -1,7 +1,7 @@
 class MailingListsController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user
-  before_action :prohibit_direct_access, only: [:show, :edit, :confirm, :send_ml]
+  before_action :prohibit_direct_access, only: [:edit, :confirm, :send_ml]
   
   def index
     @mailing_lists = MailingList.order(:created_at).reverse_order.page(params[:page])

@@ -55,7 +55,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.send_activation_email
       flash[:info] = 'アカウント有効化のためのメールを再送信しました'
-      redirect_to :back
+      redirect_back(fallback_location: root_path)
     else
       flash[:danger] = "アカウント有効化のためのメールを送信できませんでした<br>
                         しばらく待ってから再度実行してください"
