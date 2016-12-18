@@ -11,6 +11,6 @@
     
     <%= render 'confirm_show_template' %>
     
-    <%= link_to "戻る", :back, class: "btn btn-block btn-primary" %>
+    <%= link_to "戻る", user_mailing_lists_path(current_user, page: params[:page]), class: "btn btn-block btn-primary" %>
   </div>
 </div>

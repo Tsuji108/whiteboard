@@ -4,6 +4,6 @@
        タイトル：#{mailing_list.title}".html_safe %>
 
   <div id="ml-btn">
-    <%= link_to "確認", user_mailing_list_path(current_user, mailing_list), class: "btn btn-primary" %>
+    <%= link_to "確認", user_mailing_list_path(current_user, mailing_list, page: params[:page]), class: "btn btn-primary" %>
   </div>
 </li>

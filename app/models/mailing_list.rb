@@ -2,6 +2,9 @@ class MailingList < ApplicationRecord
   # Userモデルとの関連付け
   belongs_to :user
   
+  # ページネーションでの１ページの表示数
+  paginates_per 20
+  
   # from_nameのバリデーション
   validates :from_name,  presence: true, length: { maximum: 50 }
   
