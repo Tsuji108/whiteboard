@@ -4,11 +4,18 @@ class MailingListsController < ApplicationController
   before_action :prohibit_direct_access, only: [:edit, :confirm, :send_ml]
   
   def index
-    @mailing_lists = MailingList.order(:created_at).reverse_order.page(params[:page])
+    @mailing_lists = MailingList.order(:updated_at).reverse_order.page(params[:page])
   end
   
   def show
     @mailing_list = MailingList.find(params[:id])
+    pagenate_par = 20   # indexでの１ページの表示数
+    ml_show_number = MailingList.where("updated_at >= ?", @mailing_list.updated_at).count # 該当のshowがindex内で何番目に表示されるかを取得
+    if ml_show_number % pagenate_par == 0
+      @previous_page = ml_show_number / pagenate_par      # 該当のshowは何ページ目に属しているかを保存
+    else
+      @previous_page = ml_show_number / pagenate_par + 1
+    end
   end
   
   def new
