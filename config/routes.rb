@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       member do
         get 'confirm'
         get 'send_ml'
+        get 'applay_saved_ml'
+        get 'destroy_saved_ml'
       end
     end
   end

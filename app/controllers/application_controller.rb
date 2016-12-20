@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
   include UsersHelper
+  include MailingListsHelper
   
   # URL直打ちでのアクセスを禁止
   def prohibit_direct_access

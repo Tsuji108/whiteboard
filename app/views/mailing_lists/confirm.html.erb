@@ -7,7 +7,7 @@
     
     <%= render 'confirm_show_template' %>
     
-    <div id="submit-btn">
+    <div class="submit-btn">
       <%= link_to "送信", send_ml_user_mailing_list_path(current_user, @mailing_list), class: "btn btn-block btn-primary" %>
     </div>
     <%= link_to "修正", edit_user_mailing_list_path(current_user), class: "btn btn-block", id: "fix-btn" %>

@@ -17,7 +17,7 @@ class MailingList < ApplicationRecord
   # contentのバリデーション
   validates :content,  presence: true, length: { maximum: 5000 }
   
-  # サークルメールを送信
+  # サークルメールを送信(成功でtrue、失敗でfalseを返す)
   def send_circle_mail
     if self.to_enrolled && self.to_graduated  # 在校生・卒業生に送信する場合
       users = User.where(activated: true)
@@ -31,5 +31,6 @@ class MailingList < ApplicationRecord
     users.each do |user|  # user一人ずつに送信(本番環境では50人以上同時送信できないため)
       UserMailer.circle_mail(self, user).deliver_later
     end
+    return true
   end
 end

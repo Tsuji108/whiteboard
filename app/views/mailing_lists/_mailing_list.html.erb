@@ -1,9 +1,12 @@
 <li>
-  <%= "送信日時：#{(l mailing_list.created_at, format: :long)}<br>
-       送信者　：#{mailing_list.from_name}<br>
-       タイトル：#{mailing_list.title}".html_safe %>
+  <table class="mail-table">
+    <%= "<tr><th>送信日時</th><td>：</td><td>#{(l mailing_list.created_at, format: :long)}</td></tr>
+         <tr><th>送信者</th><td>：</td><td>#{mailing_list.from_name}</td></tr>
+         <tr><th>タイトル</th><td>：</td><td>#{mailing_list.title}</td></tr>
+         <tr><th>本文</th><td>：</td><td>#{truncate(mailing_list.content, length: 75, omission: " ...")}</td></tr>".html_safe %>
+  </table>
 
-  <div id="ml-btn">
+  <div class="small-btn">
     <%= link_to "確認", user_mailing_list_path(current_user, mailing_list), class: "btn btn-primary" %>
   </div>
 </li>

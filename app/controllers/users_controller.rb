@@ -5,13 +5,13 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
   before_action :non_activated_user,  only: :resend
   before_action :prohibit_direct_access, only: :resend
+  before_action :set_user,   only: [:show, :edit, :update, :resend]
 
   def index
     @users = User.where(activated: true).order(:created_at).reverse_order.page(params[:page])
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def new
@@ -25,21 +25,19 @@ class UsersController < ApplicationController
       flash[:info] = 'アカウント有効化のためのメールを送信しました'
       redirect_to root_url
     else
-      render 'new'
+      render :new
     end
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = 'プロフィールを更新しました'
       redirect_to @user
     else
-      render 'edit'
+      render :edit
     end
   end
 
@@ -51,7 +49,6 @@ class UsersController < ApplicationController
 
   # アカウント有効化メールを再送信
   def resend
-    @user = User.find(params[:id])
     if @user.save
       @user.send_activation_email
       flash[:info] = 'アカウント有効化のためのメールを再送信しました'
@@ -69,6 +66,10 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation)
+  end
+  
+  def set_user
+    @user = User.find(params[:id])
   end
 
   # 管理者かどうか確認
