@@ -14,8 +14,8 @@
               <table class="mail-table">
                 <%= "<tr><th>保存日時</th><td>：</td><td>#{(l saved_mailing_list.created_at, format: :long)}</td></tr>
                      <tr><th>送信者</th><td>：</td><td>#{saved_mailing_list.from_name}</td></tr>
-                     <tr><th>タイトル</th><td>：</td><td>#{saved_mailing_list.title}</td></tr>
-                     <tr><th>本文</th><td>：</td><td>#{truncate(saved_mailing_list.content, length: 75, omission: " ...")}</td></tr>".html_safe %>
+                     <tr><th>タイトル</th><td>：</td><td>#{my_truncate(saved_mailing_list.title)}</td></tr>
+                     <tr><th>本文</th><td>：</td><td>#{my_truncate(saved_mailing_list.content)}</td></tr>".html_safe %>
               </table>
              <div class="small-btn float-left">
                <%= link_to "適用", applay_saved_ml_user_mailing_list_path(current_user, saved_mailing_list), class: "btn btn-primary" %>

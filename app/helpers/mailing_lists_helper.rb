@@ -9,4 +9,9 @@ module MailingListsHelper
   def user_saved_mail?
     current_user.mailing_lists.exists?(saved: true)
   end
+  
+  # 長文を短く表示する
+  def my_truncate(str)
+    truncate(str, length: 75, omission: " ...")
+  end
 end
