@@ -10,7 +10,7 @@ module MailingListsHelper
     current_user.mailing_lists.exists?(saved: true)
   end
   
-  # 長文を短く表示する
+  # 長文を先頭から決められた文字数表示する
   def my_truncate(str)
     truncate(str, length: 75, omission: " ...")
   end
