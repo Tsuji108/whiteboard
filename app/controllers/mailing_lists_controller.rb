@@ -63,8 +63,6 @@ class MailingListsController < ApplicationController
   def send_ml
     if @mailing_list.send_circle_mail
       @mailing_list.update_columns(sent: true, sent_at: Time.zone.now)
-      old_mails = MailingList.where("created_at < ?", 3.month.ago)  # 3ヶ月以上前のメールを選択
-      old_mails.destroy unless old_mails.count == 0                 # 3ヶ月以上前のメールが存在する場合は削除
       flash[:info] = "サークルメールを送信しました"
     else
       flash[:danger] = "サークルメールを送信できませんでした"
