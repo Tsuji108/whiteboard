@@ -15,3 +15,11 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+
+// フォーム内の複数のsubmitを判断
+function submit_with_value(form_id, commit_value_from_view)
+{
+  var objForm = document.getElementById(form_id);
+  objForm.commit_value.value = commit_value_from_view;
+  objForm.submit();
+}

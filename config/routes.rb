@@ -12,10 +12,12 @@ Rails.application.routes.draw do
     member do
       get   'resend'
     end
-    resources :mailing_lists, only: [:new, :create, :edit, :update] do
+    resources :mailing_lists, only: [:index, :show, :new, :create, :edit, :update] do
       member do
         get 'confirm'
         get 'send_ml'
+        get 'applay_saved_ml'
+        get 'destroy_saved_ml'
       end
     end
   end

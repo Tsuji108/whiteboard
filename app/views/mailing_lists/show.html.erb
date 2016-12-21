@@ -1,0 +1,16 @@
+<% provide(:title, 'Past ml') %>
+<h1>Mailing list confirm</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    
+    <p>
+      <%= label :created_at, "送信日時" %>
+      <div class="confirm-text"><%= (l @mailing_list.created_at, format: :long) %></div>
+    </p>
+    
+    <%= render 'confirm_show_template' %>
+    
+    <%= link_to "戻る", user_mailing_lists_path(current_user, page: @previous_page), class: "btn btn-block btn-primary" %>
+  </div>
+</div>

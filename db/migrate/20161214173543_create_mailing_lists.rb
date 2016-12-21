@@ -6,6 +6,9 @@ class CreateMailingLists < ActiveRecord::Migration[5.0]
       t.boolean :to_enrolled, default: true
       t.boolean :to_graduated, default: false
       t.text :content
+      t.boolean :saved, default: false
+      t.boolean :sent, default: false
+      t.datetime :sent_at, default: false
 
       t.timestamps
     end

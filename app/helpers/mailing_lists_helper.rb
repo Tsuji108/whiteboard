@@ -4,4 +4,14 @@ module MailingListsHelper
     target = html_escape(target)
     target.gsub(/\r\n|\r|\n/, "<br>")
   end
+  
+  # ユーザーがメールを保存していればtrue、その他ならfalseを返す
+  def user_saved_mail?
+    current_user.mailing_lists.exists?(saved: true)
+  end
+  
+  # 長文を先頭から決められた文字数表示する
+  def my_truncate(str)
+    truncate(str, length: 75, omission: " ...")
+  end
 end

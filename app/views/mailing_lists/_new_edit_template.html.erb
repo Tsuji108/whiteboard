@@ -1,0 +1,67 @@
+<% provide(:title, 'Mailing list') %>
+<h1>Mailing list</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@mailing_list, url: path ,html: {id: 'ml-form'}) do |f| %>
+      <%= render 'shared/error_messages' %>
+      
+      <% if user_saved_mail? %>
+        <%= f.label :saved_mail, "保存中のメール" %>
+        <% @saved_mailing_lists.each do |saved_mailing_list| %>
+          <div class="index">
+            <li>
+              <table class="mail-table">
+                <%= "<tr><th>保存日時</th><td>：</td><td>#{(l saved_mailing_list.created_at, format: :long)}</td></tr>
+                     <tr><th>送信者</th><td>：</td><td>#{saved_mailing_list.from_name}</td></tr>
+                     <tr><th>タイトル</th><td>：</td><td>#{my_truncate(saved_mailing_list.title)}</td></tr>
+                     <tr><th>本文</th><td>：</td><td>#{my_truncate(saved_mailing_list.content)}</td></tr>".html_safe %>
+              </table>
+             <div class="small-btn float-left">
+               <%= link_to "適用", applay_saved_ml_user_mailing_list_path(current_user, saved_mailing_list), class: "btn btn-primary" %>
+             </div>
+             <div class="small-btn float-left">
+               <%= link_to "削除", destroy_saved_ml_user_mailing_list_path(current_user, saved_mailing_list), class: "btn btn-danger" %>
+             </div>
+             <div class="clear"></div>
+           </li>
+          </div>
+        <% end %>
+      <% end %>
+      
+      <%= f.label :from_name, "名前" %>
+      <%= f.text_field :from_name, class: 'form-control' %>
+        
+      <%= f.label :title, "メールタイトル" %>
+      <%= f.text_field :title, class: 'form-control' %>
+
+      <%= f.label :send_to, "メール送信先" %>
+      <div id="sendto_checkbox">
+        <div class="checkbox-inline">
+          <%= f.check_box :to_enrolled %> <%= f.label :to_enrolled, "在校生", class: 'font-normal' %>
+        </div>
+        <div class="checkbox-inline">
+          <%= f.check_box :to_graduated %> <%= f.label :to_graduated, "卒業生", class: 'font-normal' %>
+        </div>
+      </div>
+
+      <div class="content">
+        <%= f.label :content, "メール本文" %>
+        <%= f.text_area :content, rows: 10, class: 'form-control' %>
+      </div>
+      
+      <%= hidden_field_tag :commit_value %>
+      
+      <div class="submit-btn">
+        <%= f.submit "確認", onClick: ("return submit_with_value('ml-form','confirm');") ,class: 'btn btn-primary' %>
+      </div>
+      
+      <%= f.submit "テンプレートとして保存", onClick: ("return submit_with_value('ml-form','template');") ,class: 'btn btn-info' %>
+
+    <% end %>
+    
+    <div id="past-ml">
+      <%= link_to "過去のメールを確認するにはこちら", user_mailing_lists_path(current_user) %>
+    </div>
+  </div>
+</div>

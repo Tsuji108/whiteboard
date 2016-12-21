@@ -18,6 +18,9 @@ ActiveRecord::Schema.define(version: 20161214193538) do
     t.boolean  "to_enrolled",  default: true
     t.boolean  "to_graduated", default: false
     t.text     "content"
+    t.boolean  "saved",        default: false
+    t.boolean  "sent",         default: false
+    t.datetime "sent_at"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "user_id"
