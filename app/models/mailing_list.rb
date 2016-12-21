@@ -34,9 +34,9 @@ class MailingList < ApplicationRecord
     return true
   end
   
-  # １年以上前のメールを過去のメール一覧から削除(config/schedule.rbで設定)
+  # 3年以上前のメールを過去のメール一覧から削除(config/schedule.rbで設定)
   def delete_old_mails
-    old_mails = MailingList.where(sent: true).where("sent_at < ?", 1.year.ago)
+    old_mails = MailingList.where(sent: true).where("sent_at < ?", 3.years.ago)
     old_mails.destroy unless old_mails.count == 0
   end
 end
