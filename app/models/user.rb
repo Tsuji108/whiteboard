@@ -99,4 +99,10 @@ class User < ApplicationRecord
     self.activation_token  = User.new_token
     self.activation_digest = User.digest(activation_token)
   end
+  
+  # アカウント有効化していないユーザを削除(config/schedule.rbで設定)
+  def delete_non_activated_users
+    inactivated_users = User.where(activated: false).where("created_at < ?", 1.hour.ago) # 1時間以上有効化されていないユーザを選択
+    inactivated_users.destroy unless inactivated_users.count == 0
+  end
 end
