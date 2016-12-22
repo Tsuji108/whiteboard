@@ -11,7 +11,7 @@ class MailingListsController < ApplicationController
   
   def show
     pagenate_par = 20   # indexでの１ページの表示数
-    ml_show_number = MailingList.where("updated_at >= ?", @mailing_list.updated_at).count # 該当のshowがindex内で何番目に表示されるかを取得
+    ml_show_number = MailingList.where(sent: true).where("sent_at >= ?", @mailing_list.sent_at).count # 該当のshowがindex内で何番目に表示されるか取得
     if ml_show_number % pagenate_par == 0
       @previous_page = ml_show_number / pagenate_par  # 該当のshowは何ページ目に属しているかを保存
     else
@@ -52,7 +52,7 @@ class MailingListsController < ApplicationController
   end
   
   def destroy_saved_ml
-    @mailing_list.update_attribute(:saved, false)
+    @mailing_list.destroy
     flash[:danger] = "選択したテンプレートを削除しました"
     redirect_to new_user_mailing_list_path(current_user)
   end

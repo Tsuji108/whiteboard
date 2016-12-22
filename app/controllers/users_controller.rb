@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
   before_action :non_activated_user,  only: :resend
   before_action :prohibit_direct_access, only: :resend
-  before_action :set_user,   only: [:show, :edit, :update, :resend]
+  before_action :set_user,   only: [:show, :edit, :update, :destroy, :resend]
 
   def index
     @users = User.where(activated: true).order(:created_at).reverse_order.page(params[:page])
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    @user.destroy
     flash[:success] = 'メンバーから削除しました'
     redirect_to users_url
   end
