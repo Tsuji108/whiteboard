@@ -8,7 +8,7 @@ class CreateMailingLists < ActiveRecord::Migration[5.0]
       t.text :content
       t.boolean :saved, default: false
       t.boolean :sent, default: false
-      t.datetime :sent_at, default: false
+      t.datetime :sent_at
 
       t.timestamps
     end
