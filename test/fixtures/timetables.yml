@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_date: 2016-12-23
+  to_date: 2016-12-23
+  max_koma: 1
+  times: MyText
+
+two:
+  from_date: 2016-12-23
+  to_date: 2016-12-23
+  max_koma: 1
+  times: MyText

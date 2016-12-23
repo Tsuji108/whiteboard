@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161214193538) do
+ActiveRecord::Schema.define(version: 20161223182413) do
 
   create_table "mailing_lists", force: :cascade do |t|
     t.string   "from_name"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 20161214193538) do
     t.datetime "updated_at",                   null: false
     t.integer  "user_id"
     t.index ["user_id"], name: "index_mailing_lists_on_user_id"
+  end
+
+  create_table "timetables", force: :cascade do |t|
+    t.date     "from_date"
+    t.date     "to_date"
+    t.integer  "max_koma"
+    t.text     "times"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
