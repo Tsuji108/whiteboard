@@ -1,0 +1,18 @@
+<% provide(:title, 'Timetable confirm') %>
+<h1>Timetable confirm</h1>
+<h2>この内容でよろしいですか？</h2>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    
+    <p>
+      <%= label :from_date, "作成する期間" %>
+      <div class="confirm-text"><%= @timetable.from_date %></div>
+    </p>
+    
+    <div class="submit-btn">
+      <%= link_to "作成", root_path, class: "btn btn-block btn-primary" %>
+    </div>
+    <%= link_to "修正", root_path, class: "btn btn-block", id: "fix-btn" %>
+  </div>
+</div>

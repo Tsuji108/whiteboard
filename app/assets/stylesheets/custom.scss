@@ -38,6 +38,22 @@ textarea {
   }
 }
 
+.font-normal {
+  font-weight: normal;
+}
+
+.block {
+  display: black;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
 .clear {
   clear: left;
 }
@@ -60,6 +76,7 @@ h2 {
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
+  line-height: 1.4em;
   font-weight: normal;
   color: $gray-light;
 }
@@ -201,10 +218,6 @@ input {
   margin-bottom: 10px;
 }
 
-.font-normal {
-  font-weight: normal;
-}
-
 .confirm-text {
   width: 100%;
   word-wrap:break-word;
@@ -226,6 +239,15 @@ input {
 
 #past-ml {
   padding-top: 3px;
+}
+
+.select-interval {
+  padding: 0;
+  text-align: center;
+}
+
+.label-note {
+  margin-top: -4px;
 }
 
 /* index */

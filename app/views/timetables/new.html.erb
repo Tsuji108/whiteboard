@@ -1,2 +1,39 @@
-<h1>Timetables#new</h1>
-<p>Find me in app/views/timetables/new.html.erb</p>
+<% provide(:title, 'Timetable') %>
+<h1>Timetable</h1>
+<h2>新しく作成するタイムテーブルの設定を行ってください<br>
+「練習コマ数」と「練習コマ毎の時間」は前回作成した内容を引き継ぎます</h2>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@timetable, url: new_user_timetable_path(current_user)) do |f| %>
+      <%= render 'shared/error_messages' %>
+      
+      <%= f.label :from_date, "作成する期間" %>
+      <div class="row non_padding">
+        <div class="col-md-4">
+          <%= f.select :from_date, @period_array, selected: @period_array[14], class: 'form-control' %>
+        </div>
+        <span class="col-md-1 select-interval">から</span>
+        <div class="col-md-4">
+          <%= f.select :to_date, @period_array, selected: @period_array[20], class: 'form-control' %>
+        </div>
+        <span class="col-md-1 select-interval">まで</span>
+      </div>
+      
+      <%= f.label :max_koma, "練習コマ数" %>
+      <div class="row non_padding">
+        <div class="col-md-4">
+          <%= f.select :max_koma, @koma_array, selected: @koma_array[6], class: 'form-control' %>
+        </div>
+      </div>
+      
+      <%= f.label :times, "各コマの時間" %>
+      <div class="label-note">
+        <%= f.label :times, "コマ毎に改行して時間を記入してください", class: 'font-normal' %>
+      </div>
+      <%= f.text_area :times, rows: 10, value: @times, class: 'form-control' %>
+
+      <%= f.submit "確認", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
