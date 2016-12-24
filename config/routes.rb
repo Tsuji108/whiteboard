@@ -22,7 +22,11 @@ Rails.application.routes.draw do
         get 'destroy_saved_ml'
       end
     end
-    resources :timetables
+    resources :timetables do
+      member do
+        get 'confirm'
+      end
+    end
   end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]

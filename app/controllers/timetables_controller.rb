@@ -2,6 +2,7 @@ class TimetablesController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user
   before_action :admin_user,     only: [:new, :create]
+  before_action :set_timetable, only: [:confirm]
   
   def new
     @timetable = Timetable.new
@@ -12,15 +13,30 @@ class TimetablesController < ApplicationController
   end
   
   def create
+    @timetable = Timetable.new(timetable_params)
+    flash[:danger] = "#{@timetable.from_date}"
+    if @timetable.save
+      timetable_confirm_and_template_process
+    else
+      render :new
+    end
+  end
+  
+  def confirm
   end
   
   private
+  
+  def timetable_params
+    params.require(:timetable).permit(:from_date, :to_date, :max_koma, :times)
+  end
   
   # タイムテーブルの期間を選択するセレクトボックスの選択幅を作成
   def create_timetable_period
     period_array = Array.new
     (Date.today - 2.weeks).upto(Date.today + 1.month) do |date|
       period_array.push(l date, format: :short)
+      #period_array.push(date)
     end
     return period_array
   end
@@ -37,5 +53,22 @@ class TimetablesController < ApplicationController
       20:00~22:00
     EOS
     return koma_times
+  end
+  
+  def set_timetable
+    @timetable = Timetable.find(params[:id])
+  end
+  
+  # タイムテーブルの作成前確認とテンプレート保存の処理（newとeditで同じ処理のためまとめる）
+  def timetable_confirm_and_template_process
+    if params[:commit_value] == "confirm"                           # 「確認」が実行された場合
+      redirect_to confirm_user_timetable_path(current_user, @timetable)
+    elsif params[:commit_value] == "template"                       # 「現在の内容を保存」が実行された場合
+
+      redirect_to new_user_timetable_path(current_user)
+    else          
+      flash[:danger] = "不正な操作です"
+      redirect_to root_path
+    end
   end
 end
