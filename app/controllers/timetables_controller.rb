@@ -7,14 +7,14 @@ class TimetablesController < ApplicationController
   def new
     @timetable = Timetable.new
     @times = Array.new
-    @period_array = create_timetable_period # 期間のセレクトボックス選択肢
+    @period_hash = create_timetable_period  # 期間のセレクトボックス選択肢
     @koma_array = (1..24).to_a              # コマ数のセレクトボックス選択肢
     @times = create_koma_times              # 各コマ毎の時間の初期値
   end
   
   def create
     @timetable = Timetable.new(timetable_params)
-    flash[:danger] = "#{@timetable.from_date}"
+    flash[:danger] = "#{(l Date.today, format: :short)}"
     if @timetable.save
       timetable_confirm_and_template_process
     else
@@ -31,14 +31,12 @@ class TimetablesController < ApplicationController
     params.require(:timetable).permit(:from_date, :to_date, :max_koma, :times)
   end
   
-  # タイムテーブルの期間を選択するセレクトボックスの選択幅を作成
   def create_timetable_period
-    period_array = Array.new
+    period_hash = Hash.new
     (Date.today - 2.weeks).upto(Date.today + 1.month) do |date|
-      period_array.push(l date, format: :short)
-      #period_array.push(date)
+      period_hash.store((l date, format: :short), date)
     end
-    return period_array
+    return period_hash
   end
   
   # タイムテーブルの各コマ毎の時間を作成
