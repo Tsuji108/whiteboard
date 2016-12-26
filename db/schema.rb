@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(version: 20161223182413) do
     t.boolean  "saved",        default: false
     t.boolean  "sent",         default: false
     t.datetime "sent_at"
+    t.integer  "user_id"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
-    t.integer  "user_id"
     t.index ["user_id"], name: "index_mailing_lists_on_user_id"
   end
 
@@ -32,8 +32,11 @@ ActiveRecord::Schema.define(version: 20161223182413) do
     t.date     "to_date"
     t.integer  "max_koma"
     t.text     "times"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "saved",      default: false
+    t.integer  "user_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["user_id"], name: "index_timetables_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

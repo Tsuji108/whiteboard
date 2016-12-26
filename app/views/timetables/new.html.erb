@@ -8,6 +8,28 @@
     <%= form_for(@timetable, url: user_timetables_path(current_user) ,html: {id: 'timetable-form'}) do |f| %>
       <%= render 'shared/error_messages' %>
       
+      <% if user_saved_timetable? %>
+        <%= f.label :saved_timetable, "保存中のタームテーブル" %>
+        <% @saved_timetables.each do |saved_timetable| %>
+          <div class="index">
+            <li>
+              <table class="mail-table">
+                <%= "<tr><th>保存日時</th><td>：</td><td>#{(l saved_timetable.created_at, format: :long)}</td></tr>
+                     <tr><th>練習コマ数</th><td>：</td><td>#{saved_timetable.max_koma}</td></tr>
+                     <tr><th>各コマの時間</th><td>：</td><td>#{my_truncate(saved_timetable.times, 150)}</td></tr>".html_safe %>
+              </table>
+             <div class="small-btn float-left">
+               <%= link_to "適用", applay_saved_timetable_user_timetable_path(current_user, saved_timetable), class: "btn btn-primary" %>
+             </div>
+             <div class="small-btn float-left">
+               <%= link_to "削除", destroy_saved_timetable_user_timetable_path(current_user, saved_timetable), class: "btn btn-danger" %>
+             </div>
+             <div class="clear"></div>
+           </li>
+          </div>
+        <% end %>
+      <% end %>
+      
       <%= f.label :from_date, "作成する期間" %>
       <div class="row non_padding">
         <div class="col-md-4">
@@ -23,7 +45,7 @@
       <%= f.label :max_koma, "練習コマ数" %>
       <div class="row non_padding">
         <div class="col-md-4">
-          <%= f.select :max_koma, @koma_array, selected: @koma_array[6], class: 'form-control' %>
+          <%= f.select :max_koma, @koma_array, selected: @default_koma, class: 'form-control' %>
         </div>
       </div>
       

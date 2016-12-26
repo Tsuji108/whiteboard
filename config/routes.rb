@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     resources :timetables do
       member do
         get 'confirm'
+        get 'applay_saved_timetable'
+        get 'destroy_saved_timetable'
       end
     end
   end

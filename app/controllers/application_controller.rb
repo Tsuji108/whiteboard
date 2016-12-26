@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include UsersHelper
   include MailingListsHelper
+  include TimetablesHelper
   
   # URL直打ちでのアクセスを禁止
   def prohibit_direct_access
