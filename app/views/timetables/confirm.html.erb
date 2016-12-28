@@ -5,14 +5,16 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     
-    <p>
-      <%= label :from_date, "作成する期間" %>
-      <div class="confirm-text"><%= @timetable.from_date %></div>
-    </p>
+    <table>
+      <tr><%= @timetable_col.html_safe %></tr>
+      <% @timetable.times.lines do |timetable_row| %>
+        <tr><th><%= timetable_row %></th><%= @space_cell.html_safe %></tr>
+      <% end %>
+    </table>
     
     <div class="submit-btn">
       <%= link_to "作成", root_path, class: "btn btn-block btn-primary" %>
     </div>
-    <%= link_to "修正", root_path, class: "btn btn-block", id: "fix-btn" %>
+    <%= link_to "修正", edit_user_timetable_path(current_user, @timetable), class: "btn btn-block", id: "fix-btn" %>
   </div>
 </div>

@@ -5,16 +5,10 @@ class MailingList < ApplicationRecord
   # ページネーションでの１ページの表示数
   paginates_per 20
   
-  # from_nameのバリデーション
+  # バリデーション
   validates :from_name,  presence: true, length: { maximum: 50 }
-  
-  # titleのバリデーション
   validates :title,  presence: true, length: { maximum: 255 }
-  
-  # メール送信先のバリデーション
   validates :to_graduated, acceptance: true, unless: proc {|a| a.to_enrolled? }
-  
-  # contentのバリデーション
   validates :content,  presence: true, length: { maximum: 5000 }
   
   # サークルメールを送信(成功でtrue、失敗でfalseを返す)
