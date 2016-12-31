@@ -2,9 +2,12 @@ class TimetablesController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user
   before_action :prohibit_direct_access, only: [:applay_saved_timetable, :destroy_saved_timetable, :confirm]
-  before_action :admin_user,     only: [:new, :create, :edit, :update, :applay_saved_timetable, :destroy_saved_timetable, :confirm]
+  before_action :admin_user, only: [:new, :create, :edit, :update, :applay_saved_timetable, :destroy_saved_timetable, :confirm]
   before_action :set_timetable, only: [:show, :edit, :update, :destroy_saved_timetable, :confirm, :publish_timetable]
   before_action :set_saved_timetables, only: [:new, :create, :edit, :update, :applay_saved_timetable, :destroy_saved_timetable]
+  
+  def index
+  end
   
   def show
     @timetable_date = "<th></th>"  # タイムテーブル左上の空セルを最初に登録
@@ -17,10 +20,7 @@ class TimetablesController < ApplicationController
   
   def new
     @timetable = current_user.timetables.build()
-    @period_hash = create_timetable_period                  # 期間のセレクトボックス選択肢
-    @default_from_date = set_default_from_date(@timetable)  # from_dateの初期値を設定
-    @default_to_date = set_default_to_date(@timetable)      # to_dateの初期値を設定
-    @times = set_koma_times(@timetable)                     # 各コマ毎の時間の値
+    @period_hash, @default_from_date, @default_to_date, @times = init_timetable_view(@timetable)  # viewの初期設定
   end
   
   def create
@@ -33,10 +33,7 @@ class TimetablesController < ApplicationController
   end
 
   def edit
-    @period_hash = create_timetable_period                  # 期間のセレクトボックス選択肢
-    @default_from_date = set_default_from_date(@timetable)  # from_dateの初期値を設定
-    @default_to_date = set_default_to_date(@timetable)      # to_dateの初期値を設定
-    @times = set_koma_times(@timetable)                     # 各コマ毎の時間の値
+    @period_hash, @default_from_date, @default_to_date, @times = init_timetable_view(@timetable)  # viewの初期設定
   end
   
   def update
@@ -49,10 +46,7 @@ class TimetablesController < ApplicationController
   
   def applay_saved_timetable
     @timetable = Timetable.find(params[:id]).dup # PATCHリクエストを送信しないようにdupでオブジェクトをコピーして新たに作成
-    @period_hash = create_timetable_period                  # 期間のセレクトボックス選択肢
-    @default_from_date = set_default_from_date(@timetable)  # from_dateの初期値を設定
-    @default_to_date = set_default_to_date(@timetable)      # to_dateの初期値を設定
-    @times = set_koma_times(@timetable)                     # 各コマ毎の時間の値
+    @period_hash, @default_from_date, @default_to_date, @times = init_timetable_view(@timetable)  # viewの初期設定
     flash.now[:info] = "選択したテンプレートを適用しました"
     render :new
   end
@@ -140,6 +134,15 @@ class TimetablesController < ApplicationController
     return koma_times
   end
   
+  # viewの初期値を設定
+  def init_timetable_view(timetable)
+    period_hash = create_timetable_period                 # 期間のセレクトボックス選択肢
+    default_from_date = set_default_from_date(timetable)  # from_dateの初期値を設定
+    default_to_date = set_default_to_date(timetable)      # to_dateの初期値を設定
+    times = set_koma_times(timetable)                     # 各コマ毎の時間の値
+    return period_hash, default_from_date, default_to_date, times
+  end
+  
   def set_timetable
     @timetable = Timetable.find(params[:id])
   end
@@ -172,7 +175,6 @@ class TimetablesController < ApplicationController
       else
         flash[:danger] = "保存可能なタイムテーブルは5件までです"
       end
-      #redirect_to edit_user_timetable_path(current_user, @timetable)
       redirect_to new_user_timetable_path(current_user)
     else          
       flash[:danger] = "不正な操作です"
