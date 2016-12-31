@@ -54,7 +54,7 @@ class MailingListsController < ApplicationController
   def destroy_saved_ml
     @mailing_list.destroy
     flash[:danger] = "選択したテンプレートを削除しました"
-    redirect_to new_user_mailing_list_path(current_user)
+    redirect_back(fallback_location: root_path)
   end
 
   def confirm

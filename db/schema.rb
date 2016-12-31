@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 20161223182413) do
   create_table "timetables", force: :cascade do |t|
     t.date     "from_date"
     t.date     "to_date"
-    t.integer  "max_koma"
     t.text     "times"
     t.boolean  "saved",      default: false
+    t.boolean  "published",  default: false
     t.integer  "user_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false

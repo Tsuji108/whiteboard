@@ -284,7 +284,9 @@ input {
 
 /* timetable */
 
-table, td, th {
-border: 1px #777 solid;
-margin-bottom: 20px;
+.timetable {
+  margin: 0 auto 20px;
+  td, th {
+    border: 1px #777 solid;
+  }
 }
