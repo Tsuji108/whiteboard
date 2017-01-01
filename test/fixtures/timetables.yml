@@ -3,11 +3,13 @@
 one:
   from_date: 2016-12-23
   to_date: 2016-12-23
-  max_koma: 1
+  saved: false
+  published: false
   times: MyText
 
 two:
   from_date: 2016-12-23
   to_date: 2016-12-23
-  max_koma: 1
+  saved: false
+  published: false
   times: MyText
