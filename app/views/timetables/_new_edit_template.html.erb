@@ -13,7 +13,7 @@
         <% @saved_timetables.each do |saved_timetable| %>
           <div class="index">
             <li>
-              <table class="mail-table">
+              <table class="index-table">
                 <%= "<tr><th>期間の間隔</th><td>：</td><td>#{(saved_timetable.to_date - saved_timetable.from_date + 1).to_i}日間</td></tr>
                      <tr><th>各コマの時間</th><td>：</td><td>#{my_truncate(saved_timetable.times, 150)}</td></tr>".html_safe %>
               </table>
@@ -50,10 +50,10 @@
       <%= hidden_field_tag :commit_value %>
       
       <div class="submit-btn">
-        <%= f.submit "確認", onClick: ("return submit_with_value('timetable-form','confirm');") ,class: 'btn btn-primary' %>
+        <%= f.submit "確認", onClick: ("return submit_with_value('timetable-form','confirm');"), class: 'btn btn-primary' %>
       </div>
       
-      <%= f.submit "テンプレートとして保存", onClick: ("return submit_with_value('timetable-form','template');") ,class: 'btn btn-info' %>
+      <%= f.submit "テンプレートとして保存", onClick: ("return submit_with_value('timetable-form','template');"), class: 'btn btn-info' %>
     <% end %>
   </div>
 </div>

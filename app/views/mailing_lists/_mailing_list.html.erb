@@ -1,9 +1,9 @@
 <li>
-  <table class="mail-table">
-    <%= "<tr><th>送信日時</th><td>：</td><td>#{(l mailing_list.created_at, format: :long)}</td></tr>
+  <table class="index-table">
+    <%= "<tr><th>送信日時</th><td>：</td><td>#{(l mailing_list.sent_at, format: :long)}</td></tr>
          <tr><th>送信者</th><td>：</td><td>#{mailing_list.from_name}</td></tr>
-         <tr><th>タイトル</th><td>：</td><td>#{my_truncate(mailing_list.title)}</td></tr>
-         <tr><th>本文</th><td>：</td><td>#{my_truncate(mailing_list.content)}</td></tr>".html_safe %>
+         <tr><th>タイトル</th><td>：</td><td>#{my_truncate(mailing_list.title, 50)}</td></tr>
+         <tr><th>本文</th><td>：</td><td>#{my_truncate(mailing_list.content, 200)}</td></tr>".html_safe %>
   </table>
 
   <div class="small-btn">

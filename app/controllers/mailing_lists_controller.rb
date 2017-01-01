@@ -46,7 +46,7 @@ class MailingListsController < ApplicationController
   end
   
   def applay_saved_ml
-    @mailing_list = MailingList.find(params[:id]).dup # PATCHリクエストを送信しないようにdupでオブジェクトをコピーして新たに作成
+    @mailing_list = MailingList.find(params[:id])
     flash.now[:info] = "選択したテンプレートを適用しました"
     render :new
   end
@@ -54,7 +54,7 @@ class MailingListsController < ApplicationController
   def destroy_saved_ml
     @mailing_list.destroy
     flash[:danger] = "選択したテンプレートを削除しました"
-    redirect_back(fallback_location: root_path)
+    redirect_to new_user_mailing_list_path(current_user)
   end
 
   def confirm

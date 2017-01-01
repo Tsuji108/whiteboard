@@ -11,7 +11,7 @@
         <% @saved_mailing_lists.each do |saved_mailing_list| %>
           <div class="index">
             <li>
-              <table class="mail-table">
+              <table class="index-table">
                 <%= "<tr><th>保存日時</th><td>：</td><td>#{(l saved_mailing_list.created_at, format: :long)}</td></tr>
                      <tr><th>送信者</th><td>：</td><td>#{saved_mailing_list.from_name}</td></tr>
                      <tr><th>タイトル</th><td>：</td><td>#{my_truncate(saved_mailing_list.title, 75)}</td></tr>
@@ -53,10 +53,10 @@
       <%= hidden_field_tag :commit_value %>
       
       <div class="submit-btn">
-        <%= f.submit "確認", onClick: ("return submit_with_value('ml-form','confirm');") ,class: 'btn btn-primary' %>
+        <%= f.submit "確認", onClick: ("return submit_with_value('ml-form','confirm');"), class: 'btn btn-primary' %>
       </div>
       
-      <%= f.submit "テンプレートとして保存", onClick: ("return submit_with_value('ml-form','template');") ,class: 'btn btn-info' %>
+      <%= f.submit "テンプレートとして保存", onClick: ("return submit_with_value('ml-form','template');"), class: 'btn btn-info' %>
 
     <% end %>
     

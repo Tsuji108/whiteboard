@@ -31,11 +31,12 @@ ActiveRecord::Schema.define(version: 20161223182413) do
     t.date     "from_date"
     t.date     "to_date"
     t.text     "times"
-    t.boolean  "saved",      default: false
-    t.boolean  "published",  default: false
+    t.boolean  "saved",        default: false
+    t.boolean  "published",    default: false
+    t.datetime "published_at"
     t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.index ["user_id"], name: "index_timetables_on_user_id"
   end
 

@@ -7,6 +7,7 @@ class TimetablesController < ApplicationController
   before_action :set_saved_timetables, only: [:new, :create, :edit, :update, :applay_saved_timetable, :destroy_saved_timetable]
   
   def index
+    @timetables = Timetable.where(published: true).order(published_at: :desc).page(params[:page])
   end
   
   def show
@@ -54,7 +55,7 @@ class TimetablesController < ApplicationController
   def destroy_saved_timetable
     @timetable.destroy
     flash[:danger] = "選択したテンプレートを削除しました"
-    redirect_back(fallback_location: root_path)
+    redirect_to new_user_timetable_path(current_user)
   end
   
   def confirm
@@ -67,7 +68,7 @@ class TimetablesController < ApplicationController
   end
   
   def publish_timetable
-    @timetable.update_attribute(:published, true)
+    @timetable.update_columns(published: true, published_at: Time.zone.now)
     flash[:info] = "タイムテーブルを作成しました"
     redirect_to user_timetable_path(current_user, @timetable)
   end
