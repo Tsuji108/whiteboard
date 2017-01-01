@@ -12,8 +12,8 @@ class SessionsController < ApplicationController
         remember(user)
         redirect_back_or user
       else
-        message = "アカウントが有効化されていません<br>
-                      #{view_context.link_to "アカウント有効化メールを再送信", resend_user_path(user)}"
+        message = 'アカウントが有効化されていません<br>' \
+                  "#{view_context.link_to "アカウント有効化メールを再送信", resend_user_path(user)}"
         flash[:warning] = message
         redirect_to root_url
       end

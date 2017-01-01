@@ -3,8 +3,8 @@ require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @user       = users(:ito)
-    @other_user = users(:soneda)
+    @user            = users(:ito)
+    @other_user      = users(:soneda)
     @non_active_user = users(:non_active_user)
   end
 
