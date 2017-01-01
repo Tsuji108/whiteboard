@@ -46,7 +46,7 @@ class MailingListsController < ApplicationController
   end
   
   def applay_saved_ml
-    @mailing_list = MailingList.find(params[:id])
+    @mailing_list = MailingList.find(params[:id]).dup # PATCHリクエストを送信しないようにdupでオブジェクトをコピーして新たに作成
     flash.now[:info] = "選択したテンプレートを適用しました"
     render :new
   end
