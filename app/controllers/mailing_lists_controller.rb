@@ -93,8 +93,8 @@ class MailingListsController < ApplicationController
     elsif params[:commit_value] == "template"                       # 「現在の内容を保存」が実行された場合
       if current_user.mailing_lists.where(saved: true).count < 5    # メール保存数が５件より少なければ
         @mailing_list.update_attribute(:saved, true)
-        flash[:info] = "作成中のメールをテンプレートとして保存しました<br>
-                        次回以降いつでも呼び出して使用できます"
+        flash[:info] = '作成中のメールをテンプレートとして保存しました<br>' \
+                       '次回以降いつでも呼び出して使用できます'
       else
         flash[:danger] = "保存可能なメールは5件までです"
       end
