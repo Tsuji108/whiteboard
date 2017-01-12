@@ -29,6 +29,7 @@ class TimetablesController < ApplicationController
     if @timetable.save
       timetable_confirm_and_template_process
     else
+      flash.now[:danger] = "タイムテーブルの保存に失敗しました<br>もう一度実行してください"
       render :new
     end
   end
@@ -41,6 +42,7 @@ class TimetablesController < ApplicationController
     if @timetable.update_attributes(timetable_params)
       timetable_confirm_and_template_process
     else
+      flash.now[:danger] = "タイムテーブルの保存に失敗しました<br>もう一度実行してください"
       render :edit
     end
   end
@@ -90,34 +92,34 @@ class TimetablesController < ApplicationController
   end
   
   # from_dateの初期値を設定
-  def set_default_from_date(timetable)
-    if timetable.from_date.nil? || self.action_name == 'applay_saved_timetable' # timetable.from_dateがnilまたはapplay_saved_timetableアクションから呼び出された場合
+  def set_default_from_date(from_date)
+    if from_date.nil? || self.action_name == 'applay_saved_timetable' # newアクションからの呼び出された場合、またはapplay_saved_timetableアクションから呼び出された場合
       default_from_date = Date.today
-    else
-      default_from_date = timetable.from_date
+    else                                                              # editアクションからの呼び出された場合
+      default_from_date = from_date
     end
     return default_from_date
   end
   
   # to_dateの初期値を設定
-  def set_default_to_date(timetable)
-    if timetable.to_date.nil?                           # timetable.to_dateがnilの場合
-      if Timetable.where(published: true).last.nil?       # 公開済みのタイムテーブルが存在しない場合
-        default_to_date = Date.today + 6                  # 今日から６日後を指定
-      else                                                # 公開済みのタイムテーブルが存在する場合
+  def set_default_to_date(to_date, from_date)
+    if to_date.nil?                                         # newアクションからの呼び出された場合
+      if Timetable.where(published: true).last.nil?         # 公開済みのタイムテーブルが存在しない場合
+        default_to_date = Date.today + 6                    # 今日から６日後を指定
+      else                                                  # 公開済みのタイムテーブルが存在する場合
         default_to_date = Date.today + (Timetable.where(published: true).last.to_date - Timetable.where(published: true).last.from_date)
       end
-    elsif self.action_name == 'applay_saved_timetable'  # applay_saved_timetableアクションから呼び出された場合
-      default_to_date = Date.today + (timetable.to_date - timetable.from_date)  # 今日からテンプレートで保存された日数後を指定
-    else
-      default_to_date = timetable.to_date
+    elsif self.action_name == 'applay_saved_timetable'      # applay_saved_timetableアクションから呼び出された場合
+      default_to_date = Date.today + (to_date - from_date)  # 今日からテンプレートで保存された日数後を指定
+    else                                                    # editアクションからの呼び出された場合
+      default_to_date = to_date
     end
     return default_to_date
   end
   
   # タイムテーブルの各コマ毎の時間を作成
-  def set_koma_times(timetable)
-    unless koma_times = timetable.times             # timetable.timesが存在しない場合(newページの場合)
+  def set_koma_times(times)
+    unless koma_times = times                       # timesが存在しない場合(newページの場合)
       if Timetable.where(published: true).last.nil? # 公開済みのタイムテーブルが存在しない場合
         koma_times = <<~'EOS'
           8:50~10:20
@@ -137,10 +139,10 @@ class TimetablesController < ApplicationController
   
   # viewの初期値を設定
   def init_timetable_view(timetable)
-    period_hash = create_timetable_period                 # 期間のセレクトボックス選択肢
-    default_from_date = set_default_from_date(timetable)  # from_dateの初期値を設定
-    default_to_date = set_default_to_date(timetable)      # to_dateの初期値を設定
-    times = set_koma_times(timetable)                     # 各コマ毎の時間の値
+    period_hash = create_timetable_period                           # 期間のセレクトボックス選択肢
+    default_from_date = set_default_from_date(timetable.from_date)  # from_dateの初期値を設定
+    default_to_date = set_default_to_date(timetable.to_date, timetable.from_date) # to_dateの初期値を設定
+    times = set_koma_times(timetable.times)                         # 各コマ毎の時間の値
     return period_hash, default_from_date, default_to_date, times
   end
   

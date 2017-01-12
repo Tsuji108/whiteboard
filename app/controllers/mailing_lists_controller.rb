@@ -30,6 +30,7 @@ class MailingListsController < ApplicationController
     if @mailing_list.save
       mail_confirm_and_template_process
     else
+      flash.now[:danger] = "メールの保存に失敗しました<br>もう一度実行してください"
       render :new
     end
   end
@@ -41,6 +42,7 @@ class MailingListsController < ApplicationController
     if @mailing_list.update_attributes(mailing_list_params)
       mail_confirm_and_template_process
     else
+      flash.now[:danger] = "メールの保存に失敗しました<br>もう一度実行してください"
       render :edit
     end
   end
