@@ -1,0 +1,2 @@
+module TimetableRegistrationsHelper
+end
