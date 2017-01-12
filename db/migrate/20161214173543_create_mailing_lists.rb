@@ -9,6 +9,7 @@ class CreateMailingLists < ActiveRecord::Migration[5.0]
       t.boolean :saved, default: false
       t.boolean :sent, default: false
       t.datetime :sent_at
+      t.references :user, foreign_key: true
 
       t.timestamps
     end

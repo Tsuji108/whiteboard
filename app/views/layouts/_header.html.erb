@@ -4,6 +4,8 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
+          <li><%= link_to "タイムテーブル", user_timetable_path(current_user, Timetable.where(published: true).last) unless Timetable.where(published: true).last.nil? %></li>
+          <li><%= link_to "タイムテーブル作成", new_user_timetable_path(current_user) if current_user.admin? %></li>
           <li><%= link_to "サークルメンバー", users_path %></li>
           <li><%= link_to "サークルメール", new_user_mailing_list_path(current_user) %></li>
           <li><%= link_to "プロフィール確認", current_user %></li>

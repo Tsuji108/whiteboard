@@ -1,0 +1,59 @@
+<% provide(:title, 'Timetable') %>
+<h1>Timetable</h1>
+<h2>新しく作成するタイムテーブルの設定を行ってください<br>
+「期間」の間隔と「各コマの時間」は前回作成した内容を引き継ぎます</h2>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@timetable, url: path, html: {id: 'timetable-form'}) do |f| %>
+      <%= render 'shared/error_messages' %>
+      
+      <% if user_saved_timetable? %>
+        <%= f.label :saved_timetable, "保存中のタームテーブル" %>
+        <% @saved_timetables.each do |saved_timetable| %>
+          <div class="index">
+            <li>
+              <table class="index-table">
+                <%= "<tr><th>期間の間隔</th><td>：</td><td>#{(saved_timetable.to_date - saved_timetable.from_date + 1).to_i}日間</td></tr>
+                     <tr><th>各コマの時間</th><td>：</td><td>#{my_truncate(saved_timetable.times, 150)}</td></tr>".html_safe %>
+              </table>
+             <div class="small-btn float-left">
+               <%= link_to "適用", applay_saved_timetable_user_timetable_path(current_user, saved_timetable), class: "btn btn-primary" %>
+             </div>
+             <div class="small-btn float-left">
+               <%= link_to "削除", destroy_saved_timetable_user_timetable_path(current_user, saved_timetable), class: "btn btn-danger" %>
+             </div>
+             <div class="clear"></div>
+           </li>
+          </div>
+        <% end %>
+      <% end %>
+      
+      <%= f.label :from_date, "期間" %>
+      <div class="row non_padding">
+        <div class="col-md-4">
+          <%= f.select :from_date, options_for_select(@period_hash, selected: @default_from_date), class: 'form-control' %>
+        </div>
+        <span class="col-md-1 select-interval">から</span>
+        <div class="col-md-4">
+          <%= f.select :to_date, options_for_select(@period_hash, selected: @default_to_date), class: 'form-control' %>
+        </div>
+        <span class="col-md-1 select-interval">まで</span>
+      </div>
+
+      <%= f.label :times, "各コマの時間" %>
+      <div class="label-note">
+        <%= f.label :times, "コマ毎に改行して時間を記入してください", class: 'font-normal' %>
+      </div>
+      <%= f.text_area :times, rows: 10, value: @times, class: 'form-control' %>
+
+      <%= hidden_field_tag :commit_value %>
+      
+      <div class="submit-btn">
+        <%= f.submit "確認", onClick: ("return submit_with_value('timetable-form','confirm');"), class: 'btn btn-primary' %>
+      </div>
+      
+      <%= f.submit "テンプレートとして保存", onClick: ("return submit_with_value('timetable-form','template');"), class: 'btn btn-info' %>
+    <% end %>
+  </div>
+</div>

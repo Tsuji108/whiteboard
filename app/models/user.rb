@@ -3,6 +3,9 @@ class User < ApplicationRecord
   # MailingListモデルとの関連付け
   has_many :mailing_lists
   
+  # Timetableモデルとの関連付け
+  has_many :timetables
+  
   # 記憶トークン・有効化トークン・パスワード再設定トークン用のクラス変数
   attr_accessor :remember_token, :activation_token, :reset_token
 
@@ -15,17 +18,13 @@ class User < ApplicationRecord
   # ユーザ作成前に有効化トークンとダイジェストを作成
   before_save :create_activation_digest
 
-  # nameのバリデーション
+  # バリデーション
   validates :name,  presence: true, length: { maximum: 50 }
-
-  # emailのバリデーション
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i # メールアドレスの正規表現
   validates :email, presence: true
   validates :email, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false },
                     unless: proc {|a| a.email.blank? } # メールアドレスが入力されている場合のみ確認
-
-  # passwordのバリデーション
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true # プロフ更新時のみnilを許可(パスはそのまま)
 

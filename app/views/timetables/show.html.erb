@@ -1,0 +1,19 @@
+<% provide(:title, 'Timetable') %>
+<h1>Timetable</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    
+    <table class="timetable">
+      <tr><%= @timetable_date.html_safe %></tr>
+      <% @timetable.times.lines do |timetable_time| %>
+        <% unless timetable_time.blank? %>
+          <tr><th><%= my_truncate(timetable_time, 30) %></th><%= @space_cell.html_safe %></tr>
+        <% end %>
+      <% end %>
+    </table>
+    
+    <%= link_to "過去のタイムテーブルを確認するにはこちら", user_timetables_path(current_user) %>
+
+  </div>
+</div>

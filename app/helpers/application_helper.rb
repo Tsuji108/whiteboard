@@ -9,4 +9,9 @@ module ApplicationHelper
       page_title + ' | ' + base_title
     end
   end
+  
+  # 長文を先頭から決められた文字数表示する
+  def my_truncate(str, len)
+    truncate(str, length: len, omission: " ...")
+  end
 end

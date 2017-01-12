@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
+  get 'timetables/new'
+
   # TODO: 仮のルート
   root   'sessions#new'
 
@@ -18,6 +20,14 @@ Rails.application.routes.draw do
         get 'send_ml'
         get 'applay_saved_ml'
         get 'destroy_saved_ml'
+      end
+    end
+    resources :timetables, only: [:index, :show, :new, :create, :edit, :update] do
+      member do
+        get 'confirm'
+        get 'publish_timetable'
+        get 'applay_saved_timetable'
+        get 'destroy_saved_timetable'
       end
     end
   end
