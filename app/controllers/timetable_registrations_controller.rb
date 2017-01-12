@@ -1,2 +1,0 @@
-class TimetableRegistrationsController < ApplicationController
-end
