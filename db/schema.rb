@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161223182413) do
+ActiveRecord::Schema.define(version: 20170112092155) do
 
   create_table "mailing_lists", force: :cascade do |t|
     t.string   "from_name"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 20161223182413) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.index ["user_id"], name: "index_mailing_lists_on_user_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.string   "band_name"
+    t.date     "resavation_date"
+    t.integer  "resavation_koma"
+    t.integer  "user_id"
+    t.integer  "timetable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["timetable_id"], name: "index_reservations_on_timetable_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "timetables", force: :cascade do |t|
