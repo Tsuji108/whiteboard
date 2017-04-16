@@ -3,7 +3,8 @@ class TimetablesController < ApplicationController
   before_action :correct_user
   before_action :prohibit_direct_access, only: [:applay_saved_timetable, :destroy_saved_timetable, :confirm]
   before_action :admin_user, only: [:new, :create, :edit, :update, :applay_saved_timetable, :destroy_saved_timetable, :confirm]
-  before_action :set_timetable, only: [:show, :edit, :update, :destroy_saved_timetable, :confirm, :publish_timetable, :reservation]
+  before_action :set_timetable, only: [:show, :edit, :update, :destroy_saved_timetable, :destroy,
+                :confirm, :publish_timetable, :reservation]
   before_action :set_saved_timetables, only: [:new, :create, :edit, :update, :applay_saved_timetable, :destroy_saved_timetable]
   
   def index
@@ -17,7 +18,6 @@ class TimetablesController < ApplicationController
       @timetable_date += "<th class='center'>#{(l date, format: :short)}</th>"
       @date_count += 1
     end
-    # @reservation = current_user.reservations.build()
   end
   
   def new
@@ -46,6 +46,11 @@ class TimetablesController < ApplicationController
       flash.now[:danger] = "タイムテーブルの保存に失敗しました<br>もう一度実行してください"
       render :edit
     end
+  end
+  
+  def destroy
+    @timetable.destroy
+    redirect_to user_timetables_path(current_user)
   end
   
   def applay_saved_timetable
@@ -91,7 +96,7 @@ class TimetablesController < ApplicationController
   end
   
   def delete_reservation
-    Reservation.find(params[:del_id]).destroy   # 削除するidを取得し、DBから予約を削除
+    Reservation.find(params[:del_id]).destroy if Reservation.exists?(params[:del_id])   # 削除するidを取得し、DBから予約を削除
     redirect_to user_timetable_path(current_user, params[:id])
   end
   

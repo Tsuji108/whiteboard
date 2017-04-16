@@ -3,7 +3,10 @@
     <%= "<tr><th>期間</th><td>：</td><td>#{(l timetable.from_date, format: :short)} - #{(l timetable.to_date, format: :short)}</td></tr>".html_safe %>
   </table>
 
-  <div class="small-btn">
+  <span class="small-btn">
     <%= link_to "確認", user_timetable_path(current_user, timetable), class: "btn btn-primary" %>
-  </div>
+  </span>
+  <span class="small-btn">
+    <%= link_to "削除", user_timetable_path(current_user, timetable), method: :delete, class: "btn btn-danger" %>
+  </span>
 </li>

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
         get 'destroy_saved_ml'
       end
     end
-    resources :timetables, only: [:index, :show, :new, :create, :edit, :update] do
+    resources :timetables, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       member do
         get 'confirm'
         get 'publish_timetable'
