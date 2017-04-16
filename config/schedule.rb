@@ -10,11 +10,12 @@ every 1.day, at: '4:00 am' do
   runner 'MailingList.delete_non_send_mails'          # 1時間以上送信していないメールを削除
   runner 'Timetable.delete_old_timetables'            # 3年以上前のタイムテーブルを過去のタイムテーブル一覧から削除
   runner 'Timetable.delete_non_published_timetables'  # 1時間以上公開していないタイムテーブルを削除
+  runner 'Timetable.delete_old_reservations'          # 3年以上前のタイムテーブル登録データを過去のタイムテーブルから削除
 end
 
 # 毎週日曜am4:00に実行
 every :sunday, at: '4:00 am' do
-  runner 'User.delete_non_activated_users' # 1時間以上アカウントを有効化していないユーザを削除
+  runner 'User.delete_non_activated_users'            # 1時間以上アカウントを有効化していないユーザを削除
 end
 
 

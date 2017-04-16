@@ -3,7 +3,7 @@ class TimetablesController < ApplicationController
   before_action :correct_user
   before_action :prohibit_direct_access, only: [:applay_saved_timetable, :destroy_saved_timetable, :confirm]
   before_action :admin_user, only: [:new, :create, :edit, :update, :applay_saved_timetable, :destroy_saved_timetable, :confirm]
-  before_action :set_timetable, only: [:show, :edit, :update, :destroy_saved_timetable, :confirm, :publish_timetable]
+  before_action :set_timetable, only: [:show, :edit, :update, :destroy_saved_timetable, :confirm, :publish_timetable, :reservation]
   before_action :set_saved_timetables, only: [:new, :create, :edit, :update, :applay_saved_timetable, :destroy_saved_timetable]
   
   def index
@@ -12,11 +12,12 @@ class TimetablesController < ApplicationController
   
   def show
     @timetable_date = "<th></th>"  # タイムテーブル左上の空セルを最初に登録
-    @space_cell = ""               # 空のセル
+    @date_count = 0                # 何日分のデータかを格納
     @timetable.from_date.upto(@timetable.to_date) do |date|
       @timetable_date += "<th class='center'>#{(l date, format: :short)}</th>"
-      @space_cell += "<td></td>"
+      @date_count += 1
     end
+    # @reservation = current_user.reservations.build()
   end
   
   def new
@@ -75,11 +76,36 @@ class TimetablesController < ApplicationController
     redirect_to user_timetable_path(current_user, @timetable)
   end
   
+  def reservation
+    @timetable_date = "<th></th>"  # タイムテーブル左上の空セルを最初に登録
+    @date_count = 0                # 何日分のデータかを格納
+    @timetable.from_date.upto(@timetable.to_date) do |date|
+      @timetable_date += "<th class='center'>#{(l date, format: :short)}</th>"
+      @date_count += 1
+    end
+    
+    @reservation = current_user.reservations.build(reservation_params) # reservationテーブルにフォームの内容を格納
+    @reservation.save
+    
+    redirect_to user_timetable_path(current_user, params[:id])
+  end
+  
+  def delete_reservation
+    Reservation.find(params[:del_id]).destroy   # 削除するidを取得し、DBから予約を削除
+    redirect_to user_timetable_path(current_user, params[:id])
+  end
+  
   private
   
-  # ストロングパラメータの設定
+  # ストロングパラメータの設定（タイムテーブルを作成）
   def timetable_params
     params.require(:timetable).permit(:from_date, :to_date, :times)
+  end
+  
+  # ストロングパラメータの設定（タイムテーブルに登録）
+  def reservation_params
+    params.require(:reservation).permit(:timetable_id, :band_name, :resavation_date,
+                                 :resavation_koma)
   end
   
   # タイムテーブルを作成する期間のセレクトボックス選択肢

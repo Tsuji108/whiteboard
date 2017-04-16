@@ -28,9 +28,12 @@ Rails.application.routes.draw do
         get 'publish_timetable'
         get 'applay_saved_timetable'
         get 'destroy_saved_timetable'
+        post 'reservation'
+        delete 'delete_reservation'
       end
     end
   end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
+  
 end

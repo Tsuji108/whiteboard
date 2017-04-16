@@ -64,8 +64,8 @@ class UsersController < ApplicationController
 
   # ストロングパラメータの設定
   def user_params
-    params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation)
+    params.require(:user).permit(:name, :band_name, :resavation_date,
+                                 :resavation_koma)
   end
   
   def set_user

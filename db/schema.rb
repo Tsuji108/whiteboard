@@ -28,14 +28,13 @@ ActiveRecord::Schema.define(version: 20170112092155) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.string   "band_name"
-    t.date     "resavation_date"
-    t.integer  "resavation_koma"
-    t.integer  "user_id"
     t.integer  "timetable_id"
+    t.string   "band_name"
+    t.integer  "resavation_date"
+    t.string   "resavation_koma"
+    t.integer  "user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.index ["timetable_id"], name: "index_reservations_on_timetable_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 

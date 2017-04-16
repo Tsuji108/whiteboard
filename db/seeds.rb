@@ -9,6 +9,14 @@ User.create!(name:  'Ito Masafumi',
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
+             
+User.create!(name:  '田中さん',
+             email: 'tanaka@example.com',
+             password:              'foobar',
+             password_confirmation: 'foobar',
+             admin: true,
+             activated: true,
+             activated_at: Time.zone.now)
 
 # その他
 99.times do |n|

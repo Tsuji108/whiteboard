@@ -1,7 +1,18 @@
 # frozen_string_literal: true
 class SessionsController < ApplicationController
   def new
-    redirect_to current_user if logged_in?
+    # ログイン済みの時
+    if logged_in?
+      
+      # タイムテーブルが存在する場合はタイムテーブルを表示
+      unless Timetable.where(published: true).last.nil?
+        redirect_to user_timetable_path(current_user, Timetable.where(published: true).last)
+      
+      # そうでない場合はプロフィールページを表示
+      else
+        redirect_to current_user
+      end
+    end
   end
 
   def create

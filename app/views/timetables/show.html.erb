@@ -4,11 +4,55 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     
+    
       <table class="timetable">
         <tr><%= @timetable_date.html_safe %></tr>
+        
         <% @timetable.times.lines do |timetable_time| %>
           <% unless timetable_time.blank? %>
-            <tr><th><%= my_truncate(timetable_time, 30) %></th><%= @space_cell.html_safe %></tr>
+            <tr>
+              <!-- タイムテーブルの左の時間部分 -->
+              <th><%= my_truncate(timetable_time, 30) %></th>
+              
+              <!-- タイムテーブルのデータ部分 -->
+              <% @date_count.times do |date_num| %>
+                <td>
+                  
+                  <!-- タイムテーブルに登録されている場合 -->
+                  <% if Reservation.exists?(timetable_id: params[:id], resavation_date: date_num, resavation_koma: timetable_time) %>
+                   
+                    <!-- 登録名（バンド名） -->
+                    <%= Reservation.find_by(timetable_id: params[:id], resavation_date: date_num, resavation_koma: timetable_time).band_name %>
+                    <br>
+                    <!-- 登録者名 -->
+                    <%= Reservation.find_by(timetable_id: params[:id], resavation_date: date_num, resavation_koma: timetable_time).user.name %>
+                    
+                    <!-- ログインしているユーザと練習登録者が一致している場合は削除リンクを表示 -->
+                    <% if Reservation.find_by(timetable_id: params[:id], resavation_date: date_num, resavation_koma: timetable_time).user == current_user%>
+                      <!-- 登録削除のリンク -->
+                      <%= link_to "削除", delete_reservation_user_timetable_path(del_id: Reservation.find_by(timetable_id: params[:id], resavation_date: date_num, resavation_koma: timetable_time).id), method: :delete %>
+                    <% end %>
+                    
+                  <!-- タイムテーブルに登録されていない場合 --> 
+                  <% else %>
+                    
+                    <%= form_for(:reservation, url: reservation_user_timetable_path(current_user)) do |f| %>
+                      <%= render 'shared/error_messages' %>
+                
+                      <%= f.text_field :band_name, class: 'form-control' %>
+                      <%= f.hidden_field :timetable_id, value: params[:id] %>
+                      <%= f.hidden_field :resavation_date, value: date_num %>
+                      <%= f.hidden_field :resavation_koma, value: timetable_time %>
+                
+                      <%= f.submit "登録", class: "btn btn-primary" %>
+                    <% end %>
+                    
+                  <% end %>
+                  
+                </td>
+              <% end %>
+              
+            </tr>
           <% end %>
         <% end %>
       </table>

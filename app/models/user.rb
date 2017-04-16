@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 class User < ApplicationRecord
-  # MailingListモデルとの関連付け
   has_many :mailing_lists
-  
-  # Timetableモデルとの関連付け
   has_many :timetables
+  has_many :reservations
   
   # 記憶トークン・有効化トークン・パスワード再設定トークン用のクラス変数
   attr_accessor :remember_token, :activation_token, :reset_token
