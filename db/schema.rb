@@ -56,6 +56,16 @@ ActiveRecord::Schema.define(version: 20170112092155) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "birth_place"
+    t.string   "address"
+    t.string   "sex"
+    t.date     "birth_day"
+    t.string   "blood_type"
+    t.date     "enroll_year"
+    t.string   "department"
+    t.string   "part"
+    t.text     "genre"
+    t.text     "profile"
     t.string   "password_digest"
     t.string   "remember_digest"
     t.boolean  "admin",             default: false
