@@ -11,7 +11,9 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string   :blood_type        # 血液型
       t.date     :enroll_year       # 入学年
       t.string   :department        # 学科など
-      t.part     :part              # パート
+      t.string   :part              # パート
+      t.text     :genre             # 好きなジャンルやバンドなど
+      t.text     :profile           # 自己紹介
       t.string   :password_digest
       t.string   :remember_digest
       t.boolean  :admin,             default: false

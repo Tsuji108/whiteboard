@@ -1,25 +1,6 @@
 <% provide(:title, "Edit user") %>
 <h1>Update your profile</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages' %>
-
-      <%= f.label :name, "名前" %>
-      <%= f.text_field :name, class: 'form-control' %>
-
-      <%= f.label :email, "メールアドレス" %>
-      <%= f.email_field :email, class: 'form-control' %>
-
-      <%= f.label :password, "パスワード変更" %>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.label :password_confirmation, "パスワード変更(確認用)" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-      <%= f.submit "編集を保存", class: "btn btn-primary" %>
-    <% end %>
-
-  </div>
-</div>
+<%= render 'new_edit_template', { pass_message: "パスワード変更",  
+                                  pass_message_confirm: "パスワード変更(確認用)", 
+                                  submit: "プロフィール編集"} %>

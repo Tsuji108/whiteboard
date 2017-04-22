@@ -1,24 +1,7 @@
 <% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user, url: signup_path) do |f| %>
-      <%= render 'shared/error_messages' %>
+<%= render 'new_edit_template', { pass_message: "パスワード",  
+                                  pass_message_confirm: "パスワード(確認用)", 
+                                  submit: "新規登録"} %>
 
-      <%= f.label :name, "名前" %>
-      <%= f.text_field :name, class: 'form-control' %>
-
-      <%= f.label :email, "メールアドレス" %>
-      <%= f.email_field :email, class: 'form-control' %>
-
-      <%= f.label :password, "パスワード" %>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.label :password_confirmation, "パスワード(確認用)" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-      <%= f.submit "新規登録", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-</div>

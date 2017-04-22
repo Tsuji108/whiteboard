@@ -1,5 +1,13 @@
 ---
 ja:
+  # kaminariのview
+  views:
+      pagination:
+        first: "&laquo;"
+        last: "&raquo;"
+        previous: "&lsaquo;"
+        next: "&rsaquo;"
+        truncate: "..."
   activerecord:
     attributes:
       user:
