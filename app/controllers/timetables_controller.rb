@@ -109,8 +109,7 @@ class TimetablesController < ApplicationController
   
   # ストロングパラメータの設定（タイムテーブルに登録）
   def reservation_params
-    params.require(:reservation).permit(:timetable_id, :band_name, :resavation_date,
-                                 :resavation_koma)
+    params.require(:reservation).permit(:timetable_id, :band_name, :resavation_date, :resavation_koma)
   end
   
   # タイムテーブルを作成する期間のセレクトボックス選択肢

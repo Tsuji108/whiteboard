@@ -62,24 +62,23 @@ class UsersController < ApplicationController
 
   private
 
-  # ストロングパラメータの設定
-  def user_params
-    params.require(:user).permit(:name, :band_name, :resavation_date,
-                                 :resavation_koma)
-  end
-  
-  def set_user
-    @user = User.find(params[:id])
-  end
+    # ストロングパラメータの設定
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+    
+    def set_user
+      @user = User.find(params[:id])
+    end
 
-  # 管理者かどうか確認
-  def admin_user
-    redirect_to(root_url) unless current_user.admin?
-  end
-  
-  # アカウント有効化メールを送信可能なユーザかどうか確認
-  def non_activated_user
-    @user = User.find(params[:id])
-    redirect_to(root_url) unless @user && !@user.activated?
-  end
+    # 管理者かどうか確認
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
+    
+    # アカウント有効化メールを送信可能なユーザかどうか確認
+    def non_activated_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless @user && !@user.activated?
+    end
 end
