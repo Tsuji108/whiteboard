@@ -9,5 +9,7 @@ class CreateReservations < ActiveRecord::Migration[5.0]
       
       t.timestamps
     end
+    add_index :reservations, :resavation_date
+    add_index :reservations, :resavation_koma
   end
 end

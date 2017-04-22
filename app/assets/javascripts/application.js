@@ -10,11 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require bootstrap
-//= require jquery
-//= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+// = require jquery
+// = require jquery_ujs
+// = require bootstrap
+// = require_tree .
 
 // フォーム内の複数のsubmitを判断
 function submit_with_value(form_id, commit_value_from_view)

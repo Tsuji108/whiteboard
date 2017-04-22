@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20170112092155) do
     t.integer  "user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["resavation_date"], name: "index_reservations_on_resavation_date"
+    t.index ["resavation_koma"], name: "index_reservations_on_resavation_koma"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
