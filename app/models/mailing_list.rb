@@ -14,11 +14,11 @@ class MailingList < ApplicationRecord
   # サークルメールを送信(成功でtrue、失敗でfalseを返す)
   def send_circle_mail
     if self.to_enrolled && self.to_graduated  # 在校生・卒業生に送信する場合
-      users = User.where(activated: true)
+      users = User.where(activated: true).where(mail_receive: true)
     elsif self.to_enrolled                    # 在校生のみに送信する場合
-      users = User.where(activated: true).where(graduated: false)
+      users = User.where(activated: true).where(graduated: false).where(mail_receive: true)
     elsif self.to_graduated                   # 卒業生のみに送信する場合
-      users = User.where(activated: true).where(graduated: true)
+      users = User.where(activated: true).where(graduated: true).where(mail_receive: true)
     else                                       # 送信できない場合
       return false
     end

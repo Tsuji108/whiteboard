@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 20170112092155) do
     t.string   "address"
     t.string   "sex"
     t.date     "birth_day"
-    t.string   "blood_type"
     t.date     "enroll_year"
     t.string   "department"
     t.string   "part"
@@ -75,6 +74,7 @@ ActiveRecord::Schema.define(version: 20170112092155) do
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
     t.boolean  "graduated",         default: false
+    t.boolean  "mail_receive",      default: true
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.index ["email"], name: "index_users_on_email", unique: true

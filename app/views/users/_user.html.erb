@@ -2,7 +2,9 @@
   <%= gravatar_for user, size: 50 %>
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "メンバーから削除", user, method: :delete,
-                                  data: { confirm: "本当に削除してよろしいですか？" } %>
+    | <%= link_to "削除", user, method: :delete, data: { confirm: "本当に削除してよろしいですか？" } %>
+    <% unless user.admin? %>
+      | <%= link_to "管理者権限を与える", add_admin_user_path(user), data: { confirm: "この操作は取り消しできません。本当によろしいですか？" } %>  
+    <% end %>
   <% end %>
 </li>

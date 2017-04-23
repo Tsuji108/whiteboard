@@ -17,7 +17,7 @@ class User < ApplicationRecord
   before_save :create_activation_digest
 
   # バリデーション
-  validates :name,  presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i # メールアドレスの正規表現
   validates :email, presence: true
   validates :email, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX },
@@ -25,6 +25,12 @@ class User < ApplicationRecord
                     unless: proc {|a| a.email.blank? } # メールアドレスが入力されている場合のみ確認
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true # プロフ更新時のみnilを許可(パスはそのまま)
+  validates :birth_place, length: { maximum: 255 }
+  validates :address, length: { maximum: 255 }
+  validates :department, length: { maximum: 255 }
+  validates :part, length: { maximum: 255 }
+  validates :genre, length: { maximum: 5000 }
+  validates :profile, length: { maximum: 5000 }
 
   # 渡された文字列のハッシュ値を返す(フィクスチャ用)
   def self.digest(string)
