@@ -15,6 +15,7 @@ gem 'jquery-rails',    '4.1.1'
 gem 'jbuilder',        '2.4.1'
 gem 'whenever', require: false
 gem 'ransack',         '1.8.2'
+gem 'carrierwave',     '1.0.0'
 gem 'rubocop'
 
 group :development, :test do
