@@ -90,7 +90,7 @@ class TimetablesController < ApplicationController
     end
     
     @reservation = current_user.reservations.build(reservation_params) # reservationテーブルにフォームの内容を格納
-    @reservation.save
+    flash[:danger] = "登録名は空白でなく20文字以下で入力してください" unless @reservation.save
     
     redirect_to user_timetable_path(current_user, params[:id])
   end

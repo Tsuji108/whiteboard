@@ -383,7 +383,7 @@ input {
   }
 }
 
-/* timetable */
+/* timetable */////////////////////////////////////////////////////////////////////////////////////
 
 .timetable {
   margin: 0 auto 20px;
@@ -391,6 +391,25 @@ input {
     border: 1px #777 solid;
     padding: 5px;
     min-width: 90px;
+  }
+
+  .band_name {
+    padding-bottom: 10px;
+    font-size: 1.5em;
+  }
+
+  .reservation_user {
+    font-size: 0.9em;
+    padding-bottom: 5px;
+  }
+
+  .delete_link {
+    font-size: 0.9em;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 1px 0;
   }
 }
 

@@ -24,10 +24,14 @@
                         <% current_reservation = Reservation.find_by(timetable_id: params[:id], resavation_date: date_num, resavation_koma: timetable_time) %>
 
                         <!-- 登録名（バンド名） -->
-                        <%= current_reservation.band_name %>
-                        <br>
+                        <div class="band_name center">
+                          <%= current_reservation.band_name %>
+                        </div>
+                        
                         <!-- 登録者名 -->
-                        <%= current_reservation.user.name %>
+                        <div class="reservation_user center">
+                          登録：<%= link_to current_reservation.user.name, current_reservation.user %>
+                        </div>
 
                         <!-- 過去のタイムテーブルは編集不可 -->
                           <% if Timetable.count == 1 || Timetable.last.id == params[:id].to_i %>
@@ -35,8 +39,9 @@
                           <!-- ログインしているユーザと練習登録者が一致、または管理者の場合は削除リンクを表示 -->
                           <% if current_reservation.user == current_user || current_user.admin == true%>
                             <!-- 登録削除のリンク -->
-                            <br>
-                            <%= link_to "削除", delete_reservation_user_timetable_path(del_id: current_reservation.id), method: :delete %>
+                            <div class="delete_link center">
+                              <%= link_to "削除", delete_reservation_user_timetable_path(del_id: current_reservation.id), method: :delete, class: "btn btn-danger" %>
+                            </div>
                           <% end %>
 
                         <% end %>
@@ -53,7 +58,7 @@
                             <%= f.hidden_field :timetable_id, value: params[:id] %>
                             <%= f.hidden_field :resavation_date, value: date_num %>
                             <%= f.hidden_field :resavation_koma, value: timetable_time %>
-                            <%= f.submit "登録", class: "btn btn-primary" %>
+                            <%= f.submit "練習をとる", class: "btn btn-primary" %>
                           <% end %>
 
                         <% end %>

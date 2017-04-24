@@ -22,3 +22,8 @@ function submit_with_value(form_id, commit_value_from_view)
   objForm.commit_value.value = commit_value_from_view;
   objForm.submit();
 }
+
+// メニューアイコン
+function open_menu() {
+  document.getElementById("sm-menu-icon").classList.toggle("active");
+}
