@@ -10,8 +10,6 @@
   <body>
     <!-- ヘッダーを表示 -->
     <%= render 'layouts/header' %>
-    
-    <div class="container">
       
       <!-- フラッシュを表示-->
       <% flash.each do |message_type, message| %>
@@ -25,6 +23,6 @@
       
       <!-- 開発環境でデバック情報を表示-->
       <%= debug(params) if Rails.env.development? %>
-    </div>
+
   </body>
 </html>

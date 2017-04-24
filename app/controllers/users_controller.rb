@@ -74,10 +74,10 @@ class UsersController < ApplicationController
     # ストロングパラメータの設定
     def user_params
       params.require(:user).permit(:name, :email, :birth_place, :address, :sex,
-                                   :birth_day, :enroll_year, :department, 
+                                   :birth_day, :enroll_year, :department, :graduated,
                                    :part, :genre, :profile, :mail_receive, :password, :password_confirmation)
     end
-    
+
     def set_user
       @user = User.find(params[:id])
     end
@@ -86,7 +86,7 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end
-    
+
     # アカウント有効化メールを送信可能なユーザかどうか確認
     def non_activated_user
       @user = User.find(params[:id])

@@ -1,10 +1,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/* TODO:デザインは仮 機能実装後に追加 */
-
 /* mixins, variables, etc. */
 
+$h1-size: 2.3em;
 $gray-medium-light: #eaeaea;
 
 @mixin box_sizing {
@@ -16,7 +15,7 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
-  padding-top: 60px;
+  padding-top: 50px;
 }
 
 section {
@@ -58,6 +57,17 @@ textarea {
   clear: left;
 }
 
+.flex {
+  display: flex;
+  display: -webkit-flex;
+  margin: 0;
+  padding: 0;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -65,9 +75,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: $h1-size;
   letter-spacing: -2px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -88,19 +98,130 @@ p {
 
 
 /* header */
-
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  &:hover {
-    color: white;
-    text-decoration: none;
+header {
+  .nav {
+    margin: 0;
   }
+
+  .menu-icon {
+    float: right;
+  }
+
+  #logo {
+    float: left;
+    margin-right: 10px;
+    font-size: 1.7em;
+    color: white;
+    letter-spacing: -1px;
+    padding-top: 9px;
+    font-weight: bold;
+    &:hover {
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 0;
+  }
+
+  #menu li {
+    list-style: none;
+    font-size: 1.2em;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #ffffff;
+  }
+
+  a {
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s;
+
+    &:hover {
+      text-decoration: none;
+      color: #444;
+    }
+  }
+
+  #menu {
+    position: fixed;
+    top: 50px;
+    right: -340px; /* メニューのwidth + padding */
+    width: 300px; /* メニューのwidth */
+    height: 100%;
+    padding: 20px;
+    transition: left .3s, right .3s; /* アニメーション */
+    background-color: rgba(86, 86, 86, .7);
+  }
+
+  .toggle {
+    // font-size: 50px;
+    cursor: pointer;
+    margin: 0;
+  }
+
+  .toggle:hover {
+    text-decoration: underline;
+  }
+
+  #open {
+    display: none;
+  }
+
+  /* :checked 擬似クラスを使って、#openがチェック状態になった時に、#menuが「right: 0;」になります。 */
+  #open:checked + #menu {
+    right: 0;
+  }
+
+  #sm-menu-icon, #sm-menu-icon span {
+    display: inline-block;
+    transition: all .4s;
+    box-sizing: border-box;
+  }
+
+  #sm-menu-icon {
+    position: relative;
+    top: 18px;
+    width: 24px;
+    height: 15px;
+
+    & > span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #ffffff;
+
+      &:nth-of-type(1) {
+        top: 0;
+      }
+
+      &:nth-of-type(2) {
+        top: 7px;
+      }
+
+      &:nth-of-type(3) {
+        bottom: 0;
+      }
+    }
+
+    // クリック時の動作
+    &.active > span {
+      &:nth-of-type(1) {
+        transform: translateY(7.5px) rotate(-315deg);
+      }
+
+      &:nth-of-type(2) {
+        opacity: 0;
+      }
+
+      &:nth-of-type(3) {
+        transform: translateY(-7.5px) rotate(315deg);
+      }
+    }
+  }
+
 }
 
 /* footer */
@@ -139,37 +260,10 @@ footer {
   @include box_sizing;
 }
 
-/* sidebar */
-
-aside {
-  section.user_info {
-    margin-top: 20px;
-  }
-  section {
-    padding: 10px 0;
-    margin-top: 20px;
-    &:first-child {
-      border: 0;
-      padding-top: 0;
-    }
-    span {
-      display: block;
-      margin-bottom: 3px;
-      line-height: 1;
-    }
-    h1 {
-      font-size: 1.4em;
-      text-align: left;
-      letter-spacing: -1px;
-      margin-bottom: 3px;
-      margin-top: 0px;
-    }
-  }
-}
+/* gravatar */
 
 .gravatar {
-  float: left;
-  margin-right: 10px;
+  margin: 0 10px;
 }
 
 .gravatar_edit {
@@ -293,7 +387,78 @@ input {
 
 .timetable {
   margin: 0 auto 20px;
-  td, th {
+  table, td, th {
     border: 1px #777 solid;
+    padding: 5px;
+    min-width: 90px;
   }
+}
+
+/* login & signup */////////////////////////////////////////////////////////////////////////////////////
+.jumbotron {
+  background-image: image-url('login.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.login {
+  .jumbotron {
+    height: 100vh;
+  }
+
+  h1 {
+    font-size: $h1-size;
+  }
+
+  p {
+    padding-top: 15px;
+    font-size: 1.1em;
+  }
+}
+
+.white-filter {
+  margin-top: 30px;
+  padding: 20px 0;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.signup {
+  .jumbotron {
+    height: 100%;
+  }
+
+  h1 {
+    font-size: $h1-size;
+  }
+
+  p {
+    padding-top: 15px;
+    font-size: 1.1em;
+  }
+}
+
+/* プロフィールページ */////////////////////////////////////////////////////////////////////////////////////
+.user-show {
+  .container {
+    padding-top: 20px;
+  }
+
+  td {
+    border: 1px #777 solid;
+    padding: 5px 10px;
+  }
+
+  table {
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  .bold {
+    padding-bottom: 5px;
+  }
+
 }

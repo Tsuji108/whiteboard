@@ -1,15 +1,17 @@
 <% provide(:title, 'Timetable archive') %>
-<h1>Timetable archive</h1>
-<h2>過去3年分のタームテーブルが確認できます</h2>
+<div class="container">
+  <h1>Timetable archive</h1>
+  <h2>過去3年分のタームテーブルが確認できます</h2>
 
-<div class="center">
-  <%= paginate @timetables %>
-</div>
+  <div class="center">
+    <%= paginate @timetables %>
+  </div>
 
-<ul class="index">
-  <%= render @timetables %>
-</ul>
+  <ul class="index">
+    <%= render @timetables %>
+  </ul>
 
-<div class="center">
-  <%= paginate @timetables %>
+  <div class="center">
+    <%= paginate @timetables %>
+  </div>
 </div>

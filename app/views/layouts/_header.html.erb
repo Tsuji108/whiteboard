@@ -1,20 +1,41 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "Whtie Board", root_path, id: "logo" %>
+  <div class="row">
+    <div class="col-xs-10">
+      <%= link_to "WhtieBoard", root_path, id: "logo" %>
+    </div>
     <nav>
+
+
+
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-          <li><%= link_to "タイムテーブル", user_timetable_path(current_user, Timetable.where(published: true).last) unless Timetable.where(published: true).last.nil? %></li>
-          <li><%= link_to "タイムテーブル作成", new_user_timetable_path(current_user) if current_user.admin? %></li>
-          <li><%= link_to "サークルメンバー", users_path %></li>
-          <li><%= link_to "サークルメール", new_user_mailing_list_path(current_user) %></li>
-          <li><%= link_to "プロフィール確認", current_user %></li>
-          <li><%= link_to "プロフィール編集", edit_user_path(current_user) %></li>
-          <li><%= link_to "ログアウト", logout_path, method: "delete" %></li>
+          <label class="toggle" for="open">
+            <div id="sm-menu-icon"><span></span><span></span><span></span></div>
+          </label>
+          <input id="open" type="checkbox">
+          <div id="menu">
+            <nav>
+              <ul>
+                <li><%= link_to "タイムテーブル", user_timetable_path(current_user, Timetable.where(published: true).last) unless Timetable.where(published: true).last.nil? %></li>
+                <li><%= link_to "タイムテーブル作成", new_user_timetable_path(current_user) if current_user.admin? %></li>
+                <li><%= link_to "サークルメンバー", users_path %></li>
+                <li><%= link_to "サークルメール", new_user_mailing_list_path(current_user) %></li>
+                <li><%= link_to "プロフィール確認", current_user %></li>
+                <li><%= link_to "プロフィール編集", edit_user_path(current_user) %></li>
+                <li><%= link_to "ログアウト", logout_path, method: "delete" %></li>
+              </ul>
+            </nav>
+          </div>
+
+
+
+
         <% else %>
           <li><%= link_to "ログイン", login_path %></li>
         <% end %>
       </ul>
     </nav>
+  </div>
   </div>
 </header>

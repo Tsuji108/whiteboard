@@ -1,92 +1,90 @@
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages' %>
+    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+      <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages' %>
 
-      <%= f.label :name, "名前" %>
-      <%= f.text_field :name, class: 'form-control' %>
+        <%= f.label :name, "名前" %>
+        <%= f.text_field :name, class: 'form-control', placeholder: "例：九工太郎" %>
 
-      <%= f.label :email, "メールアドレス" %>
-      <%= f.email_field :email, class: 'form-control' %>
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.email_field :email, class: 'form-control', placeholder: "例：whiteboard@example.com" %>
 
-      <%= f.label :birth_place, "出身地" %>
-      <%= f.text_field :birth_place, class: 'form-control', placeholder: "例：福岡県" %>
+        <%= f.label :birth_place, "出身地" %>
+        <%= f.text_field :birth_place, class: 'form-control', placeholder: "例：福岡県" %>
 
-      <%= f.label :address, "現住所(アパート名など)" %>
-      <%= f.text_field :address, class: 'form-control', placeholder: "例：第3のより" %>
+        <%= f.label :address, "現住所(アパート名など)" %>
+        <%= f.text_field :address, class: 'form-control', placeholder: "例：第3のより" %>
 
-      <%= f.label :sex, "性別" %>
-      <div class='radio-control'>
-        <label class="radio-inline"><%= f.radio_button :sex, "男", checked: true %>男</label>
-        <label class="radio-inline"><%= f.radio_button :sex, "女" %>女</label>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <%= f.label :birth_day, "生年月日" %>
+        <%= f.label :sex, "性別" %>
+        <div class='radio-control'>
+          <label class="radio-inline"><%= f.radio_button :sex, "男", checked: true %>男</label>
+          <label class="radio-inline"><%= f.radio_button :sex, "女" %>女</label>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <%= f.date_select :birth_day, {
-            use_month_numbers: true,
-            start_year: Time.now.year - 50,
-            end_year: Time.now.year,
-            default: Date.new(Time.now.year - 18, 1, 1),
-            date_separator: ' / '},
-            {class: "form-control bootstrap-date"} %>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <%= f.label :birth_day, "生年月日" %>
+          </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <%= f.label :enroll_year, "入学した年" %>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <%= f.date_select :birth_day, {
+              use_month_numbers: true,
+              start_year: Time.now.year - 50,
+              end_year: Time.now.year,
+              default: Date.new(Time.now.year - 18, 1, 1),
+              date_separator: ' / '},
+              {class: "form-control bootstrap-date"} %>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <%= f.date_select :enroll_year, {
-            use_month_numbers: true,
-            discard_month: true,
-            discard_day: true,
-            start_year: 1960,
-            end_year: Time.now.year,
-            default: Date.new(Time.now.year, 1, 1)},
-            {class: "form-control bootstrap-date"} %>年
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <%= f.label :enroll_year, "入学した年" %>
+          </div>
         </div>
-      </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <%= f.date_select :enroll_year, {
+              use_month_numbers: true,
+              discard_month: true,
+              discard_day: true,
+              start_year: 1960,
+              end_year: Time.now.year,
+              default: Date.new(Time.now.year, 1, 1)},
+              {class: "form-control bootstrap-date"} %>年
+          </div>
+        </div>
 
-      <%= f.label :department, "学科など" %>
-      <%= f.text_field :department, class: 'form-control', placeholder: "例：電子" %>
+        <%= f.label :department, "学科など" %>
+        <%= f.text_field :department, class: 'form-control', placeholder: "例：電子" %>
 
-      <%= f.label :part, "担当パート" %>
-      <%= f.text_field :part, class: 'form-control', placeholder: "例：ベース" %>
+        <%= f.label :part, "担当パート" %>
+        <%= f.text_field :part, class: 'form-control', placeholder: "例：ベース" %>
 
-      <%= f.label :genre, "好きなジャンルやバンド名など" %>
-      <%= f.text_area :genre, rows: 2, class: 'form-control'  %>
+        <%= f.label :genre, "好きなジャンルやバンドなど" %>
+        <%= f.text_area :genre, rows: 2, class: 'form-control'  %>
 
-      <%= f.label :profile, "自己紹介" %>
-      <%= f.text_area :profile, rows: 5, class: 'form-control'  %>
+        <%= f.label :profile, "自己紹介" %>
+        <%= f.text_area :profile, rows: 5, class: 'form-control'  %>
 
-      <%= f.label :graduated, "在学状況" %>
-      <div class='radio-control'>
-        <label class="radio-inline"><%= f.radio_button :graduated, false, checked: true %>在校生</label>
-        <label class="radio-inline"><%= f.radio_button :graduated, true %>卒業生</label>
-      </div>
+        <%= f.label :graduated, "在学状況" %>
+        <div class='radio-control'>
+          <label class="radio-inline"><%= f.radio_button :graduated, false, checked: true %>在校生</label>
+          <label class="radio-inline"><%= f.radio_button :graduated, true %>卒業生</label>
+        </div>
 
-      <%= f.label :mail_receive, "サークルメール受信設定" %>
-      <div class='radio-control'>
-        <label class="radio-inline"><%= f.radio_button :mail_receive, true, checked: true %>受け取る</label>
-        <label class="radio-inline"><%= f.radio_button :mail_receive, false %>受け取らない</label>
-      </div>
+        <%= f.label :mail_receive, "サークルメール受信設定" %>
+        <div class='radio-control'>
+          <label class="radio-inline"><%= f.radio_button :mail_receive, true, checked: true %>受け取る</label>
+          <label class="radio-inline"><%= f.radio_button :mail_receive, false %>受け取らない</label>
+        </div>
 
-      <%= f.label :password, pass_message %>
-      <%= f.password_field :password, class: 'form-control' %>
+        <%= f.label :password, pass_message %>
+        <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, pass_message_confirm %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+        <%= f.label :password_confirmation, pass_message_confirm %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-      <%= f.submit submit, class: "btn btn-primary" %>
-    <% end %>
-  </div>
-</div>
+        <%= f.submit submit, class: "btn btn-primary" %>
+      <% end %>
+    </div>

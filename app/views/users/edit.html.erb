@@ -1,6 +1,8 @@
 <% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
+<div class="container">
+  <h1>プロフィール編集</h1>
 
-<%= render 'new_edit_template', { pass_message: "パスワード変更",  
-                                  pass_message_confirm: "パスワード変更(確認用)", 
-                                  submit: "プロフィール編集"} %>
+  <%= render 'new_edit_template', { pass_message: "パスワード変更",
+                                    pass_message_confirm: "パスワード変更(確認用)",
+                                    submit: "プロフィール編集"} %>
+</div>
