@@ -8,7 +8,8 @@ class UsersController < ApplicationController
   before_action :set_user,   only: [:show, :edit, :update, :destroy, :resend, :add_admin]
 
   def index
-    @users = User.where(activated: true).order(:created_at).reverse_order.page(params[:page])
+    @q = User.search(params[:q])
+    @users = @q.result(distinct: true).where(activated: true).order(:created_at).reverse_order.page(params[:page])
   end
 
   def show

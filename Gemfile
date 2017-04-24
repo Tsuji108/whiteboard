@@ -14,6 +14,7 @@ gem 'coffee-rails',    '4.2.1'
 gem 'jquery-rails',    '4.1.1'
 gem 'jbuilder',        '2.4.1'
 gem 'whenever', require: false
+gem 'ransack',         '1.8.2'
 gem 'rubocop'
 
 group :development, :test do

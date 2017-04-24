@@ -1,6 +1,6 @@
 <% provide(:title, 'Timetable') %>
 <div class="container">
-  <h1>タイムテーブル</h1>
+  <h1></h1>
 
   <div class="row">
     <div class="col-md-10 col-md-offset-1 col-xs-12">
@@ -37,7 +37,7 @@
                           <% if Timetable.count == 1 || Timetable.last.id == params[:id].to_i %>
 
                           <!-- ログインしているユーザと練習登録者が一致、または管理者の場合は削除リンクを表示 -->
-                          <% if current_reservation.user == current_user || current_user.admin == true%>
+                          <% if current_reservation.user == current_user || current_user.admin == true %>
                             <!-- 登録削除のリンク -->
                             <div class="delete_link center">
                               <%= link_to "削除", delete_reservation_user_timetable_path(del_id: current_reservation.id), method: :delete, class: "btn btn-danger" %>
