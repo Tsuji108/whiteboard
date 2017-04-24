@@ -422,12 +422,13 @@ input {
   background-size: cover;
   margin-top: -20px;
   padding-top: 20px;
+
+  position: relative;
+  width: 100%;
+  height: 100vh;
 }
 
-.login {
-  .jumbotron {
-    height: 100vh;
-  }
+.login, .signup {
 
   h1 {
     font-size: $h1-size;
@@ -440,26 +441,18 @@ input {
 }
 
 .white-filter {
-  margin-top: 50px;
-  padding: 20px 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: auto;
+  height: 310px;
+  padding-top: 30px;
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.6);
   -webkit-backdrop-filter: blur(10px);
-}
-
-.signup {
-  .jumbotron {
-    height: 100%;
-  }
-
-  h1 {
-    font-size: $h1-size;
-  }
-
-  p {
-    padding-top: 15px;
-    font-size: 1.1em;
-  }
+  box-sizing: border-box;
 }
 
 /* プロフィールページ */////////////////////////////////////////////////////////////////////////////////////
