@@ -35,14 +35,14 @@
 
 
           <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
               <%= f.select :from_date, options_for_select(@period_hash, selected: @default_from_date), class: 'form-control' %>
             </div>
             <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4 select-interval">から</span>
           </div>
 
           <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
               <%= f.select :to_date, options_for_select(@period_hash, selected: @default_to_date), class: 'form-control' %>
             </div>
             <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4 select-interval">まで</span>
