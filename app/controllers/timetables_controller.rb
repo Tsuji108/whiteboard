@@ -178,7 +178,11 @@ class TimetablesController < ApplicationController
   end
 
   def set_timetable
-    @timetable = Timetable.find(params[:id])
+    if Timetable.exists?(params[:id])
+      @timetable = Timetable.find(params[:id])
+    else
+      redirect_to root_path
+    end
   end
 
   # カレントユーザが保存中のタイムテーブルを取得

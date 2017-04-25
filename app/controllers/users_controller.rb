@@ -80,7 +80,11 @@ class UsersController < ApplicationController
     end
 
     def set_user
-      @user = User.find(params[:id])
+      if User.exists?(params[:id])
+        @user = User.find(params[:id])
+      else
+        redirect_to root_path
+      end
     end
 
     # 管理者かどうか確認
