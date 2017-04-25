@@ -347,7 +347,8 @@ input {
 
 #sendto_checkbox input, .radio-control input {
   width: auto!important;
-}
+  vertical-align: middle!important;
+} 
 
 #past-ml {
   padding-top: 3px;
@@ -387,7 +388,8 @@ input {
 .index-table {
   th {
     font-weight: normal;
-    white-space:nowrap;
+    white-space: nowrap;
+    min-width: 90px;
   }
   th, td {
     vertical-align: top;
@@ -430,6 +432,16 @@ input {
   .btn {
     width: 100%;
     padding: 1px 3px;
+  }
+}
+
+.create-timetable {
+  select {
+    min-width: 105px;
+  }
+
+  span {
+    text-align: left;
   }
 }
 
