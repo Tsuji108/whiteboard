@@ -40,7 +40,7 @@
                         </div>
 
                         <!-- 過去のタイムテーブルは編集不可 -->
-                          <% if Timetable.count == 1 || Timetable.last.id == params[:id].to_i %>
+                        <% if Timetable.count != 1 && Timetable.last.id == params[:id].to_i %>
 
                           <!-- ログインしているユーザと練習登録者が一致、または管理者の場合は削除リンクを表示 -->
                           <% if current_reservation.user == current_user || current_user.admin == true %>

@@ -2,15 +2,16 @@ class TimetablesController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user
   before_action :prohibit_direct_access, only: [:applay_saved_timetable, :destroy_saved_timetable, :confirm]
-  before_action :admin_user, only: [:new, :create, :edit, :update, :applay_saved_timetable, :destroy_saved_timetable, :confirm]
+  before_action :admin_user, only: [:new, :create, :edit, :destroy, :update, :applay_saved_timetable,
+                :destroy_saved_timetable, :confirm]
   before_action :set_timetable, only: [:show, :edit, :update, :destroy_saved_timetable, :destroy,
                 :confirm, :publish_timetable, :reservation]
   before_action :set_saved_timetables, only: [:new, :create, :edit, :update, :applay_saved_timetable, :destroy_saved_timetable]
-  
+
   def index
     @timetables = Timetable.where(published: true).order(published_at: :desc).page(params[:page])
   end
-  
+
   def show
     @timetable_date = "<th></th>"  # タイムテーブル左上の空セルを最初に登録
     @date_count = 0                # 何日分のデータかを格納
@@ -19,12 +20,12 @@ class TimetablesController < ApplicationController
       @date_count += 1
     end
   end
-  
+
   def new
     @timetable = current_user.timetables.build()
     @period_hash, @default_from_date, @default_to_date, @times = init_timetable_view(@timetable)  # viewの初期設定
   end
-  
+
   def create
     @timetable = current_user.timetables.build(timetable_params)
     if @timetable.save
@@ -38,7 +39,7 @@ class TimetablesController < ApplicationController
   def edit
     @period_hash, @default_from_date, @default_to_date, @times = init_timetable_view(@timetable)  # viewの初期設定
   end
-  
+
   def update
     if @timetable.update_attributes(timetable_params)
       timetable_confirm_and_template_process
@@ -47,25 +48,25 @@ class TimetablesController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @timetable.destroy
     redirect_to user_timetables_path(current_user)
   end
-  
+
   def applay_saved_timetable
     @timetable = Timetable.find(params[:id]).dup # PATCHリクエストを送信しないようにdupでオブジェクトをコピーして新たに作成
     @period_hash, @default_from_date, @default_to_date, @times = init_timetable_view(@timetable)  # viewの初期設定
     flash.now[:info] = "選択したテンプレートを適用しました"
     render :new
   end
-  
+
   def destroy_saved_timetable
     @timetable.destroy
     flash[:danger] = "選択したテンプレートを削除しました"
     redirect_to new_user_timetable_path(current_user)
   end
-  
+
   def confirm
     @timetable_date = "<th></th>"  # タイムテーブル左上の空セルを最初に登録
     @space_cell = ""               # 空のセル
@@ -74,13 +75,13 @@ class TimetablesController < ApplicationController
       @space_cell += "<td></td>"
     end
   end
-  
+
   def publish_timetable
     @timetable.update_columns(published: true, published_at: Time.zone.now)
     flash[:info] = "タイムテーブルを作成しました"
     redirect_to user_timetable_path(current_user, @timetable)
   end
-  
+
   def reservation
     @timetable_date = "<th></th>"  # タイムテーブル左上の空セルを最初に登録
     @date_count = 0                # 何日分のデータかを格納
@@ -88,30 +89,30 @@ class TimetablesController < ApplicationController
       @timetable_date += "<th class='center'>#{(l date, format: :short)}</th>"
       @date_count += 1
     end
-    
+
     @reservation = current_user.reservations.build(reservation_params) # reservationテーブルにフォームの内容を格納
     flash[:danger] = "登録名は空白でない20文字以下の文字数で入力してください" unless @reservation.save
-    
+
     redirect_to user_timetable_path(current_user, params[:id])
   end
-  
+
   def delete_reservation
     Reservation.find(params[:del_id]).destroy if Reservation.exists?(params[:del_id])   # 削除するidを取得し、DBから予約を削除
     redirect_to user_timetable_path(current_user, params[:id])
   end
-  
+
   private
-  
+
   # ストロングパラメータの設定（タイムテーブルを作成）
   def timetable_params
     params.require(:timetable).permit(:from_date, :to_date, :times)
   end
-  
+
   # ストロングパラメータの設定（タイムテーブルに登録）
   def reservation_params
     params.require(:reservation).permit(:timetable_id, :band_name, :resavation_date, :resavation_koma)
   end
-  
+
   # タイムテーブルを作成する期間のセレクトボックス選択肢
   def create_timetable_period
     period_hash = Hash.new
@@ -120,7 +121,7 @@ class TimetablesController < ApplicationController
     end
     return period_hash
   end
-  
+
   # from_dateの初期値を設定
   def set_default_from_date(from_date)
     if from_date.nil? || self.action_name == 'applay_saved_timetable' # newアクションからの呼び出された場合、またはapplay_saved_timetableアクションから呼び出された場合
@@ -130,7 +131,7 @@ class TimetablesController < ApplicationController
     end
     return default_from_date
   end
-  
+
   # to_dateの初期値を設定
   def set_default_to_date(to_date, from_date)
     if to_date.nil?                                         # newアクションからの呼び出された場合
@@ -146,7 +147,7 @@ class TimetablesController < ApplicationController
     end
     return default_to_date
   end
-  
+
   # タイムテーブルの各コマ毎の時間を作成
   def set_koma_times(times)
     unless koma_times = times                       # timesが存在しない場合(newページの場合)
@@ -166,7 +167,7 @@ class TimetablesController < ApplicationController
     end
     return koma_times
   end
-  
+
   # viewの初期値を設定
   def init_timetable_view(timetable)
     period_hash = create_timetable_period                           # 期間のセレクトボックス選択肢
@@ -175,16 +176,16 @@ class TimetablesController < ApplicationController
     times = set_koma_times(timetable.times)                         # 各コマ毎の時間の値
     return period_hash, default_from_date, default_to_date, times
   end
-  
+
   def set_timetable
     @timetable = Timetable.find(params[:id])
   end
-  
+
   # カレントユーザが保存中のタイムテーブルを取得
   def set_saved_timetables
     @saved_timetables = current_user.timetables.where(saved: true).order(created_at: :desc) if user_saved_timetable?
   end
-  
+
   # タイムテーブルの作成前確認とテンプレート保存の処理（newとeditで同じ処理のためまとめる）
   def timetable_confirm_and_template_process
     # エラー処理
@@ -197,7 +198,7 @@ class TimetablesController < ApplicationController
       redirect_back(fallback_location: root_path)
       return
     end
-    
+
     if params[:commit_value] == "confirm"                           # 「確認」が実行された場合
       redirect_to confirm_user_timetable_path(current_user, @timetable)
     elsif params[:commit_value] == "template"                       # 「現在の内容を保存」が実行された場合
@@ -209,7 +210,7 @@ class TimetablesController < ApplicationController
         flash[:danger] = "保存可能なタイムテーブルは5件までです"
       end
       redirect_to new_user_timetable_path(current_user)
-    else          
+    else
       flash[:danger] = "不正な操作です"
       redirect_to root_path
     end

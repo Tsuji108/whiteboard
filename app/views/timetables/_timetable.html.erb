@@ -6,7 +6,9 @@
   <span class="small-btn">
     <%= link_to "確認", user_timetable_path(current_user, timetable), class: "btn btn-primary" %>
   </span>
-  <span class="small-btn">
-    <%= link_to "削除", user_timetable_path(current_user, timetable), method: :delete, class: "btn btn-danger" %>
-  </span>
+  <% if current_user.admin? %>
+    <span class="small-btn">
+      <%= link_to "削除", user_timetable_path(current_user, timetable), method: :delete, class: "btn btn-danger" %>
+    </span>
+  <% end %>
 </li>
