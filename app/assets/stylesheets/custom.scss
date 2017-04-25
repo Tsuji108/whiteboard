@@ -129,11 +129,13 @@ header {
   #menu li {
     list-style: none;
     font-size: 1.2em;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     border-bottom: 1px solid #ffffff;
   }
 
   a {
+    display: block;
+    width: 240px;
     text-decoration: none;
     color: #fff;
     transition: all 0.3s;
@@ -148,9 +150,9 @@ header {
     position: fixed;
     top: 50px;
     right: -340px; /* メニューのwidth + padding */
-    width: 300px; /* メニューのwidth */
+    width: 280px; /* メニューのwidth */
     height: 100%;
-    padding: 20px;
+    padding: 30px 20px;
     transition: left .3s, right .3s; /* アニメーション */
     background-color: rgba(86, 86, 86, .7);
   }
