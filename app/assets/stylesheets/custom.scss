@@ -401,14 +401,13 @@ input {
     max-width: 100px;
   }
 
-  .date-header {
-    margin-top: -100px;
-    padding-top: 100px; 
+  th {
+    font-size: 0.8em;
   }
 
   .band_name {
     padding-bottom: 10px;
-    font-size: 1.5em;
+    font-size: 1.3em;
   }
 
   .reservation_user {
