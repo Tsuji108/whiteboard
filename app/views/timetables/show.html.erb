@@ -27,10 +27,16 @@
                         <div class="band_name center">
                           <%= current_reservation.band_name %>
                         </div>
-                        
+
                         <!-- 登録者名 -->
                         <div class="reservation_user center">
-                          登録：<%= link_to current_reservation.user.name, current_reservation.user %>
+                          <!-- 登録者がDBに存在する場合 -->
+                          <% if current_reservation.user %>
+                            登録：<%= link_to current_reservation.user.name, current_reservation.user %>
+                            <!-- 登録者がDBに存在しない場合 -->
+                          <% else %>
+                            登録：削除されたユーザ
+                          <% end %>
                         </div>
 
                         <!-- 過去のタイムテーブルは編集不可 -->
