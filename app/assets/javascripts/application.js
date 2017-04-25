@@ -27,3 +27,8 @@ function submit_with_value(form_id, commit_value_from_view)
 function open_menu() {
   document.getElementById("sm-menu-icon").classList.toggle("active");
 }
+
+window.onload = function()
+{
+    FixedMidashi.create();
+};

@@ -6,7 +6,7 @@
     <div class="col-md-10 col-md-offset-1 col-xs-12">
 
         <div class="table-responsive">
-          <table class="timetable table">
+          <table _fixedhead='rows:0; cols:1; div-auto-size: none;' class="timetable table">
             <tr><%= @timetable_date.html_safe %></tr>
 
             <% @timetable.times.lines do |timetable_time| %>
@@ -46,7 +46,8 @@
                           <% if current_reservation.user == current_user || current_user.admin == true %>
                             <!-- 登録削除のリンク -->
                             <div class="delete_link center">
-                              <%= link_to "削除", delete_reservation_user_timetable_path(del_id: current_reservation.id), method: :delete, class: "btn btn-danger" %>
+                              <%= link_to "削除", delete_reservation_user_timetable_path(del_id: current_reservation.id), method: :delete,
+                                  class: "btn btn-danger", data: { confirm: "本当に削除してよろしいですか？" }  %>
                             </div>
                           <% end %>
 

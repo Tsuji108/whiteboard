@@ -268,7 +268,7 @@ footer {
 /* gravatar */
 
 .gravatar {
-  margin: 0 10px;
+  margin-right: 10px;
 }
 
 .gravatar_edit {
@@ -363,6 +363,8 @@ input {
 .index {
   list-style: none;
   margin: 0;
+  padding: 20px 0 0;
+
   li {
     overflow: auto;
     padding: 10px 0;
@@ -399,6 +401,11 @@ input {
     max-width: 100px;
   }
 
+  .date-header {
+    margin-top: -100px;
+    padding-top: 100px; 
+  }
+
   .band_name {
     padding-bottom: 10px;
     font-size: 1.5em;
@@ -415,7 +422,7 @@ input {
 
   .btn {
     width: 100%;
-    padding: 1px 0;
+    padding: 1px 3px;
   }
 }
 
@@ -465,6 +472,10 @@ input {
 .user-show {
   .container {
     padding-top: 20px;
+  }
+
+  .gravatar {
+    margin: 0;
   }
 
   td {
