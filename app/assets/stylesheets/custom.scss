@@ -68,6 +68,11 @@ textarea {
   font-weight: bold;
 }
 
+table, th, td {
+  word-wrap: break-word;
+  white-space: normal!important;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -387,10 +392,11 @@ input {
 
 .timetable {
   margin: 0 auto 20px;
+
   table, td, th {
     border: 1px #777 solid;
     padding: 5px;
-    min-width: 90px;
+    max-width: 100px;
   }
 
   .band_name {
