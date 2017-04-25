@@ -19,8 +19,8 @@ class User < ApplicationRecord
   # バリデーション
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i # メールアドレスの正規表現
-  validates :email, presence: true,
-                    length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX },
+  validates :email, presence: true
+  validates :email, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false },
                     unless: proc {|a| a.email.blank? } # メールアドレスが入力されている場合のみ確認
   has_secure_password
