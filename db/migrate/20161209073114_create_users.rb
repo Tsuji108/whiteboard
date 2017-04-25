@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string   :email             # メールアドレス
       t.string   :birth_place       # 出身地
       t.string   :address           # 現住所
-      t.string   :sex               # 性別
+      t.string   :sex, default: '男' # 性別
       t.date     :birth_day         # 誕生日
       t.date     :enroll_year       # 入学年
       t.string   :department        # 学科など

@@ -41,7 +41,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
+    @user.update_attributes(name: '削除されたユーザ', email: 'deleteduser@example.com', birth_place: nil, address: nil, sex:nil, birth_day: nil,
+                            enroll_year: nil, department: nil, part: nil, genre: nil, profile: nil, admin: false,
+                            mail_receive: false)
     flash[:success] = 'メンバーから削除しました'
     redirect_to users_url
   end

@@ -30,17 +30,17 @@
 
                         <!-- 登録者名 -->
                         <div class="reservation_user center">
-                          <!-- 登録者がDBに存在する場合 -->
-                          <% if current_reservation.user %>
-                            登録：<%= link_to current_reservation.user.name, current_reservation.user %>
-                            <!-- 登録者がDBに存在しない場合 -->
-                          <% else %>
+                          <!-- 登録者が削除されている場合 -->
+                          <% if current_reservation.user.email == 'deleteduser@example.com' %>
                             登録：削除されたユーザ
+                            <!-- 登録者が削除されていない場合 -->
+                          <% else %>
+                            登録：<%= link_to current_reservation.user.name, current_reservation.user %>
                           <% end %>
                         </div>
 
                         <!-- 過去のタイムテーブルは編集不可 -->
-                        <% if Timetable.count  == 1 || Timetable.last.id == params[:id].to_i %>
+                        <% if Timetable.count  == 1 || (Timetable.last.id == params[:id].to_i && Timetable.count  != 1) %>
 
                           <!-- ログインしているユーザと練習登録者が一致、または管理者の場合は削除リンクを表示 -->
                           <% if current_reservation.user == current_user || current_user.admin == true %>
@@ -59,7 +59,7 @@
                           <%= render 'shared/error_messages' %>
 
                           <!-- 過去のタイムテーブルは編集不可 -->
-                          <% if Timetable.count  == 1 || Timetable.last.id == params[:id].to_i %>
+                          <% if Timetable.count  == 1 || (Timetable.last.id == params[:id].to_i && Timetable.count  != 1) %>
                             <%= f.text_field :band_name, class: 'form-control' %>
                             <%= f.hidden_field :timetable_id, value: params[:id] %>
                             <%= f.hidden_field :resavation_date, value: date_num %>
