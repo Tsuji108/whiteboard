@@ -28,6 +28,7 @@ function open_menu() {
   document.getElementById("sm-menu-icon").classList.toggle("active");
 }
 
+// タイムテーブルのヘッダーを固定
 window.onload = function()
 {
     FixedMidashi.create();

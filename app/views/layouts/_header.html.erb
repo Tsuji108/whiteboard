@@ -2,7 +2,11 @@
   <div class="container">
   <div class="row">
     <div class="col-xs-10">
-      <%= link_to "WhtieBoard", root_path, id: "logo" %>
+      <% if logged_in? && current_user.admin? %>
+        <%= link_to "WhtieBoard<span id='admin-sign'>AdminUser</span>".html_safe, root_path, id: "logo" %>
+      <% else %>
+        <%= link_to "WhtieBoard", root_path, id: "logo" %>
+      <% end %>
     </div>
     <nav>
       <div class="nav navbar-nav navbar-right">
