@@ -156,7 +156,6 @@ header {
   }
 
   .toggle {
-    // font-size: 50px;
     cursor: pointer;
     margin: 0;
   }
@@ -169,7 +168,6 @@ header {
     display: none;
   }
 
-  /* :checked 擬似クラスを使って、#openがチェック状態になった時に、#menuが「right: 0;」になります。 */
   #open:checked + #menu {
     right: 0;
   }
