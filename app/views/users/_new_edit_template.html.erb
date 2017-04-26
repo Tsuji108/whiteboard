@@ -86,7 +86,7 @@
         <%= f.password_field :password_confirmation, class: 'form-control' %>
 
         <% if this_page == "new" %>
-          <%= f.label :accept_pass, "承認パスワード(部長などに聞いてください)" %>
+          <%= f.label :accept_pass, "承認パスワード<br class='visible-xs'>(部長などに聞いてください)".html_safe %>
           <%= f.password_field :accept_pass, class: 'form-control' %>
         <% end %>
 
