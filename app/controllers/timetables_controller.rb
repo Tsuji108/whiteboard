@@ -13,10 +13,10 @@ class TimetablesController < ApplicationController
   end
 
   def show
-    @timetable_date = "<th></th>"  # タイムテーブル左上の空セルを最初に登録
-    @date_count = 0                # 何日分のデータかを格納
+    @timetable_date = "<th class='date'></th>"  # タイムテーブル左上の空セルを最初に登録
+    @date_count = 0                               # 何日分のデータかを格納
     @timetable.from_date.upto(@timetable.to_date) do |date|
-      @timetable_date += "<th class='center'>#{(l date, format: :short)}</th>"
+      @timetable_date += "<th class='center date'>#{(l date, format: :short)}</th>"
       @date_count += 1
     end
   end

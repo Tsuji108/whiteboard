@@ -412,7 +412,6 @@ input {
   table, td, th {
     border: 1px #777 solid;
     max-width: 100px;
-    min-width: 90px;
   }
 
   td {
@@ -420,8 +419,13 @@ input {
   }
 
   th {
+    width: auto;
     padding: 5px 3px!important;
     font-size: 0.9em;
+  }
+
+  th.date {
+    min-width: 90px;
   }
 
   .band_name {
@@ -444,10 +448,22 @@ input {
   }
 }
 
+.timetable-confirm {
+  margin-bottom: 20px;
+
+  table, td, th {
+    border: 1px #777 solid;
+    padding: 5px 3px!important;
+    font-size: 0.9em;
+  }
+}
+
 .fixed-midashi {
   overflow: auto;
   height: 70vh;
-  margin-bottom: 20px;
+  width: 100%;
+  margin: 0 0 20px;
+  box-sizing: border-box;
 }
 
 .create-timetable {

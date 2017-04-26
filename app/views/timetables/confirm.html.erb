@@ -1,12 +1,12 @@
 <% provide(:title, 'Timetable confirm') %>
 <div class="container">
 
-  <h1>Timetable confirm</h1>
+  <h1></h1>
   <h2>この内容でよろしいですか？</h2>
 
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <table class="timetable">
+    <div class="col-md-8 col-md-offset-2 col-xs-12">
+      <table class="timetable-confirm">
         <tr><%= @timetable_date.html_safe %></tr>
         <% @timetable.times.lines do |timetable_time| %>
           <% unless timetable_time.blank? %>
