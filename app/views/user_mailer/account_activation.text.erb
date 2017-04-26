@@ -3,4 +3,4 @@
 九工大軽音楽部へようこそ！
 下のリンクへ移動して、あなたのWhiteBoardアカウントを有効化してください。
 
-<%= edit_account_activation_url(@user.activation_token, email: @user.email, protocol: "https"), only_path: false %>
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
