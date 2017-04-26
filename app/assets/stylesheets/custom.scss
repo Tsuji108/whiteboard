@@ -241,7 +241,7 @@ header {
 /* footer */
 
 footer {
-  margin-top: 45px;
+  margin-top: 30px;
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
   color: $gray-light;
@@ -357,7 +357,7 @@ input {
 #sendto_checkbox input, .radio-control input {
   width: auto!important;
   vertical-align: middle!important;
-} 
+}
 
 #past-ml {
   padding-top: 15px;
@@ -406,13 +406,13 @@ input {
 }
 
 /* timetable */////////////////////////////////////////////////////////////////////////////////////
-
 .timetable {
-  margin: 0 auto 20px;
+  margin: 0 auto;
 
   table, td, th {
     border: 1px #777 solid;
     max-width: 100px;
+    min-width: 90px;
   }
 
   td {
@@ -444,6 +444,12 @@ input {
   }
 }
 
+.fixed-midashi {
+  overflow: auto;
+  height: 70vh;
+  margin-bottom: 20px;
+}
+
 .create-timetable {
   select {
     min-width: 105px;
@@ -451,7 +457,7 @@ input {
 
   span.form-str {
     text-align: left;
-    padding-top: 7px; 
+    padding-top: 7px;
   }
 }
 

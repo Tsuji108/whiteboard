@@ -1,91 +1,93 @@
 <% provide(:title, 'Timetable') %>
-<div class="container">
-  <h1></h1>
+<dic class="timetable">
+  <div class="container">
+    <h1></h1>
 
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1 col-xs-12">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-2 col-xs-12" onLoad="FixedMidashi.create();">
 
-        <div class="table-responsive">
-          <table _fixedhead='rows:0; cols:1; div-auto-size: none;' class="timetable table">
-            <tr><%= @timetable_date.html_safe %></tr>
+          <div class="fixed-midashi">
+            <table _fixedhead='rows:1; cols:1;'>
+              <tr><%= @timetable_date.html_safe %></tr>
 
-            <% @timetable.times.lines do |timetable_time| %>
-              <% unless timetable_time.blank? %>
-                <tr>
-                  <!-- タイムテーブルの左の時間部分 -->
-                  <th><%= my_truncate(timetable_time, 30) %></th>
+              <% @timetable.times.lines do |timetable_time| %>
+                <% unless timetable_time.blank? %>
+                  <tr>
+                    <!-- タイムテーブルの左の時間部分 -->
+                    <th><%= my_truncate(timetable_time, 30) %></th>
 
-                  <!-- タイムテーブルのデータ部分 -->
-                  <% @date_count.times do |date_num| %>
-                    <td>
+                    <!-- タイムテーブルのデータ部分 -->
+                    <% @date_count.times do |date_num| %>
+                      <td>
 
-                      <!-- タイムテーブルに登録されている場合 -->
-                      <% if Reservation.exists?(timetable_id: params[:id], resavation_date: date_num, resavation_koma: timetable_time) %>
-                        <% current_reservation = Reservation.find_by(timetable_id: params[:id], resavation_date: date_num, resavation_koma: timetable_time) %>
+                        <!-- タイムテーブルに登録されている場合 -->
+                        <% if Reservation.exists?(timetable_id: params[:id], resavation_date: date_num, resavation_koma: timetable_time) %>
+                          <% current_reservation = Reservation.find_by(timetable_id: params[:id], resavation_date: date_num, resavation_koma: timetable_time) %>
 
-                        <!-- 登録名（バンド名） -->
-                        <div class="band_name center">
-                          <%= current_reservation.band_name %>
-                        </div>
+                          <!-- 登録名（バンド名） -->
+                          <div class="band_name center">
+                            <%= current_reservation.band_name %>
+                          </div>
 
-                        <!-- 登録者名 -->
-                        <div class="reservation_user center">
-                          <!-- 登録者が削除されている場合 -->
-                          <% if current_reservation.user.email.include?('@example.com') && current_reservation.user.email.include?('deleteduser') %>
-                            登録：削除されたユーザ
-                            <!-- 登録者が削除されていない場合 -->
-                          <% else %>
-                            登録：<%= link_to current_reservation.user.name, current_reservation.user %>
-                          <% end %>
-                        </div>
-
-                        <!-- 過去のタイムテーブルは編集不可 -->
-                        <% if Timetable.count  == 1 || (Timetable.where(saved: false).last.id == params[:id].to_i && Timetable.count  != 1) %>
-
-                          <!-- ログインしているユーザと練習登録者が一致、または管理者の場合は削除リンクを表示 -->
-                          <% if current_reservation.user == current_user || current_user.admin == true %>
-                            <!-- 登録削除のリンク -->
-                            <div class="delete_link center">
-                              <%= link_to "削除", delete_reservation_user_timetable_path(del_id: current_reservation.id), method: :delete,
-                                  class: "btn btn-danger", data: { confirm: "本当に削除してよろしいですか？" }  %>
-                            </div>
-                          <% end %>
-
-                        <% end %>
-
-                      <!-- タイムテーブルに登録されていない場合 -->
-                      <% else %>
-
-                        <%= form_for(:reservation, url: reservation_user_timetable_path(current_user)) do |f| %>
-                          <%= render 'shared/error_messages' %>
+                          <!-- 登録者名 -->
+                          <div class="reservation_user center">
+                            <!-- 登録者が削除されている場合 -->
+                            <% if current_reservation.user.email.include?('@example.com') && current_reservation.user.email.include?('deleteduser') %>
+                              登録：削除されたユーザ
+                              <!-- 登録者が削除されていない場合 -->
+                            <% else %>
+                              登録：<%= link_to current_reservation.user.name, current_reservation.user %>
+                            <% end %>
+                          </div>
 
                           <!-- 過去のタイムテーブルは編集不可 -->
                           <% if Timetable.count  == 1 || (Timetable.where(saved: false).last.id == params[:id].to_i && Timetable.count  != 1) %>
-                            <%= f.text_field :band_name, class: 'form-control' %>
-                            <%= f.hidden_field :timetable_id, value: params[:id] %>
-                            <%= f.hidden_field :resavation_date, value: date_num %>
-                            <%= f.hidden_field :resavation_koma, value: timetable_time %>
-                            <%= f.submit "練習をとる", class: "btn btn-primary" %>
+
+                            <!-- ログインしているユーザと練習登録者が一致、または管理者の場合は削除リンクを表示 -->
+                            <% if current_reservation.user == current_user || current_user.admin == true %>
+                              <!-- 登録削除のリンク -->
+                              <div class="delete_link center">
+                                <%= link_to "削除", delete_reservation_user_timetable_path(del_id: current_reservation.id), method: :delete,
+                                    class: "btn btn-danger", data: { confirm: "本当に削除してよろしいですか？" }  %>
+                              </div>
+                            <% end %>
+
+                          <% end %>
+
+                        <!-- タイムテーブルに登録されていない場合 -->
+                        <% else %>
+
+                          <%= form_for(:reservation, url: reservation_user_timetable_path(current_user)) do |f| %>
+                            <%= render 'shared/error_messages' %>
+
+                            <!-- 過去のタイムテーブルは編集不可 -->
+                            <% if Timetable.count  == 1 || (Timetable.where(saved: false).last.id == params[:id].to_i && Timetable.count  != 1) %>
+                              <%= f.text_field :band_name, class: 'form-control' %>
+                              <%= f.hidden_field :timetable_id, value: params[:id] %>
+                              <%= f.hidden_field :resavation_date, value: date_num %>
+                              <%= f.hidden_field :resavation_koma, value: timetable_time %>
+                              <%= f.submit "練習をとる", class: "btn btn-primary" %>
+                            <% end %>
+
                           <% end %>
 
                         <% end %>
 
-                      <% end %>
+                      </td>
+                    <% end %>
 
-                    </td>
-                  <% end %>
-
-                </tr>
+                  </tr>
+                <% end %>
               <% end %>
-            <% end %>
-          </table>
-        </div>
+            </table>
+          </div><!-- fixed_midashi -->
 
-        <%= link_to "過去のタイムテーブルを確認するにはこちら", user_timetables_path(current_user) %>
+          <%= link_to "過去のタイムテーブルを確認するにはこちら", user_timetables_path(current_user) %>
 
-    </div>
-  </div>
+      </div><!-- col -->
+    </div><!-- row -->
 
-</div>
+  </div><!-- container -->
+</div><!-- timetable -->
 
 
