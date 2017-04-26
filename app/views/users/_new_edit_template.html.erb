@@ -85,6 +85,11 @@
         <%= f.label :password_confirmation, pass_message_confirm %>
         <%= f.password_field :password_confirmation, class: 'form-control' %>
 
+        <% if this_page == "new" %>
+          <%= f.label :accept_pass, "承認パスワード(部長などに聞いてください)" %>
+          <%= f.password_field :accept_pass, class: 'form-control' %>
+        <% end %>
+
         <%= f.submit submit, class: "btn btn-primary" %>
       <% end %>
     </div>

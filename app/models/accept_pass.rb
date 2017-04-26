@@ -1,0 +1,3 @@
+class AcceptPass < ApplicationRecord
+
+end

@@ -20,12 +20,17 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      @user.send_activation_email
-      flash[:info] = 'アカウント有効化のためのメールを送信しました'
+    if params[:user][:accept_pass] == AcceptPass.last.accept_pass
+      @user = User.new(user_params)
+      if @user.save
+        @user.send_activation_email
+        flash[:info] = 'アカウント有効化のためのメールを送信しました'
+      end
+      render :new
+    else
+      flash[:danger] = '承認パスワードが一致しません'
+      redirect_to root_path
     end
-    render :new
   end
 
   def edit

@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112092155) do
+ActiveRecord::Schema.define(version: 20170426132434) do
+
+  create_table "accept_passes", force: :cascade do |t|
+    t.string   "accept_pass"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "mailing_lists", force: :cascade do |t|
     t.string   "from_name"
@@ -58,7 +64,7 @@ ActiveRecord::Schema.define(version: 20170112092155) do
     t.string   "email"
     t.string   "birth_place"
     t.string   "address"
-    t.string   "sex"
+    t.string   "sex",               default: "男"
     t.date     "birth_day"
     t.date     "enroll_year"
     t.string   "department"

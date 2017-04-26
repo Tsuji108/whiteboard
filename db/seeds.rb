@@ -1,3 +1,6 @@
+# 承認パス
+AcceptPass.create!(accept_pass: 'kit_music')
+
 # 管理者
 User.create!(name:  'ito',
              email: 'mito@example.com',
