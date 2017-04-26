@@ -430,6 +430,7 @@ input {
     width: auto;
     padding: 5px 3px!important;
     font-size: 0.9em;
+    background-color: #f7f7fd;
   }
 
   th.date {
@@ -463,6 +464,10 @@ input {
     border: 1px #777 solid;
     padding: 5px 3px!important;
     font-size: 0.9em;
+  }
+
+  th {
+    background-color: #f7f7fd;
   }
 }
 
