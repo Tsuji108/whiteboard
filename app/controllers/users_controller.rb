@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       end
       render :new
     else
-      flash[:danger] = '承認パスワードが一致しません'
+      flash.now[:danger] = '承認パスワードが一致しません'
       render :new
     end
   end
