@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    if params[:user][:accept_pass] == (ENV['ACCEPT_PASS'] || 'test')
+    if params[:user][:accept_pass] == ENV['ACCEPT_PASS']
       @user = User.new(user_params)
       if @user.save
         @user.send_activation_email
