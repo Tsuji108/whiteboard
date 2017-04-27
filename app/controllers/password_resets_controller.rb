@@ -9,14 +9,15 @@ class PasswordResetsController < ApplicationController
   # 期限切れかどうかを確認する
   before_action :check_expiration, only: [:edit, :update]
 
-  def new; end
+  def new
+  end
 
   def create
     @user = User.find_by(email: params[:password_reset][:email].downcase)
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email
-      flash[:info] = 'パスワード再設定のためのメールを送信しました'
+      flash.now[:info] = 'パスワード再設定のためのメールを送信しました'
       redirect_to root_url
     else
       flash.now[:danger] = '指定のメールアドレスが見つかりません'
