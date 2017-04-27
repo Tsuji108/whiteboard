@@ -22,15 +22,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if params[:user][:accept_pass] == ENV['ACCEPT_PASS']
-      if @user.save
-        @user.send_activation_email
-        flash.now[:info] = 'アカウント有効化のためのメールを送信しました'
-      end
-      render :new
+      @user.save
+      @user.send_activation_email
+      flash.now[:info] = 'アカウント有効化のためのメールを送信しました'
     else
       flash.now[:danger] = '承認パスワードが一致しません'
-      render :new
     end
+    render :newZ
   end
 
   def edit
