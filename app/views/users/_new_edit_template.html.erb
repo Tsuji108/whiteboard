@@ -92,4 +92,8 @@
 
         <%= f.submit submit, class: "btn btn-primary" %>
       <% end %>
+
+      <% if this_page == "new" %>
+          <p>※ kitmusic.siteドメインからのメールを受信できるように設定してから登録してください</p>
+      <% end %>
     </div>
