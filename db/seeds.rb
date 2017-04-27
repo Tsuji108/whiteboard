@@ -1,5 +1,5 @@
 # 承認パス
-AcceptPass.create!(accept_pass: 'test')
+AcceptPass.create!(accept_pass: ENV['ACCEPT_PASS'])
 
 # 管理者
 User.create!(name:  'ito',
