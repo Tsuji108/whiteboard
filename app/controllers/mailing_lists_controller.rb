@@ -6,7 +6,6 @@ class MailingListsController < ApplicationController
   before_action :set_saved_mailing_lists, only: [:new, :create, :edit, :update, :applay_saved_ml, :destroy_saved_ml]
   
   def index
-    # @mailing_lists = MailingList.where(sent: true).order(sent_at: :desc).page(params[:page])
     @q = MailingList.search(params[:q])
     @mailing_lists = @q.result(distinct: true).where(sent: true).order(sent_at: :desc).page(params[:page])
   end

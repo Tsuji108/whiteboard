@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 class SessionsController < ApplicationController
+  
   def new
     # ログイン済みの時
     if logged_in?
