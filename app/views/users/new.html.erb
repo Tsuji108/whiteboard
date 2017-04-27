@@ -1,16 +1,12 @@
 <% provide(:title, 'Sign up') %>
 <div class="signup">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-        <h1></h1>
+    <h1></h1>
 
-        <%= render 'new_edit_template', { pass_message: "パスワード",  
-                                          pass_message_confirm: "パスワード(確認用)", 
-                                          submit: "新規登録",
-                                          this_page: "new"} %>
-      </div>
-    </div>
+    <%= render 'new_edit_template', { pass_message: "パスワード",  
+                                      pass_message_confirm: "パスワード(確認用)", 
+                                      submit: "新規登録",
+                                      this_page: "new"} %>
   </div>
 </div>
 
