@@ -48,7 +48,7 @@
                               <!-- 登録削除のリンク -->
                               <div class="delete_link center">
                                 <%= link_to "削除", delete_reservation_user_timetable_path(del_id: current_reservation.id), method: :delete,
-                                    class: "btn btn-danger", data: { confirm: "本当に削除してよろしいですか？" }  %>
+                                    class: "btn btn-danger", data: { confirm: "「#{current_reservation.band_name}」を削除してよろしいですか？" }  %>
                               </div>
                             <% end %>
 
