@@ -41,11 +41,11 @@
         <% end %>
 
         <% unless @user.genre.blank? %>
-          <tr><td><div class="bold">好きなジャンルやバンドなど</div><%= simple_format(h @user.genre) %></td></tr>
+          <tr><td class="textarea"><div class="bold">好きなジャンルやバンドなど</div><%= simple_format(h @user.genre) %></td></tr>
         <% end %>
 
         <% unless @user.profile.blank? %>
-          <tr><td><div class="bold">自己紹介</div><%= simple_format(h @user.profile) %></td></tr>
+          <tr><td class="textarea"><div class="bold">自己紹介</div><%= simple_format(h @user.profile) %></td></tr>
         <% end %>
 
         <% if @user.graduated == false %>
