@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       if @user.save
         @user.send_activation_email
         flash[:info] = 'アカウント有効化のためのメールを送信しました<br>
-                        有効化メールを再送信したい場合は、登録したメールアドレスとパスワードでログインを行ってください'
+                        再送信したい場合は、登録したアドレスとパスワードでログインしてください'
         redirect_to root_path
       else
         flash.now[:danger] = '新規登録に失敗しました'
