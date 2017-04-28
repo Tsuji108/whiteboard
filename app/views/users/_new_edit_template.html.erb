@@ -94,6 +94,10 @@
       <% end %>
 
       <% if this_page == "new" %>
-          <p>※ kitmusic.siteドメインからのメールを受信できるように設定してから登録してください</p>
+        <p>※ kitmusic.siteドメインからのメールを受信できるように設定してから登録してください</p>
+      <% else %>
+        <div id="delete-user">
+          <%= link_to "このアカウントを削除", user_path(@user, page: "edit"), method: :delete, data: {confirm: "本当に削除してよろしいですか？"} %>
+        </div>
       <% end %>
     </div>

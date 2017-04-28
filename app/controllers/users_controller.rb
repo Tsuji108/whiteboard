@@ -13,6 +13,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    # 削除されたユーザの場合はルートにリダイレクト
+    redirect_to root_url if @user.email.include?('@example.com') && @user.email.include?('deleteduser.')
   end
 
   def new
@@ -47,11 +49,18 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.update_attributes(name: '削除されたユーザ', email: 'deleteduser.'+SecureRandom.hex[0...200]+'@example.com', birth_place: nil, address: nil, sex:nil, birth_day: nil,
+    @user.update_attributes(name: '削除されたユーザ', email: 'deleteduser.'+SecureRandom.hex(110)+'@example.com',
+                            birth_place: nil, address: nil, sex:nil, birth_day: nil,
                             enroll_year: nil, department: nil, part: nil, genre: nil, profile: nil, admin: false,
                             mail_receive: false)
-    flash[:success] = 'メンバーから削除しました'
-    redirect_to users_url
+    if params[:page] == 'index' # ユーザー一覧画面から削除された場合
+      flash[:success] = 'メンバーから削除しました'
+      redirect_to users_url
+    else                        # プロフィール編集画面から削除された場合
+      flash[:success] = 'アカウントを削除しました'
+      log_out if logged_in?
+      redirect_to root_path
+    end
   end
 
   # アカウント有効化メールを再送信

@@ -73,6 +73,10 @@ table, th, td {
   white-space: normal!important;
 }
 
+#past-ml, #delete-user {
+  padding-top: 15px;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -431,10 +435,6 @@ input {
 #sendto_checkbox input, .radio-control input {
   width: auto!important;
   vertical-align: middle!important;
-}
-
-#past-ml {
-  padding-top: 15px;
 }
 
 .select-interval {
