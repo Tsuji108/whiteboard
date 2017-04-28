@@ -12,6 +12,11 @@ module SessionsHelper
     cookies.permanent[:remember_token] = user.remember_token
   end
 
+  # 渡されたユーザーが削除済みユーザーであればtrueを返す
+  def deleted_user?(user)
+    user.email.include?('@example.com') && user.email.include?('deleteduser.')
+  end
+
   # 渡されたユーザーがログイン済みユーザーであればtrueを返す
   def current_user?(user)
     user == current_user

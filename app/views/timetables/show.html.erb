@@ -32,7 +32,7 @@
                           <!-- 登録者名 -->
                           <div class="reservation_user center">
                             <!-- 登録者が削除されている場合 -->
-                            <% if current_reservation.user.email.include?('@example.com') && current_reservation.user.email.include?('deleteduser.') %>
+                            <% if deleted_user?(current_reservation.user) %>
                               登録：削除されたユーザ
                               <!-- 登録者が削除されていない場合 -->
                             <% else %>

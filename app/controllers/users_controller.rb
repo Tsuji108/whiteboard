@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def show
     # 削除されたユーザの場合はルートにリダイレクト
-    redirect_to root_url if @user.email.include?('@example.com') && @user.email.include?('deleteduser.')
+    redirect_to root_url if deleted_user?(@user)
   end
 
   def new
