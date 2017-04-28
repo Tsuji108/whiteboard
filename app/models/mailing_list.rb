@@ -7,7 +7,7 @@ class MailingList < ApplicationRecord
   
   # バリデーション
   validates :from_name,  presence: true, length: { maximum: 50 }
-  validates :title,  presence: true, length: { maximum: 255 }
+  validates :title, length: { maximum: 255 }
   validates :to_graduated, acceptance: true, unless: proc {|a| a.to_enrolled? }
   validates :content,  presence: true, length: { maximum: 5000 }
   

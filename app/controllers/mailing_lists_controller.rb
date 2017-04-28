@@ -23,11 +23,11 @@ class MailingListsController < ApplicationController
   def new
     @mailing_list = current_user.mailing_lists.build()
     @mailing_list.from_name = current_user.name
-    @mailing_list.title = "#{current_user.name}さんからのメール"
   end
   
   def create
     @mailing_list = current_user.mailing_lists.build(mailing_list_params)
+    @mailing_list.title = "#{current_user.name}さんからのメール" if @mailing_list.title.blank?
     if @mailing_list.save
       mail_confirm_and_template_process
     else

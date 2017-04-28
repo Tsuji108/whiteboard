@@ -34,7 +34,7 @@
         <%= f.text_field :from_name, class: 'form-control' %>
 
         <%= f.label :title, "メールタイトル" %>
-        <%= f.text_field :title, class: 'form-control' %>
+        <%= f.text_field :title, class: 'form-control', placeholder: "空白で「#{current_user.name}さんからのメール」" %>
 
         <%= f.label :send_to, "メール送信先" %>
         <div id="sendto_checkbox">
