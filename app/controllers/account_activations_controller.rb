@@ -19,9 +19,15 @@ class AccountActivationsController < ApplicationController
   def create
     @user = User.find_by(email: params[:resend][:email])
     if @user && !@user.activated?
-      @user.send_activation_email
-      flash[:info] = 'アカウント有効化のためのメールを再送信しました'
-      redirect_to root_url
+      if @user.save
+        @user.send_activation_email
+        flash[:info] = 'アカウント有効化のためのメールを再送信しました'
+        redirect_to root_url
+      else
+        flash[:danger] = "アカウント有効化のためのメールを送信できませんでした<br>
+                          しばらく待ってから再度実行してください"
+        redirect_to root_url
+      end
     else
       flash.now[:danger] = "アカウント有効化のためのメールを送信できませんでした<br>
                             指定の情報は登録されていないか、すでに有効化されている可能性があります"
