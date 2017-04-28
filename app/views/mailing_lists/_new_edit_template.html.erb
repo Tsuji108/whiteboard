@@ -14,7 +14,7 @@
               <li>
                 <table class="index-table">
                   <%= "<tr><th>保存日時</th><td>：</td><td>#{(l saved_mailing_list.created_at, format: :long)}</td></tr>
-                      <tr><th>送信者</th><td>：</td><td>#{saved_mailing_list.from_name}</td></tr>
+                      <tr><th>送信者</th><td>：</td><td>#{h(saved_mailing_list.from_name)}</td></tr>
                       <tr><th>タイトル</th><td>：</td><td>#{my_truncate(saved_mailing_list.title, 75)}</td></tr>
                       <tr><th>本文</th><td>：</td><td>#{my_truncate(saved_mailing_list.content, 75)}</td></tr>".html_safe %>
                 </table>
