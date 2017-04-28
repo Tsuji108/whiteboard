@@ -26,14 +26,17 @@ class UsersController < ApplicationController
     if params[:user][:accept_pass] == ENV['ACCEPT_PASS']
       if @user.save
         @user.send_activation_email
-        flash.now[:info] = 'アカウント有効化のためのメールを送信しました'
+        flash[:info] = 'アカウント有効化のためのメールを送信しました<br>
+                        有効化メールを再送信したい場合は、登録したメールアドレスとパスワードでログインを行ってください'
+        redirect_to root_path
       else
-        flash.now[:info] = '新規登録に失敗しました'
+        flash.now[:danger] = '新規登録に失敗しました'
+        render :new
       end
     else
       flash.now[:danger] = '承認パスワードが一致しません'
+      render :new
     end
-    render :new
   end
 
   def edit
