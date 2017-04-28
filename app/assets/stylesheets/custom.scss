@@ -153,20 +153,86 @@ header {
     font-size: 1.2em;
     margin-bottom: 30px;
     border-bottom: 1px solid #ffffff;
-  }
 
-  a {
-    display: block;
-    width: 240px;
-    text-decoration: none;
-    color: #fff;
-    transition: all 0.3s;
-
-    &:hover {
+    a {
+      display: block;
+      width: 240px;
       text-decoration: none;
-      color: #444;
+      color: #fff;
+      transition: all 0.3s;
+
+      &:hover {
+        text-decoration: none;
+        color: #444;
+      }
+    }
+
+    // タイムテーブル
+    a.timetable:before {
+      content: "\f00a";
+      margin: 0 7px 0 3px;
+      font-family: FontAwesome;
+      font-size: .9em;
+    }
+
+    // タイムテーブル作成
+    a.create-timetable:before {
+      content: "\f013";
+      margin: 0 7px 0 3px;
+      font-family: FontAwesome;
+      font-size: .9em;
+    }
+
+    // サークルメンバー
+    a.member:before {
+      content: "\f0c0";
+      margin: 0 7px 0 3px;
+      font-family: FontAwesome;
+      font-size: .9em;
+    }
+
+    // サークルメール
+    a.mail:before {
+      content: "\f003";
+      margin: 0 7px 0 3px;
+      font-family: FontAwesome;
+      font-size: .9em;
+    }
+
+    // プロフィール確認
+    a.profile:before {
+      content: "\f007";
+      margin: 0 7px 0 3px;
+      font-family: FontAwesome;
+      font-size: .9em;
+    }
+
+    // プロフィール編集
+    a.edit-profile:before {
+      content: "\f040";
+      margin: 0 7px 0 3px;
+      font-family: FontAwesome;
+      font-size: .9em;
+    }
+
+    // ログアウト
+    a.logout:before {
+      content: "\f08b";
+      margin: 0 7px 0 3px;
+      font-family: FontAwesome;
+      font-size: .9em;
+    }
+
+    // ログイン
+    a.login:before {
+      content: "\f090";
+      margin: 0 7px 0 3px;
+      font-family: FontAwesome;
+      font-size: .9em;
     }
   }
+
+  
 
   #menu {
     position: fixed;

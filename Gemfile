@@ -5,6 +5,7 @@ gem 'rails',           '5.0.0.1'
 gem 'bootstrap-sass',  '3.3.6'
 gem 'faker',           '1.6.6'
 gem 'kaminari',        '0.17.0'
+gem 'font-awesome-rails', '4.7.0.1'
 gem 'i18n_generators', '2.1.1'
 gem 'bcrypt',          '3.1.11'
 gem 'puma',            '3.4.0'
@@ -34,6 +35,3 @@ end
 group :production do
   gem 'mysql2', '0.4.5'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
