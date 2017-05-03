@@ -655,6 +655,10 @@ input {
   table {
     margin-top: 30px;
     width: 100%;
+
+    &.table-responsive {
+      margin-bottom: 0px;
+    }
   }
 
   .bold {
