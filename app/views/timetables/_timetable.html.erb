@@ -8,7 +8,8 @@
   </span>
   <% if current_user.admin? %>
     <span class="small-btn">
-      <%= link_to "削除", user_timetable_path(current_user, timetable), method: :delete, class: "btn btn-danger" %>
+      <%= link_to "削除", user_timetable_path(current_user, timetable), method: :delete,
+                  data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
     </span>
   <% end %>
 </li>
