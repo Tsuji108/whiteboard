@@ -73,7 +73,7 @@ table, th, td {
   white-space: normal!important;
 }
 
-#past-ml, #delete-user {
+#past-ml, #delete-user, #edit-profile {
   padding-top: 15px;
 }
 
@@ -203,17 +203,9 @@ header {
       font-size: .9em;
     }
 
-    // プロフィール確認
+    // プロフィール
     a.profile:before {
       content: "\f007";
-      margin: 0 7px 0 3px;
-      font-family: FontAwesome;
-      font-size: .9em;
-    }
-
-    // プロフィール編集
-    a.edit-profile:before {
-      content: "\f040";
       margin: 0 7px 0 3px;
       font-family: FontAwesome;
       font-size: .9em;
@@ -447,6 +439,21 @@ input {
   margin-top: -4px;
 }
 
+// 新規登録の在学状況・メール受信設定の説明文
+.explain {
+  color: #888;
+  padding-bottom: 5px;
+}
+
+// 新規登録の必須アイコン
+.required:after {
+    content: "\f069";
+    margin-left: 5px;
+    font-family: FontAwesome;
+    font-size: .9em;
+    color: #a00;
+}
+
 /* index */
 
 .index {
@@ -477,6 +484,29 @@ input {
   }
   th, td {
     vertical-align: top;
+  }
+}
+
+.user-index {
+  // サークルメンバー一覧の名前と各ボタン（管理者の時表示される）
+  .contents {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  // サークルメンバー一覧の名前部分
+  .name {
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+  }
+
+  .btn {
+    margin: 3px 5px 0 0;
   }
 }
 
@@ -614,6 +644,12 @@ input {
   td {
     border: 1px #777 solid;
     padding: 5px 10px;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
   }
 
   table {

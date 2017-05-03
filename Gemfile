@@ -30,6 +30,8 @@ group :development do
   gem 'listen',                '3.0.8'
   gem 'spring',                '1.7.2'
   gem 'spring-watcher-listen', '2.0.0'
+  gem 'letter_opener',         '1.4.1'
+  gem 'letter_opener_web',     '1.3.1'
 end
 
 group :production do

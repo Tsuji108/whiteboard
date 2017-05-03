@@ -59,9 +59,11 @@
         <% else %>
           <tr><td><div class="bold">サークルメール受信設定</div>受け取らない</td></tr>
         <% end %>
-
       </table>
 
+      <div id="edit-profile">
+        <%= link_to "プロフィールを編集するにはこちら", edit_user_path(current_user) %>
+      </div>
 
     </div>
   </div>

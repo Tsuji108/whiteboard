@@ -5,7 +5,11 @@
 
 <p>
   <%= label :title, "メールタイトル" %>
-  <div class="confirm-text"><%= @mailing_list.title %></div>
+  <% if @mailing_list.title.blank? %>
+    <div class="confirm-text">無題</div>
+  <% else %>
+    <div class="confirm-text"><%= @mailing_list.title %></div>
+  <% end %>
 </p>
 
 <p>

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
-  get 'timetables/new'
 
-  # TODO: 仮のルート
   root   'sessions#new'
 
   get    '/signup',  to: 'users#new'
@@ -10,6 +8,7 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+  
   resources :users do
     member do
       get   'resend'
@@ -34,11 +33,16 @@ Rails.application.routes.draw do
       end
     end
   end
+
   resources :account_activations, only: [:edit, :create] do
     collection do
       get 'resend'
     end
   end
+
   resources :password_resets,     only: [:new, :create, :edit, :update]
   
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: '/letter_opener'
+  end
 end

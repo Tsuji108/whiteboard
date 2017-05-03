@@ -1,12 +1,25 @@
 <% unless deleted_user?(user) %>
-  <li>
-    <%= gravatar_for user, size: 50 %>
-    <%= link_to user.name, user %>
-    <% if current_user.admin? && !current_user?(user) %>
-      | <%= link_to "削除", user_path(user, page: "index"), method: :delete, data: {confirm: "「#{user.name}」を削除してよろしいですか？"} %>
-      <% unless user.admin? %>
-        | <%= link_to "管理者にする", add_admin_user_path(user), data: {confirm: "この操作は取り消しできません。本当によろしいですか？"} %>
+  <li class="flex user-index">
+    <div>
+      <%= gravatar_for user, size: 50 %>
+    </div>
+    <div class="flex small-btn contents">
+      <div class="name">
+        <%= link_to user.name, user %>
+      </div>
+      
+      <% if current_user.admin? && !current_user?(user) %>
+        <div class"small-btn">
+          <%= link_to "削除", user_path(user, page: "index"), method: :delete,
+              data: {confirm: "「#{user.name}」を削除してよろしいですか？"}, class: "btn btn-danger" %>
+          <% unless user.admin? %>
+            <%= link_to "管理者にする", add_admin_user_path(user),
+                data: {confirm: "「#{user.name}」に管理者権限を与えてもよろしいですか？"}, class: "btn btn-warning" %>
+          <% end %>
+        </div>
       <% end %>
-    <% end %>
+      
+    </div><!-- flex small-btn -->
+
   </li>
 <% end %>

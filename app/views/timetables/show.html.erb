@@ -36,7 +36,7 @@
                               登録：削除されたユーザ
                               <!-- 登録者が削除されていない場合 -->
                             <% else %>
-                              登録：<%= link_to current_reservation.user.name, current_reservation.user %>
+                              登録：<%= link_to my_truncate(current_reservation.user.name, 25), current_reservation.user %>
                             <% end %>
                           </div>
 

@@ -2,11 +2,11 @@
       <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages' %>
 
-        <%= f.label :name, "名前" %>
+        <%= f.label :name, "名前", class: required_class %>
         <%= f.text_field :name, class: 'form-control', placeholder: "例：尾知ひろし" %>
 
-        <%= f.label :email, "メールアドレス" %>
-        <%= f.email_field :email, class: 'form-control', placeholder: "例：whiteboard@example.com" %>
+        <%= f.label :email, "メールアドレス", class: required_class %>
+        <%= f.email_field :email, class: 'form-control', placeholder: "例：niconiconee@example.com" %>
 
         <%= f.label :birth_place, "出身地" %>
         <%= f.text_field :birth_place, class: 'form-control', placeholder: "例：福岡県" %>
@@ -68,25 +68,27 @@
         <%= f.text_area :profile, rows: 5, class: 'form-control'  %>
 
         <%= f.label :graduated, "在学状況" %>
+        <div class="explain">[在校生]で在校生向けへのメール、[卒業生]で卒業生向けへのメールを受信します。</div>
         <div class='radio-control'>
           <label class="radio-inline"><%= f.radio_button :graduated, false, checked: true %>在校生</label>
           <label class="radio-inline"><%= f.radio_button :graduated, true %>卒業生</label>
         </div>
 
         <%= f.label :mail_receive, "サークルメール受信設定" %>
+        <div class="explain">すべてのメールを受け取りたくない場合は[受け取らない]を選択してください。</div>
         <div class='radio-control'>
           <label class="radio-inline"><%= f.radio_button :mail_receive, true, checked: true %>受け取る</label>
           <label class="radio-inline"><%= f.radio_button :mail_receive, false %>受け取らない</label>
         </div>
 
-        <%= f.label :password, pass_message %>
+        <%= f.label :password, pass_message, class: required_class %>
         <%= f.password_field :password, class: 'form-control' %>
 
-        <%= f.label :password_confirmation, pass_message_confirm %>
+        <%= f.label :password_confirmation, pass_message_confirm, class: required_class %>
         <%= f.password_field :password_confirmation, class: 'form-control' %>
 
         <% if this_page == "new" %>
-          <%= f.label :accept_pass, "承認パスワード<br class='visible-xs'>(部長などに聞いてください)".html_safe %>
+          <%= f.label :accept_pass, "承認パスワード<br class='visible-xs'>(部長などに聞いてください)".html_safe, class: required_class %>
           <%= f.password_field :accept_pass, class: 'form-control' %>
         <% end %>
 
