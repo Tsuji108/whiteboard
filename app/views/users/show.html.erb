@@ -61,9 +61,11 @@
         <% end %>
       </table>
 
-      <div id="edit-profile">
-        <%= link_to "プロフィールを編集するにはこちら", edit_user_path(current_user) %>
-      </div>
+      <% if current_user?(@user) %>
+        <div id="edit-profile">
+          <%= link_to "プロフィールを編集するにはこちら", edit_user_path(current_user) %>
+        </div>
+      <% end %>
 
     </div>
   </div>
