@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :mailing_lists
   has_many :timetables
   has_many :reservations
+  has_one  :accept_pass, dependent: :destroy
   
   # 記憶トークン・有効化トークン・パスワード再設定トークン用のクラス変数
   attr_accessor :remember_token, :activation_token, :reset_token
@@ -24,7 +25,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false },
                     unless: proc {|a| a.email.blank? } # メールアドレスが入力されている場合のみ確認
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true # プロフ更新時のみnilを許可(パスはそのまま)
+  validates :password, presence: true, length: { minimum: 4 }, allow_nil: true # プロフ更新時のみnilを許可(パスはそのまま)
   validates :birth_place, length: { maximum: 255 }
   validates :address, length: { maximum: 255 }
   validates :department, length: { maximum: 255 }

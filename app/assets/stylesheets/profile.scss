@@ -1,0 +1,40 @@
+/* プロフィールページ */////////////////////////////////////////////////////////////////////////////////////
+.user-show {
+  .container {
+    padding-top: 20px;
+  }
+
+  .gravatar {
+    margin: 0;
+  }
+
+  td {
+    border: 1px #777 solid;
+    padding: 5px 10px;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+  }
+
+  table {
+    margin-top: 30px;
+    width: 100%;
+
+    &.table-responsive {
+      margin-bottom: 0px;
+    }
+  }
+
+  .bold {
+    padding-bottom: 5px;
+  }
+
+  td.textarea p {
+    line-height: 1.3em;
+    font-size: 1em;
+  }
+
+}

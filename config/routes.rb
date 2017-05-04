@@ -48,7 +48,8 @@ Rails.application.routes.draw do
       get 'creator'
     end
   end
-  
+
+  resources :accept_passes,       only: [:show, :edit, :update]
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: '/letter_opener'

@@ -2,6 +2,7 @@
 <% obj = @mailing_list if @mailing_list %>
 <% obj = @timetable if @timetable %>
 <% obj = @notification if @notification %>
+<% obj = @accept_pass if @accept_pass %>
 
 <% if obj.errors.any? %>
   <div id="error_explanation">

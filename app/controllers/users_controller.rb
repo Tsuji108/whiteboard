@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if params[:user][:accept_pass] == ENV['ACCEPT_PASS']
+    if params[:user][:accept_pass] == AcceptPass.find(1).accept_pass
       if @user.save
         @user.send_activation_email
         flash[:info] = 'アカウント有効化のためのメールを送信しました'
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.update_attributes(name: '削除されたユーザ', email: 'deleteduser.'+SecureRandom.hex(110)+'@example.com',
+    @user.update_attributes(name: '削除されたユーザー', email: 'deleteduser.'+SecureRandom.hex(110)+'@example.com',
                             birth_place: nil, address: nil, sex:nil, birth_day: nil,
                             enroll_year: nil, department: nil, part: nil, genre: nil, profile: nil, admin: false,
                             mail_receive: false)
@@ -115,12 +115,12 @@ class UsersController < ApplicationController
 
     # 管理者かどうか確認
     def admin_user
-      redirect_to(root_url) unless current_user.admin?
+      redirect_to root_url unless current_user.admin?
     end
 
     # アカウント有効化メールを送信可能なユーザかどうか確認
     def non_activated_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless @user && !@user.activated?
+      redirect_to root_url unless @user && !@user.activated?
     end
 end

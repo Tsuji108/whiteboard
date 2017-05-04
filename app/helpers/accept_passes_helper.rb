@@ -1,0 +1,2 @@
+module AcceptPassesHelper
+end

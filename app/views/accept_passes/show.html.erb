@@ -1,0 +1,27 @@
+<% provide(:title, '承認パスワード設定') %>
+<div class="accept-pass-show">
+  <div class="container">
+    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 nopadding">
+
+      <table class="table-responsive">
+        <tr><td><div class="bold">承認パスワード</div><%= @accept_pass.accept_pass %></td></tr>
+        <tr><td><div class="bold">設定した人</div>
+        <% if @accept_pass.user_id.nil? %>
+          <%= link_to User.find(1).name, User.find(1) %>
+        <% elsif deleted_user?(@accept_pass.user) %>
+          削除されたユーザー
+        <% else %>
+          <%= link_to @accept_pass.user.name, @accept_pass.user %>
+        <% end %>
+        </td></tr>
+      </table>
+
+      <% if current_user.admin? %>
+        <div id="edit-accept-pass">
+          <%= link_to "承認パスワードの変更はこちら", edit_accept_pass_path(@accept_pass) %>
+        </div>
+      <% end %>
+
+    </div><!-- col -->
+  </div><!-- container -->
+</div><!-- accept-pass-show -->

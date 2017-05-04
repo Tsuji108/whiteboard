@@ -32,6 +32,9 @@
                 <li><%= link_to "サークルメール", new_user_mailing_list_path(current_user), class: 'mail' %></li>
                 <li><%= link_to "サークルメンバー", users_path, class: 'member'%></li>
                 <li><%= link_to "プロフィール", current_user, class: 'profile' %></li>
+                <% if current_user.admin? %>
+                  <li><%= link_to "承認パスワード設定", accept_pass_path(1), class: 'accept-pass' %></li>
+                <% end %>
                 <li class="notification">
                   <%= link_to "お知らせ", notifications_path, class: 'notification'%>
                   <% unless current_user.checked_notification? %>

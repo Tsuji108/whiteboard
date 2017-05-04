@@ -145,6 +145,14 @@ header {
         font-size: .9em;
       }
 
+      // 承認パスワード設定
+      a.accept-pass:before {
+        content: "\f13e";
+        margin: 0 7px 0 3px;
+        font-family: FontAwesome;
+        font-size: .9em;
+      }
+
       // お知らせ
       a.notification:before {
         content: "\f0a2";
