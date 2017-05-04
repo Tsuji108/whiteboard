@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user,         only: [:index, :show, :edit, :update, :destroy, :add_admin]
   before_action :correct_user,           only: [:edit, :update]
-  before_action :admin_user,             only: [:destroy, :add_admin]
+  before_action :admin_user,             only: :add_admin
   before_action :non_activated_user,     only: :resend
   before_action :prohibit_direct_access, only: :resend
   before_action :set_user,               only: [:show, :edit, :update, :destroy, :resend, :add_admin]
