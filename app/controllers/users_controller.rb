@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if params[:user][:accept_pass] == AcceptPass.find(1).accept_pass
+    if params[:user][:accept_pass] == AcceptPass.last.accept_pass
       if @user.save
         @user.send_activation_email
         flash[:info] = 'アカウント有効化のためのメールを送信しました'
