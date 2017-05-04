@@ -11,13 +11,6 @@ class MailingListsController < ApplicationController
   end
   
   def show
-    pagenate_par = 20   # indexでの１ページの表示数
-    ml_show_number = MailingList.where(sent: true).where("sent_at >= ?", @mailing_list.sent_at).count # 該当のshowがindex内で何番目に表示されるか取得
-    if ml_show_number % pagenate_par == 0
-      @previous_page = ml_show_number / pagenate_par  # 該当のshowは何ページ目に属しているかを保存
-    else
-      @previous_page = ml_show_number / pagenate_par + 1
-    end
   end
   
   def new

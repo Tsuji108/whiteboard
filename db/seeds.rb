@@ -16,7 +16,8 @@ User.create!(name:  'soneda',
              password_confirmation: 'foobar',
              admin: true,
              activated: true,
-             activated_at: Time.zone.now)
+             activated_at: Time.zone.now,
+             checked_notification: false)
 
 User.create!(name:  'sajima',
              email: 'sajima@example.com',
@@ -24,14 +25,16 @@ User.create!(name:  'sajima',
              password_confirmation: 'foobar',
              admin: true,
              activated: true,
-             activated_at: Time.zone.now)
+             activated_at: Time.zone.now,
+             checked_notification: false)
 
 User.create!(name:  'test',
              email: 'test@example.com',
              password:              'foobar',
              password_confirmation: 'foobar',
              admin: true,
-             activated: false)
+             activated: false,
+             checked_notification: false)
 
 # # その他
 # 299.times do |n|

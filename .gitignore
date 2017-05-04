@@ -8,4 +8,6 @@
 .byebug_history
 vendor
 docker-compose.yml
+.vscode
+.DS_Store
 

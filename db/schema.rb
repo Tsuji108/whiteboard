@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426132434) do
+ActiveRecord::Schema.define(version: 20170504093236) do
 
   create_table "accept_passes", force: :cascade do |t|
     t.string   "accept_pass"
@@ -31,6 +31,12 @@ ActiveRecord::Schema.define(version: 20170426132434) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.index ["user_id"], name: "index_mailing_lists_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.text     "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -64,7 +70,7 @@ ActiveRecord::Schema.define(version: 20170426132434) do
     t.string   "email"
     t.string   "birth_place"
     t.string   "address"
-    t.string   "sex",               default: "男"
+    t.string   "sex",                  default: "男"
     t.date     "birth_day"
     t.date     "enroll_year"
     t.string   "department"
@@ -73,16 +79,17 @@ ActiveRecord::Schema.define(version: 20170426132434) do
     t.text     "profile"
     t.string   "password_digest"
     t.string   "remember_digest"
-    t.boolean  "admin",             default: false
+    t.boolean  "admin",                default: false
     t.string   "activation_digest"
-    t.boolean  "activated",         default: false
+    t.boolean  "activated",            default: false
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
-    t.boolean  "graduated",         default: false
-    t.boolean  "mail_receive",      default: true
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.boolean  "graduated",            default: false
+    t.boolean  "mail_receive",         default: true
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.boolean  "checked_notification", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

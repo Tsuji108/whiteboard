@@ -1,0 +1,253 @@
+/* header */////////////////////////////
+header {
+  box-shadow: 0px 0px 10px;
+
+  .nav {
+    margin: 0;
+  }
+
+  .menu-icon {
+    float: right;
+  }
+
+  .toggle {
+    position: relative;
+
+    // お知らせ通知の丸
+    .notice{
+      position: absolute;
+      top: 13px;
+      right: -5px;
+      width: 8px;
+      height: 8px;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      background-color: rgba(255,50,50,0.8);
+      pointer-events: none;
+    }
+  }
+
+  #admin-sign {
+    font-size: 0.5em;
+    font-weight: normal;
+    padding-left: 8px;
+    letter-spacing: 0px;
+    color: #fa0;
+  }
+
+  .beta {
+    font-size: 0.5em;
+    font-weight: normal;
+    padding-left: 8px;
+    letter-spacing: 0px;
+    color: #f55;
+  }
+
+  #logo {
+    float: left;
+    margin-right: 10px;
+    font-size: 1.7em;
+    color: #fff;
+    letter-spacing: -1px;
+    padding-top: 9px;
+
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 0;
+  }
+
+
+
+  #menu {
+    overflow: scroll;
+
+    li {
+      list-style: none;
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #ffffff;
+
+      a {
+        display: block;
+        width: 240px;
+        text-decoration: none;
+        color: #fff;
+        transition: all 0.3s;
+
+        &:hover {
+          text-decoration: none;
+          color: #444;
+        }
+      }
+
+      &.notification {
+        position: relative;
+
+        // お知らせ通知の丸
+        .notice{
+          position: absolute;
+          top: -2px;
+          left: 13px;
+          width: 8px;
+          height: 8px;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          background-color: rgba(255,50,50,0.8);
+          pointer-events: none;
+        }
+      }
+
+      // タイムテーブル
+      a.timetable:before {
+        content: "\f00a";
+        margin: 0 7px 0 3px;
+        font-family: FontAwesome;
+        font-size: .9em;
+      }
+
+      // タイムテーブル作成
+      a.create-timetable:before {
+        content: "\f013";
+        margin: 0 7px 0 3px;
+        font-family: FontAwesome;
+        font-size: .9em;
+      }
+
+      // サークルメール
+      a.mail:before {
+        content: "\f003";
+        margin: 0 7px 0 3px;
+        font-family: FontAwesome;
+        font-size: .9em;
+      }
+
+      // サークルメンバー
+      a.member:before {
+        content: "\f0c0";
+        margin: 0 7px 0 3px;
+        font-family: FontAwesome;
+        font-size: .9em;
+      }
+
+      // プロフィール
+      a.profile:before {
+        content: "\f007";
+        margin: 0 7px 0 3px;
+        font-family: FontAwesome;
+        font-size: .9em;
+      }
+
+      // お知らせ
+      a.notification:before {
+        content: "\f0a2";
+        margin: 0 7px 0 3px;
+        font-family: FontAwesome;
+        font-size: .9em;
+      }
+
+      // ログアウト
+      a.logout:before {
+        content: "\f08b";
+        margin: 0 7px 0 3px;
+        font-family: FontAwesome;
+        font-size: .9em;
+      }
+
+      // ログイン
+      a.login:before {
+        content: "\f090";
+        margin: 0 7px 0 3px;
+        font-family: FontAwesome;
+        font-size: .9em;
+      }
+    }
+  }
+
+  
+
+  #menu {
+    position: fixed;
+    top: 50px;
+    right: -340px; /* メニューのwidth + padding */
+    width: 280px; /* メニューのwidth */
+    height: 100%;
+    padding: 30px 20px;
+    transition: left .3s, right .3s; /* アニメーション */
+    background-color: rgba(86, 86, 86, 0.7);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .toggle {
+    cursor: pointer;
+    margin: 0;
+  }
+
+  .toggle:hover {
+    text-decoration: underline;
+  }
+
+  #open {
+    display: none;
+  }
+
+  #open:checked + #menu {
+    right: 0;
+  }
+
+  #sm-menu-icon, #sm-menu-icon span {
+    display: inline-block;
+    transition: all .4s;
+    box-sizing: border-box;
+  }
+
+  #sm-menu-icon {
+    position: relative;
+    top: 18px;
+    width: 24px;
+    height: 15px;
+
+    & > span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #ffffff;
+
+      &:nth-of-type(1) {
+        top: 0;
+      }
+
+      &:nth-of-type(2) {
+        top: 7px;
+      }
+
+      &:nth-of-type(3) {
+        bottom: 0;
+      }
+    }
+
+    // クリック時の動作
+    &.active > span {
+      &:nth-of-type(1) {
+        transform: translateY(7.5px) rotate(-315deg);
+      }
+
+      &:nth-of-type(2) {
+        opacity: 0;
+      }
+
+      &:nth-of-type(3) {
+        transform: translateY(-7.5px) rotate(315deg);
+      }
+    }
+  }
+
+}

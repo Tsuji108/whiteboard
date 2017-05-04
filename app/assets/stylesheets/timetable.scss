@@ -1,0 +1,86 @@
+/* timetable */////////////////////////////////////////////////////////////////////////////////////
+.timetable {
+  margin: 0 auto;
+
+  table, td, th {
+    border: 1px #777 solid;
+    max-width: 90px;
+  }
+
+  td {
+    padding: 5px!important;
+  }
+
+  th {
+    font-size: 0.9em;
+    background-color: #f7f7fd;
+  }
+
+  th.koma {
+    text-align: center;
+    padding: 1px;
+  }
+
+  th.date {
+    min-width: 90px;
+    padding: 5px 3px;
+
+    &:nth-child(1) {
+      min-width: 80px;
+      max-width: 80px;
+      width: 80px;
+    }
+  }
+
+  .band_name {
+    padding-bottom: 10px;
+    font-size: 1.2em;
+  }
+
+  .reservation_user {
+    font-size: 0.8em;
+    padding-bottom: 5px;
+  }
+
+  .delete_link {
+    font-size: 0.9em;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 1px 3px;
+  }
+}
+
+.timetable-confirm {
+  margin-bottom: 20px;
+
+  table, td, th {
+    border: 1px #777 solid;
+    padding: 5px 3px!important;
+    font-size: 0.9em;
+  }
+
+  th {
+    background-color: #f7f7fd;
+  }
+}
+
+.fixed-midashi {
+  overflow: auto;
+  height: 70vh;
+  width: 100%;
+  margin: 0 0 20px;
+  box-sizing: border-box;
+}
+
+.create-timetable {
+  select {
+    min-width: 105px;
+  }
+
+  span.form-str {
+    text-align: left;
+    padding-top: 7px;
+  }
+}

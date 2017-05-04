@@ -12,6 +12,11 @@
       <div class="nav navbar-nav navbar-right">
         <label class="toggle" for="open">
           <div id="sm-menu-icon" onClick="open_menu();"><span></span><span></span><span></span></div>
+          <% if logged_in? %>
+            <% unless current_user.checked_notification? %>
+              <div class="notice"></div>
+            <% end %> 
+          <% end %>
         </label>
         <input id="open" type="checkbox" autocomplete="off">
         <div id="menu">
@@ -24,9 +29,15 @@
                 <% if current_user.admin? %>
                   <li><%= link_to "タイムテーブル作成", new_user_timetable_path(current_user), class: 'create-timetable' %></li>
                 <% end %>
-                <li><%= link_to "サークルメンバー", users_path, class: 'member'%></li>
                 <li><%= link_to "サークルメール", new_user_mailing_list_path(current_user), class: 'mail' %></li>
+                <li><%= link_to "サークルメンバー", users_path, class: 'member'%></li>
                 <li><%= link_to "プロフィール", current_user, class: 'profile' %></li>
+                <li class="notification">
+                  <%= link_to "お知らせ", notifications_path, class: 'notification'%>
+                  <% unless current_user.checked_notification? %>
+                    <div class="notice"></div>
+                  <% end %> 
+                </li>
                 <li><%= link_to "ログアウト", logout_path, method: "delete", class: 'logout' %></li>
               <% else %>
                 <li><%= link_to "ログイン", login_path, class: 'login' %></li>

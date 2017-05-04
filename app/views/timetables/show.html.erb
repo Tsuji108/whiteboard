@@ -14,7 +14,7 @@
                 <% unless timetable_time.blank? %>
                   <tr>
                     <!-- タイムテーブルの左の時間部分 -->
-                    <th><%= my_truncate(timetable_time, 30) %></th>
+                    <th class="koma"><%= my_truncate(timetable_time, 30) %></th>
 
                     <!-- タイムテーブルのデータ部分 -->
                     <% @date_count.times do |date_num| %>

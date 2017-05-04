@@ -41,6 +41,13 @@ Rails.application.routes.draw do
   end
 
   resources :password_resets,     only: [:new, :create, :edit, :update]
+
+  resources :notifications,       only: [:index, :new, :create, :edit, :update, :destroy] do
+    collection do
+      get 'creator'
+    end
+  end
+  
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: '/letter_opener'

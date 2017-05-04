@@ -20,6 +20,8 @@ ja:
         title: メールタイトル
         to_graduated: メール送信先
         content: メール本文
+      notification:
+        message: お知らせ内容
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"

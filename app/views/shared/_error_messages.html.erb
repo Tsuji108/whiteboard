@@ -1,6 +1,7 @@
 <% obj = @user if @user %>
 <% obj = @mailing_list if @mailing_list %>
 <% obj = @timetable if @timetable %>
+<% obj = @notification if @notification %>
 
 <% if obj.errors.any? %>
   <div id="error_explanation">

@@ -1,0 +1,21 @@
+<% provide(:title, 'お知らせ') %>
+<div class="container">
+  <h1></h1>
+  <h2 class="notification">更新情報など</h2>
+  <p class="notification">ホワイトボードに何かあったときは<%= link_to '中の人', creator_notifications_path %>まで</p>
+
+  <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 nopadding">
+    <% if current_user.id == 1 || current_user.id == 2 %>
+      <%= link_to "お知らせを作成", new_notification_path, class: "new-notification" %>
+    <% end %>
+
+    <ul class="index">
+      <%= render @notifications %>
+    </ul>
+
+    <div class="center">
+      <%= paginate @notifications %>
+    </div>
+
+  </div><!-- col -->
+</div><!-- container -->
