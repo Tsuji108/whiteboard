@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 class UsersController < ApplicationController
-  before_action :logged_in_user,         only: [:index, :show, :edit, :update, :destroy, :add_admin]
+  before_action :logged_in_user,         only: [:index, :show, :edit, :update, :destroy, :add_admin, :remove_admin]
   before_action :correct_user,           only: [:edit, :update]
-  before_action :admin_user,             only: :add_admin
+  before_action :admin_user,             only: [:add_admin, :remove_admin]
   before_action :non_activated_user,     only: :resend
   before_action :prohibit_direct_access, only: :resend
-  before_action :set_user,               only: [:show, :edit, :update, :destroy, :resend, :add_admin]
+  before_action :set_user,               only: [:show, :edit, :update, :destroy, :resend, :add_admin, :remove_admin]
 
   def index
     @q = User.search(params[:q])
@@ -82,9 +82,18 @@ class UsersController < ApplicationController
     if @user.update_attribute(:admin, true)
       flash[:success] = 'ユーザーに管理者権限を与えました'
     else
-      flash[:success] = 'だめでした'
+      flash[:danger] = '管理者権限を与えることに失敗しました'
     end
     redirect_to users_url
+  end
+
+  def remove_admin
+    if @user.update_attribute(:admin, false)
+      flash[:success] = '管理者権限を破棄しました'
+    else
+      flash[:danger] = '管理者権限の破棄に失敗しました'
+    end
+    redirect_to @user
   end
 
   private

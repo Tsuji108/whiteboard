@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     member do
       get   'resend'
       get   'add_admin'
+      get   'remove_admin'
     end
     resources :mailing_lists, only: [:index, :show, :new, :create, :edit, :update] do
       member do
