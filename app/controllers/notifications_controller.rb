@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-  before_action :logged_in_user
+  before_action :logged_in_user,   only: [:index,:new, :create, :edit, :update, :destroy]
   before_action :sudo_user,        only: [:new, :create, :edit, :update, :destroy]
   before_action :set_notification, only: [:edit, :update, :destroy]
 
@@ -44,7 +44,6 @@ class NotificationsController < ApplicationController
   end
 
   def creator
-
   end
 
   private
