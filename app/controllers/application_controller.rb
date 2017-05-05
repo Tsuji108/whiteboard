@@ -18,4 +18,9 @@ class ApplicationController < ActionController::Base
   def self.action_name
     return *(caller[1].scan(/`(.+)'/)[0])
   end
+
+  # 管理者かどうか確認
+  def admin_user
+    redirect_to root_url unless current_user.admin?
+  end
 end

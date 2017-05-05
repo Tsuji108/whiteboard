@@ -113,11 +113,6 @@ class UsersController < ApplicationController
       end
     end
 
-    # 管理者かどうか確認
-    def admin_user
-      redirect_to root_url unless current_user.admin?
-    end
-
     # アカウント有効化メールを送信可能なユーザかどうか確認
     def non_activated_user
       @user = User.find(params[:id])
