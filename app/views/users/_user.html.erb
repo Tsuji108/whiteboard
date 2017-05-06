@@ -8,7 +8,7 @@
         <%= link_to user.name, user %>
       </div>
       
-      <% if current_user.admin? && !current_user?(user) %>
+      <% if current_user.admin? && !current_user?(user) && !sudo_user?(user) %>
         <div class"small-btn">
           <%= link_to "削除", user_path(user, page: "index"), method: :delete,
               data: {confirm: "「#{user.name}」を削除してよろしいですか？"}, class: "btn btn-danger" %>
