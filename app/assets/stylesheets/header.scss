@@ -123,7 +123,7 @@ header {
 
       // サークルメール
       a.mail:before {
-        content: "\f003";
+        content: "\f0e0";
         margin: 0 7px 0 3px;
         font-family: FontAwesome;
         font-size: .9em;
@@ -155,7 +155,7 @@ header {
 
       // お知らせ
       a.notification:before {
-        content: "\f0a2";
+        content: "\f0f3";
         margin: 0 7px 0 3px;
         font-family: FontAwesome;
         font-size: .9em;
