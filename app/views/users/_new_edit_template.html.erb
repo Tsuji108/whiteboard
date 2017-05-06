@@ -99,13 +99,21 @@
         <p>※ kitmusic.siteドメインからのメールを受信できるように設定してから登録してください</p>
         <%= link_to "アカウント有効化メールの再送信はこちら", resend_account_activations_path %>
       <% else %>
-        <% if @user.admin? %>
+        <% if sudo_user?(@user)%>
           <div id="delete-user">
-            <%= link_to "管理者権限を破棄", remove_admin_user_path(@user), data: {confirm: "本当に管理者権限を破棄してよろしいですか？"} %>
+            <p>管理者権限を破棄</p>
+            <p>このアカウントを削除</p>
+          </div>
+        <% else %>
+          <% if @user.admin? %>
+            <div id="delete-user">
+              <%= link_to "管理者権限を破棄", remove_admin_user_path(@user), data: {confirm: "本当に管理者権限を破棄してよろしいですか？"} %>
+            </div>
+          <% end %>
+          <div id="delete-user">
+            <%= link_to "このアカウントを削除", user_path(@user, page: "edit"), method: :delete, data: {confirm: "本当に削除してよろしいですか？"} %>
           </div>
         <% end %>
-        <div id="delete-user">
-          <%= link_to "このアカウントを削除", user_path(@user, page: "edit"), method: :delete, data: {confirm: "本当に削除してよろしいですか？"} %>
-        </div>
       <% end %>
-    </div>
+
+    </div><!-- col -->

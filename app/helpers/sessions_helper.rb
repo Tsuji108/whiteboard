@@ -22,6 +22,11 @@ module SessionsHelper
     user == current_user
   end
 
+  # イトウかソネダはtrue、それ以外はfalse
+  def sudo_user?(user)
+    user.id == 1 || user.id == 2
+  end
+
   # 記憶トークンcookieに対応するユーザーを返す
   def current_user
     if (user_id = session[:user_id])                # 新たにログインした場合
