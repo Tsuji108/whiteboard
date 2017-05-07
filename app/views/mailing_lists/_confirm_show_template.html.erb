@@ -1,6 +1,6 @@
 <p>
   <%= label :from_name, "名前" %>
-  <div class="confirm-text"><%= @mailing_list.from_name %></div>
+  <div class="confirm-text"><%= link_to @mailing_list.from_name, @mailing_list.user %></div>
 </p>
 
 <p>
