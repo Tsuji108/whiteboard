@@ -100,7 +100,7 @@ class UsersController < ApplicationController
 
     # ストロングパラメータの設定
     def user_params
-      params.require(:user).permit(:name, :email, :birth_place, :address, :sex,
+      params.require(:user).permit(:prof_img, :name, :email, :birth_place, :address, :sex,
                                    :birth_day, :enroll_year, :department, :graduated,
                                    :part, :genre, :profile, :mail_receive, :password, :password_confirmation)
     end

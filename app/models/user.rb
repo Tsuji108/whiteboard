@@ -8,6 +8,9 @@ class User < ApplicationRecord
   # 記憶トークン・有効化トークン・パスワード再設定トークン用のクラス変数
   attr_accessor :remember_token, :activation_token, :reset_token
 
+  # アップローダーをマウント
+  mount_uploader :prof_img, ProfImgUploader
+
   # ページネーションでの１ページの表示数
   paginates_per 20
 
@@ -32,6 +35,7 @@ class User < ApplicationRecord
   validates :part, length: { maximum: 255 }
   validates :genre, length: { maximum: 5000 }
   validates :profile, length: { maximum: 5000 }
+  validate  :max_prof_img_size
 
   # 渡された文字列のハッシュ値を返す(フィクスチャ用)
   def self.digest(string)
@@ -93,20 +97,27 @@ class User < ApplicationRecord
 
   private
 
-  # メールアドレスをすべて小文字にする
-  def downcase_email
-    self.email = email.downcase
-  end
+    # メールアドレスをすべて小文字にする
+    def downcase_email
+      self.email = email.downcase
+    end
 
-  # 有効化トークンとダイジェストを作成および代入する
-  def create_activation_digest
-    self.activation_token  = User.new_token
-    self.activation_digest = User.digest(activation_token)
-  end
-  
-  # アカウント有効化していないユーザを削除(config/schedule.rbで設定)
-  def delete_non_activated_users
-    inactivated_users = User.where(activated: false).where("created_at < ?", 1.hour.ago) # 1時間以上有効化されていないユーザを選択
-    inactivated_users.destroy unless inactivated_users.count == 0
-  end
+    # 有効化トークンとダイジェストを作成および代入する
+    def create_activation_digest
+      self.activation_token  = User.new_token
+      self.activation_digest = User.digest(activation_token)
+    end
+    
+    # アカウント有効化していないユーザを削除(config/schedule.rbで設定)
+    def delete_non_activated_users
+      inactivated_users = User.where(activated: false).where("created_at < ?", 1.hour.ago) # 1時間以上有効化されていないユーザを選択
+      inactivated_users.destroy unless inactivated_users.count == 0
+    end
+
+    # アップロードされたプロフ画像のサイズをバリデーションする
+    def max_prof_img_size
+      if prof_img.size > 2.megabytes
+        errors.add(:prof_img, "2MB以下の画像を指定してください")
+      end
+    end
 end

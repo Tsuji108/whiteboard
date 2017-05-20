@@ -3,7 +3,7 @@ class MailingList < ApplicationRecord
   belongs_to :user
   
   # ページネーションでの１ページの表示数
-  paginates_per 20
+  paginates_per 10
   
   # バリデーション
   validates :from_name,  presence: true, length: { maximum: 50 }

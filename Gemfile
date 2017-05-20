@@ -16,13 +16,16 @@ gem 'jquery-rails',    '4.1.1'
 gem 'jbuilder',        '2.4.1'
 gem 'whenever', require: false
 gem 'ransack',         '1.8.2'
-gem 'carrierwave',     '1.0.0'
-gem 'rubocop'
+gem 'rubocop',         '0.48.1'
+gem 'carrierwave',     '1.1.0'
+gem 'mini_magick',     '4.7.0'
+gem 'fog',             '1.40.0' 
 
 group :development, :test do
   gem 'sqlite3', '1.3.11'
   gem 'byebug',  '9.0.0', platform: :mri
   gem 'rails-controller-testing'
+  gem 'dotenv-rails',  '2.2.1'
 end
 
 group :development do

@@ -6,6 +6,15 @@
 
   .gravatar {
     margin: 0;
+    width: 100px;
+    height: 100px;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: .3em;
+    margin-right: 10px;
   }
 
   td {
@@ -37,4 +46,19 @@
     font-size: 1em;
   }
 
+}
+
+.prof-img {
+  margin: 15px auto;
+
+  input {
+    border: none;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: .3em;
+    margin-right: 10px;
+  }
 }

@@ -10,4 +10,6 @@ vendor
 docker-compose.yml
 .vscode
 .DS_Store
+.env
+/public/uploads
 
