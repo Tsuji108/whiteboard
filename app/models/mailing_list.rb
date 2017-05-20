@@ -34,9 +34,9 @@ class MailingList < ApplicationRecord
     old_mails.destroy unless old_mails.count == 0
   end
   
-  # 1時間以上送信していないメールを削除(config/schedule.rbで設定)
+  # 1週間以上送信していないメールを削除(config/schedule.rbで設定)
   def delete_non_send_mails
-    non_send_mails = MailingList.where(saved: false).where(sent: false).where("updated_at < ?", 1.hour.ago)
+    non_send_mails = MailingList.where(saved: false).where(sent: false).where("updated_at < ?", 7.days.ago)
     non_send_mails.destroy unless non_send_mails.count == 0
   end
 end
