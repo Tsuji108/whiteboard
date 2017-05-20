@@ -2,9 +2,11 @@
       <%= form_for(@user, html: { multipart: true }) do |f| %>
         <%= render 'shared/error_messages' %>
 
-        <div class="center prof-img">
-          <%= gravatar_for @user, {size: 100} %>
-        </div>
+        <% if this_page == "edit" %>
+          <div class="center prof-img">
+            <%= gravatar_for @user %>
+          </div>
+        <% end %>
 
         <div class="prof-img">
           <%= f.label :prof_img, "プロフィール画像" %>
