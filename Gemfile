@@ -17,6 +17,7 @@ gem 'jbuilder',        '2.4.1'
 gem 'whenever', require: false
 gem 'ransack',         '1.8.2'
 gem 'rubocop',         '0.48.1'
+gem 'minitest',        '5.10.1'
 gem 'carrierwave',     '1.1.0'
 gem 'mini_magick',     '4.7.0'
 gem 'fog',             '1.40.0'

@@ -7,10 +7,10 @@ module UsersHelper
     size = options[:size]
 
     if user.prof_img?
-      image_tag user.prof_img.url 
+      image_tag user.prof_img.url , class: "prof-img"
     else
       gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
-      image_tag(gravatar_url, alt: user.name, class: 'gravatar')
+      image_tag gravatar_url, alt: user.name, class: 'gravatar'
     end
   end
   

@@ -4,17 +4,10 @@
     padding-top: 20px;
   }
 
-  .gravatar {
-    margin: 0;
-    width: 100px;
-    height: 100px;
-  }
-
   img {
-    width: 100px;
-    height: 100px;
     border-radius: .3em;
-    margin-right: 10px;
+    border: 2px solid #fff;
+    box-shadow:0px 0px 5px #ccc;
   }
 
   td {
@@ -56,9 +49,9 @@
   }
 
   img {
-    width: 100px;
-    height: 100px;
     border-radius: .3em;
-    margin-right: 10px;
+    border: 2px solid #fff;
+    box-shadow:0px 0px 5px #ccc;
+    margin: 0;
   }
 }
