@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :timetables
   has_many :reservations
   has_one  :accept_pass, dependent: :destroy
-  
+
   # 記憶トークン・有効化トークン・パスワード再設定トークン用のクラス変数
   attr_accessor :remember_token, :activation_token, :reset_token
 
@@ -107,7 +107,7 @@ class User < ApplicationRecord
       self.activation_token  = User.new_token
       self.activation_digest = User.digest(activation_token)
     end
-    
+
     # アカウント有効化していないユーザを削除(config/schedule.rbで設定)
     def delete_non_activated_users
       inactivated_users = User.where(activated: false).where("created_at < ?", 1.hour.ago) # 1時間以上有効化されていないユーザを選択
@@ -116,8 +116,8 @@ class User < ApplicationRecord
 
     # アップロードされたプロフ画像のサイズをバリデーションする
     def max_prof_img_size
-      if prof_img.size > 2.megabytes
-        errors.add(:prof_img, "2MB以下の画像を指定してください")
+      if prof_img.size > 5.megabytes
+        errors.add(:prof_img, "5MB以下の画像を指定してください")
       end
     end
 end
