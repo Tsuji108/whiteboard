@@ -2,6 +2,19 @@ require 'carrierwave/storage/abstract'
 require 'carrierwave/storage/file'
 require 'carrierwave/storage/fog'
 
+# exif情報から画像向きを補正
+module CarrierWave
+  module MiniMagick
+    def fix_exif_rotation
+      manipulate! do |img|
+        img.auto_orient
+        img = yield(img) if block_given?
+        img
+      end
+    end
+  end
+end
+
 if Rails.env.production?
   CarrierWave.configure do |config|
     config.fog_credentials = {
