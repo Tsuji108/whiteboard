@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   
   resources :users do
     member do
-      get   'resend'
       get   'add_admin'
       get   'remove_admin'
     end

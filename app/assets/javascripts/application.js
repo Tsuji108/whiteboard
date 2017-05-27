@@ -33,3 +33,15 @@ window.onload = function()
 {
     FixedMidashi.create();
 };
+
+// jQueryで記述
+$(document).ready(function(){
+
+  // フラッシュメッセージをフェードイン/アウト
+  $alert = $(".alert");
+  $alert.addClass("fadeIn");
+  setTimeout(function() {
+    $alert.addClass("fadeOut");
+  }, 4000);
+
+});

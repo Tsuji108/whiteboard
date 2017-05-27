@@ -65,19 +65,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # アカウント有効化メールを再送信
-  def resend
-    if @user.save
-      @user.send_activation_email
-      flash[:info] = 'アカウント有効化のためのメールを再送信しました'
-      redirect_to root_url
-    else
-      flash[:danger] = "アカウント有効化のためのメールを送信できませんでした<br>
-                        しばらく待ってから再度実行してください"
-      redirect_to root_url
-    end
-  end
-
   def add_admin
     if @user.update_attribute(:admin, true)
       flash[:success] = 'ユーザーに管理者権限を与えました'
