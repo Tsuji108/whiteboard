@@ -38,7 +38,7 @@ window.onload = function()
 $(document).ready(function(){
 
   // フラッシュメッセージをフェードイン/アウト
-  $alert = $(".alert");
+  $alert = $(".flash-alert");
   $alert.addClass("fadeIn");
   setTimeout(function() {
     $alert.addClass("fadeOut");
