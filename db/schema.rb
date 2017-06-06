@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170520031454) do
+ActiveRecord::Schema.define(version: 20170606150339) do
 
   create_table "accept_passes", force: :cascade do |t|
     t.string   "accept_pass"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20170520031454) do
     t.datetime "updated_at",      null: false
     t.index ["resavation_date"], name: "index_reservations_on_resavation_date"
     t.index ["resavation_koma"], name: "index_reservations_on_resavation_koma"
+    t.index ["timetable_id"], name: "index_reservations_on_timetable_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
