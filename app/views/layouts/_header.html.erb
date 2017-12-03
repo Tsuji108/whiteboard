@@ -3,9 +3,9 @@
   <div class="row">
     <div class="col-xs-10">
       <% if logged_in? && current_user.admin? %>
-        <%= link_to "WhtieBoard<span class='beta'>試用版</span><span id='admin-sign'>Admin</span>".html_safe, root_path, id: "logo" %>
+        <%= link_to "WhtieBoard<span id='admin-sign'>Admin</span>".html_safe, root_path, id: "logo" %>
       <% else %>
-        <%= link_to "WhtieBoard<span class='beta'>試用版</span>".html_safe, root_path, id: "logo" %>
+        <%= link_to "WhtieBoard".html_safe, root_path, id: "logo" %>
       <% end %>
     </div>
     <nav>
