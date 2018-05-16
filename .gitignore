@@ -12,4 +12,4 @@ docker-compose.yml
 .DS_Store
 .env
 /public/uploads
-
+nginx.conf
